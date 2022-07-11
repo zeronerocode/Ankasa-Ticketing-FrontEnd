@@ -1,0 +1,267 @@
+.container{
+    display: block;
+    position: relative;
+}
+.card2{
+    position: relative;
+    width: 876px;
+    height: 650px;
+    top: -430px;
+    left: 750px;
+}
+.contact{
+    position: absolute;
+    top: 220px;
+    left: 770px;
+}
+.emailText{
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 397px;
+    height: 50px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.phoneText{
+    position: absolute;
+    left: 0;
+    top: 100px;
+    width: 150px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input2{
+    position: absolute;
+    top: 130px;
+    left: 0;
+    width: 397px;
+    height: 50px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.biodata{
+    position: absolute;
+    top: 120px;
+    left: 1200px;
+}
+.username{
+    position: absolute;
+    left: 0;
+    top: 100px;
+    width: 150px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input3{
+    position: absolute;
+    top: 130px;
+    left: 0;
+    width: 397px;
+    height: 50px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.city{
+    position: absolute;
+    left: 0;
+    top: 200px;
+    width: 150px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input4{
+    position: absolute;
+    top: 230px;
+    left: 0;
+    width: 397px;
+    height: 50px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.adress{
+    position: absolute;
+    left: 0;
+    top: 300px;
+    width: 150px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input5{
+    position: absolute;
+    top: 330px;
+    left: 0;
+    width: 397px;
+    height: 50px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.zip{
+    position: absolute;
+    left: 0;
+    top: 400px;
+    width: 150px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input6{
+    position: absolute;
+    top: 430px;
+    left: 0;
+    width: 397px;
+    height: 50px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.contactText{
+    position: absolute;
+    left: 0;
+    top: -55px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+}
+.biodataText{
+    position: absolute;
+    left: 0;
+    top: 40px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+}
+.text{
+    position: absolute;
+    left: 770px;
+    top: 70px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: #2395FF;
+}
+.text2{
+    position: absolute;
+    left: 770px;
+    top: 90px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #000000;
+}
+.settingText{
+    position: absolute;
+    left: 1000px;
+    top: 425px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2395FF;
+}
+.btn{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 1450px;
+    top: 625px;
+    background: #2395FF;
+    border: none;
+    box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+    border-radius: 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #FFFFFF;
+}

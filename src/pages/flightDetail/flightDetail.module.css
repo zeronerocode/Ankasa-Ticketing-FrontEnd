@@ -1,0 +1,671 @@
+body{
+    background: #F5F6FA;
+}
+.container{
+    display: block;
+}
+.bannerWrapper{
+    position: relative;
+}
+.banner{
+    position: absolute;
+    width: 100%;
+    height: 176px;
+}
+.contentWrapper{
+    position: relative;
+    top: 50px;
+    width: 100%;
+    height: 1550px;
+    /* border: 1px solid black; */
+}
+.contactDetail{
+    position: absolute;
+    left: 260px;
+    width: 789px;
+    height: 615px;
+    /* border: 1px solid black; */
+}
+.contactText{
+    position: absolute;
+    left: 0;
+    top: -20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+.contactBox{
+    position: relative;
+    width: 789px;
+    height: 415px;
+    left: 0;
+    top: 80px;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+.textFullname{
+    position: absolute;
+    left: 25px;
+    top: 20px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input1{
+    position: absolute;
+    width: 733px;
+    height: 50px;
+    left: 25px;
+    top: 45px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.emailText{
+    position: absolute;
+    left: 25px;
+    top: 120px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input2{
+    position: absolute;
+    width: 733px;
+    height: 50px;
+    left: 25px;
+    top: 145px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.phoneText{
+    position: absolute;
+    left: 25px;
+    top: 220px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.sBtn{
+    position: absolute;
+    top: 260px;
+    left: 25px;
+    height: 25px;
+    width: 60px;
+    outline: none;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: 1px black solid;
+    border-bottom: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.input3{
+    position: absolute;
+    width: 650px;
+    height: 50px;
+    left: 100px;
+    top: 245px;
+    background: none;
+    outline: none;
+    border: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.line{
+    position: absolute;
+    width: 733px;
+    height: 2px;
+    left: 25px;
+    top: 300px;
+    background: rgba(210, 194, 255, 0.68);
+}
+.sBtn option{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.warning{
+    position: relative;
+    width: 733px;
+    height: 50px;
+    left: 25px;
+    top: 330px;
+    background: rgba(242, 69, 69, 0.1);
+    border-radius: 10px;
+}
+.warningLogo{
+    position: absolute;
+    top: 13px;
+    left: 40px;
+    width: 21px;
+    height: 18px;
+}
+.warningText{
+    position: absolute;
+    left: 70px;
+    top: 0;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #595959;
+}
+.wrapperFlight{
+    position: relative;
+    left: 1150px;
+    width: 412px;
+    height: 575px;
+    /* border: 1px solid black; */
+}
+.flightDetailText{
+    position: absolute;
+    left: 0;
+    top: -30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+.viewDetailText{
+    position: absolute;
+    left: 300px;
+    top: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+.fDetailBox{
+    position: relative;
+    width: 412px;
+    height: 375px;
+    left: 0;
+    top: 75px;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+.airLinesLogo{
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    height: 57px;
+    width: 350px;
+    /* border: 1px solid black; */
+}
+.imgLogo{
+    position: absolute;
+    width: 100px;
+    height: 57px;
+}
+.airLinesName{
+    position: absolute;
+    left: 120px;
+    top: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #595959;
+}
+.flightDestination{
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    height: 170px;
+    width: 350px;
+    /* border: 1px solid black; */
+}
+.origin{
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+}
+.destIcon{
+    position: absolute;
+    top: 20px;
+    left: 150px;
+    width: 19px;
+    height: 18px;
+}
+.destina{
+    position: absolute;
+    left: 200px;
+    top: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+}
+.dateFlight{
+    position: absolute;
+    left: 0;
+    top: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #6B6B6B;
+}
+.ellipse{
+    position: absolute;
+    top: 70px;
+    left: 160px;
+    width: 5px;
+    height: 5px;
+    background: #6B6B6B;
+    border-radius: 50%;
+}
+.timeFlight{
+    position: absolute;
+    left: 180px;
+    top: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #6B6B6B;
+}
+.check{
+    position: absolute;
+    top: 100px;
+    width: 20px;
+    height: 20px;
+}
+.refund{
+    position: absolute;
+    left: 30px;
+    top: 85px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2395FF;
+}
+.check2{
+    position: absolute;
+    top: 140px;
+    width: 20px;
+    height: 20px;
+}
+.reschedule{
+    position: absolute;
+    left: 30px;
+    top: 125px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2395FF;
+}
+.line2{
+    position: absolute;
+    top: 180px;
+    left: -31px;
+    width: 413px;
+    height: 1px;
+    background: #6B6B6B;
+    border: none;
+}
+.payment{
+    position: relative;
+    top: 290px;
+}
+.paymentText{
+    position: absolute;
+    left: 30px;
+    top: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+}
+.price{
+    position: absolute;
+    left: 250px;
+    top: -10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #2395FF;
+}
+.passengerWrapper{
+    position: relative;
+    width: 800px;
+    left: 260px;
+}
+.passengerText{
+    position: absolute;
+    left: 0px;
+    top: -20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #000000;
+}
+.passengerBox{
+    position: absolute;
+    width: 789px;
+    height: 415px;
+    left: 0;
+    top: 70px;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+.confirm{
+    position: relative;
+    width: 733px;
+    height: 50px;
+    left: 25px;
+    top: 20px;
+    background: rgba(35, 149, 255, 0.1);
+    border-radius: 10px;
+}
+.textConfirm{
+    position: absolute;
+    left: 25px;
+    top: 0;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #595959;
+}
+.textConfirm2{
+    position: absolute;
+    left: 500px;
+    top: 0;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #595959;
+}
+.confirm input[type="checkbox"]{
+    position: relative;
+    top: 8px;
+    left: 660px;
+    width: 47px;
+    height: 25px;
+    -webkit-appearance: none;
+    background: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+    transition: 1s;
+}
+.confirm input:checked[type="checkbox"]{
+    background: #03a9f4;
+}
+.confirm input[type="checkbox"]::before{
+    content: '';
+    position: absolute;
+    width: 23.5px;
+    height: 25px;
+    border-radius: 20px;
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    transition: 1s;
+}
+.confirm input:checked[type="checkbox"]::before{
+    left: 23.5px;
+}
+.titleText{
+    position: absolute;
+    left: 30px;
+    top: 80px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.sBtn2{
+    position: absolute;
+    top: 120px;
+    left: 30px;
+    height: 25px;
+    width: 60px;
+    outline: none;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: 1px black solid;
+    border-bottom: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.line3{
+    position: absolute;
+    width: 733px;
+    height: 2px;
+    left: 25px;
+    top: 160px;
+    background: rgba(210, 194, 255, 0.68);
+}
+.sBtn2 option{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.passengerName{
+    position: absolute;
+    left: 30px;
+    top: 175px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.input4{
+    position: absolute;
+    width: 733px;
+    height: 50px;
+    left: 25px;
+    top: 200px;
+    background: none;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: rgba(210, 194, 255, 0.68) 2px solid;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.nationalityText{
+    position: absolute;
+    left: 30px;
+    top: 270px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #9B96AB;
+}
+.sBtn3{
+    position: absolute;
+    top: 310px;
+    left: 25px;
+    height: 25px;
+    width: 100px;
+    outline: none;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: 1px black solid;
+    border-bottom: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.line4{
+    position: absolute;
+    width: 733px;
+    height: 2px;
+    left: 25px;
+    top: 350px;
+    background: rgba(210, 194, 255, 0.68);
+}
+.sBtn3 option{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+}
+.passengerText2{
+    position: absolute;
+    left: 0px;
+    top: 550px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #000000;
+}
+.passengerBox2{
+    position: absolute;
+    width: 789px;
+    height: 150px;
+    left: 0px;
+    top: 650px;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+.passengerBox2 input{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 17px;
+    height: 17px;
+}
+.textInsurance{
+    position: absolute;
+    left: 60px;
+    top: 11px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+}
+.textPrice{
+    position: absolute;
+    left: 670px;
+    top: 10px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #2395FF;
+}
+.textPrice span{
+    position: absolute;
+    left: 52px;
+    top: 5px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    color: #979797;
+}
+.textCompensation{
+    position: absolute;
+    left: 30px;
+    top: 85px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+}
+.line5{
+    position: absolute;
+    width: 789px;
+    height: 1px;
+    left: 0;
+    top: 75px;
+    background: #E6E6E6;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+}
+.paymentBtn{
+    position: absolute;
+    width: 319px;
+    height: 57px;
+    left: 220px;
+    top: 850px;
+    background: #2395FF;
+    box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+    border-radius: 10px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #FFFFFF;
+}

@@ -1,0 +1,104 @@
+.card3{
+    position: absolute;
+    width: 870px;
+    height: 223px;
+    top: 240px;
+    left: 725px;
+}
+.date{
+    position: absolute;
+    width: 200px;
+    left: 780px;
+    top: 250px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+}
+.origin{
+    position: absolute;
+    left: 780px;
+    top: 280px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+}
+.destination{
+    position: absolute;
+    left: 870px;
+    top: 280px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+}
+.destIcon{
+    position: absolute;
+    left: 837px;
+    top: 305px;
+}
+.airLines{
+    position: absolute;
+    width: 200px;
+    left: 780px;
+    top: 325px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #979797;
+}
+.line{
+    position: absolute;
+    width: 870px;
+    height: 1px;
+    top: 385px;
+    left: 725px;
+    background: #E6E6E6;
+}
+.status{
+    position: absolute;
+    left: 780px;
+    top: 400px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #7A7A7A;
+}
+.card4{
+    position: absolute;
+    width: 870px;
+    height: 223px;
+    top: 540px;
+    left: 725px;
+}
+.sBtn{
+    position: absolute;
+    width: 150px;
+    height: 24px;
+    left: 1400px;
+    top: 410px;
+    background: none;
+    border: none;
+    outline: none;
+    color: #2395FF;
+}
+.viewDetail{
+    position: absolute;
+    width: 150px;
+    height: 24px;
+    left: 1390px;
+    top: 395px;
+    background: none;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2395FF;
+}

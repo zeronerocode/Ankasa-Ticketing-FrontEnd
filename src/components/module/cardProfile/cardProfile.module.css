@@ -1,0 +1,193 @@
+.card{
+    position: absolute;
+    width: 325px;
+    height: 715px;
+    top: 50px;
+    left: 325px;
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+.btn{
+    box-sizing: border-box;
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    left: 415px;
+    top: 250px;
+    background: #FFFFFF;
+    border: 1px solid #2395FF;
+    border-radius: 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #2395FF;
+}
+.upload Input[type="file"]{
+    cursor: pointer;
+    width: 1300px;
+    height: 480px;
+    opacity: 0;
+}
+.ava{
+    box-sizing: border-box;
+    position: absolute;
+    width: 137px;
+    height: 137px;
+    left: 420px;
+    top: 80px;
+    border: #2395FF 4px solid;
+    border-radius: 50%;
+}
+.userName{
+    position: absolute;
+    width: 325px;
+    left: 325px;
+    top: 325px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: #000000;
+}
+.userOrigin{
+    position: absolute;
+    width: 325px;
+    left: 325px;
+    top: 365px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #6B6B6B;
+    text-align: center;
+}
+.cards{
+    position: absolute;
+    left: 360px;
+    top: 410px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+}
+.btn2{
+    position: absolute;
+    width: 72px;
+    height: 22px;
+    left: 550px;
+    top: 410px;
+    background: none;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2395FF;
+}
+.cardBox{
+    position: absolute;
+    left: 350px;
+    top: 450px;
+    width: 267px;
+    height: 68px;
+    background: #2395FF;
+    box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
+    border-radius: 10px;
+}
+.cardNumber{
+    position: absolute;
+    left: 370px;
+    top: 445px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 1.5px;
+}
+.cardBank{
+    position: absolute;
+    left: 370px;
+    top: 470px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #AEFAFF;
+}
+.cardSaldo{
+    position: absolute;
+    left: 550px;
+    top: 470px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #AEFAFF;
+}
+.wrapper{
+    position: absolute;
+    left: 370px;
+    top: 550px;
+}
+.wrapper p{
+    position: absolute;
+    top: -13px;
+    left: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2395FF;
+}
+.wrapper2{
+    position: absolute;
+    left: 370px;
+    top: 600px;
+}
+.wrapper2 p{
+    position: absolute;
+    width: 100px;
+    top: -13px;
+    left: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+}
+.wrapper3{
+    position: absolute;
+    left: 370px;
+    top: 650px;
+}
+.wrapper3 p{
+    position: absolute;
+    width: 100px;
+    top: -13px;
+    left: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+}
+.wrapper4{
+    position: absolute;
+    left: 370px;
+    top: 700px;
+}
+.wrapper4 p{
+    position: absolute;
+    width: 100px;
+    top: -13px;
+    left: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #F24545;
+}
