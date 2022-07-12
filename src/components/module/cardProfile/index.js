@@ -7,15 +7,18 @@ import UserLogo from '../../../assets/user.png'
 import Setting from '../../../assets/setting.png'
 import Rating from '../../../assets/rating.png'
 import LogOut from '../../../assets/logOut.png'
+import Avatar from '../../../assets/avatar.png'
 
 const ProfileCard = ( className ) => {
   return (
     <>
     <div className={className}>
         <Card className={styles.card}/>
-                <div className={styles.ava}></div>
+                <div>
+                    <img src={Avatar} alt="avatar" className={styles.ava} />
+                </div>
                 <div className={styles.upload}>
-                <Button className={styles.btn} title="Select Photo" />
+                <Button className={styles.btn} title="Select Photo"  />
                 <Input id="selectFile" type="file"  />
                 <div className={styles.userName}>User Name</div>
                 <div className={styles.userOrigin}>User Origin</div>

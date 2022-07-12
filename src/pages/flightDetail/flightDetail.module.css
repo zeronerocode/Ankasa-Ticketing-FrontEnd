@@ -12,6 +12,9 @@ body{
     width: 100%;
     height: 176px;
 }
+.banner2{
+    display: none;
+}
 .contentWrapper{
     position: relative;
     top: 50px;
@@ -669,3 +672,191 @@ body{
     font-size: 18px;
     color: #FFFFFF;
 }
+
+@media only screen and (max-width: 600px) {
+    .banner{
+        display: none;
+    }
+    .banner2{
+        display: block;
+        width: 100%;
+        height: 198px;
+    }
+    .wrapperFlight{
+        position: relative;
+        top: -200px;
+        left: 30px;
+        width: 90%;
+    }
+    .fDetailBox{
+        width: 100%;
+        height: 600px;
+    }
+    .flightDetailText{
+        position: absolute;
+        left: 30px;
+        top: -25px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        color: #FFFFFF;
+    }
+    .viewDetailText{
+        position: absolute;
+        left: 380px;
+        top: -10px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        color: #FFFFFF;
+    }
+    .airLinesLogo{
+        position: absolute;
+        top: 100px;
+        left: ;
+    }
+    .flightDestination{
+        position: absolute;
+        top: ;
+        left: ;
+    }
+    .origin{
+        position: absolute;
+        top: -100px;
+        left: ;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 28px;
+        color: #000000;
+    }
+    .destIcon{
+        position: absolute;
+        top: -60px;
+        left: 230px;
+        width: 23px;
+        height: 22px;
+    }
+    .destina{
+        position: absolute;
+        width: 180px;
+        top: -100px;
+        left: 305px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 28px;
+        color: #000000;
+        /* border: 1px black solid; */
+    }
+    .airLinesName{
+        display: none;
+    }
+    .contactDetail{
+        display: none;
+    }
+    .contactText{
+        display: none;
+    }
+    .contactBox{
+        display: none;
+    }
+    .textFullname{
+        display: none;
+    }
+    .input1{
+        display: none;
+    }
+    .emailText{
+        display: none;
+    }
+    .input2{
+        display: none;
+    }
+    .phoneText{
+        display: none;
+    }
+    .sBtn{
+        display: none;
+    }
+    .input3{
+        display: none;
+    }
+    .line{
+        display: none;
+    }
+    .warning{
+        display: none;
+    }
+    .warningLogo{
+        display: none;
+    }
+    .warningText{
+        display: none;
+    }
+    .passengerWrapper{
+        display: none;
+    }
+    .passengerText{
+        display: none;
+    }
+    .passengerBox{
+        display: none;
+    }
+    .confirm{
+        display: none;
+    }
+    .textConfirm{
+        display: none;
+    }
+    .textConfirm2{
+        display: none;
+    }
+    .titleText{
+        display: none;
+    }
+    .sBtn2{
+        display: none;
+    }
+    .line3{
+        display: none;
+    }
+    .passengerName{
+        display: none;
+    }
+    .input4{
+        display: none;
+    }
+    .nationalityText{
+        display: none;
+    }
+    .sBtn3{
+        display: none;
+    }
+    .line4{
+        display: none;
+    }
+    .passengerText2{
+        display: none;
+    }
+    .passengerBox2{
+        display: none;
+    }
+    .textInsurance{
+        display: none;
+    }
+    .textPrice{
+        display: none;
+    }
+    .line5{
+        display: none;
+    }
+    .textCompensation{
+        display: none;
+    }
+    .paymentBtn{
+
+    }
+  }

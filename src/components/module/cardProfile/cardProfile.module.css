@@ -30,12 +30,13 @@
     opacity: 0;
 }
 .ava{
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     position: absolute;
     width: 137px;
     height: 137px;
     left: 420px;
     top: 80px;
+    
     border: #2395FF 4px solid;
     border-radius: 50%;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './flightDetail.module.css'
 import Banner from '../../assets/img1.png'
+import Banner2 from '../../assets/mobile/banner.png'
 import Input from '../../components/base/input/index'
 import WarningLogo from '../../assets/warning.png'
 import LogoGaruda from '../../assets/logoGaruda.png'
@@ -14,6 +15,7 @@ const FlightDetail = () => {
         <div className={styles.container}>
             <div className={styles.bannerWrapper}>
                 <img className={styles.banner} src={Banner} alt="banner" />
+                <img src={Banner2} className={styles.banner2} alt="banner" />
             </div>
             <div className={styles.contentWrapper}>
                 <div className={styles.contactDetail}>
