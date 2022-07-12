@@ -99,6 +99,8 @@ const FlightDetail = () => {
                                     <option value="Finland">Finland</option>
                         </select>
                         <div className={styles.line4}></div>
+                        <p className={styles.passengerSeat}>Seat</p>
+                        <Input type="number" className={styles.input5} placeholder="Insert How many seat" />
                     </div>
                     <p className={styles.passengerText2}>Passenger Details</p>
                     <div className={styles.passengerBox2}>
