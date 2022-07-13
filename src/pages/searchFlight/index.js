@@ -1,15 +1,15 @@
 import React from 'react'
 import Button from '../../components/base/buttonv2'
 import TicketCard from '../../components/module/ticketCard'
+import Dropdown from '../../components/base/dropdown'
+import NaviV2 from '../../components/module/naviV2'
+import Footer from '../../components/module/footer'
 
 import styles from './searchFlight.module.css'
 
 import plane from '../../assets/logoWhite.svg'
 import switchIcon from '../../assets/switch.svg'
 import sort from '../../assets/sort.svg'
-import Dropdown from '../../components/base/dropdown'
-import NaviV2 from '../../components/module/naviV2'
-import Footer from '../../components/module/footer'
 
 const SearchFlight = () => {
   return (
@@ -139,6 +139,20 @@ const SearchFlight = () => {
                                     <input type='checkbox' />
                                 </div>
                             </div>
+
+                            <div className={styles.hl}/>
+
+                            <p>Price Range</p>
+                            <div className={styles.options}>
+                                <div className={styles.pricing}>
+                                    <label>Min. price</label>
+                                    <input type='number' step='10000' min='0'/>
+                                </div>
+                                <div className={styles.pricing}>
+                                    <label>Max. price</label>
+                                    <input type='number' step='10000'/>
+                                </div>
+                            </div>                            
                     </div>
                 </div>
 

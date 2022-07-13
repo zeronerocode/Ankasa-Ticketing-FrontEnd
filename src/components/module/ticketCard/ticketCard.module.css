@@ -78,18 +78,20 @@
     justify-content: space-between;
 }
 
-.price{
+.pricetag{
+    position: relative;
+    top: 10px;
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 
-.price p{
+.pricetag p{
     color: #2395FF;
     font-size: 16px;
     font-weight: 500;
 }
 
-.price span{
+.pricetag span{
     color: #979797;
     font-size: 14px;
     font-weight: 500;

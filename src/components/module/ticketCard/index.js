@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from '../../base/buttonv2'
 
 import styles from './ticketCard.module.css'
 
@@ -8,6 +7,7 @@ import flight from '../../../assets/flight.svg'
 import wifi from '../../../assets/facility/wifi.svg'
 import luggage from '../../../assets/facility/luggage.svg'
 import meal from '../../../assets/facility/meal.svg'
+import Button from '../../base/buttonv2'
 
 const TicketCard = () => {
   return (
@@ -53,7 +53,7 @@ const TicketCard = () => {
                 </div>
             </div>
 
-            <div className={styles.price}>
+            <div className={styles.pricetag}>
                 <p>$ 214,00</p>
                 <span>/pax</span>
             </div>

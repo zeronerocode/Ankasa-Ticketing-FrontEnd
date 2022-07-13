@@ -130,10 +130,20 @@
     font-weight: 400;
 }
 
+.pricing{
+    display: flex;
+    align-items: center;
+}
 
+.pricing input,
+.pricing input:focus{
+    border: 1px solid #6B6B6B;
+    border-radius: 5px;
+    padding-left: 10px;
+    outline: none;
+}
 
 .ticket-wrap{
     width: 60%;
     margin-left: 50px;
 }
-
