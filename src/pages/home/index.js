@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navi from '../../components/module/navi'
+// import Navi from '../../components/module/navi'
 import Footer from '../../components/module/footer'
 import CountryCard from '../../components/base/countryCard'
 
@@ -11,11 +11,12 @@ import home2 from '../../assets/home2.svg'
 import home3 from '../../assets/home3.svg'
 import japan from '../../assets/japan.svg'
 import destination from '../../assets/destination.svg'
+import Header from '../../components/module/nav/header'
 
 const Home = () => {
   return (
     <div>
-        <Navi />
+        <Header />
 
         <div className={styles.header}>
             <div className={styles['header-left']}>

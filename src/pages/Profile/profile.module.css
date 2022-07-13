@@ -6,7 +6,7 @@
     position: relative;
     width: 876px;
     height: 650px;
-    top: -430px;
+    top: 50px;
     left: 750px;
 }
 .contact{
@@ -264,4 +264,11 @@
     font-weight: 700;
     font-size: 16px;
     color: #FFFFFF;
+}
+.wrapper{
+    position: relative;
+    top: 30px;
+}
+.footer{
+    margin-top: 230px;
 }

@@ -4,11 +4,21 @@ import ProfileCard from '../../components/module/cardProfile/index'
 import styles from './profile.module.css'
 import Input from '../../components/base/input/index'
 import Button from '../../components/base/button/index'
+import Navi from '../../components/module/navi/index'
+import Footer from '../../components/module/footer/index'
+// import axios from 'axios'
 
 const Profile = () => {
+
+// SaveDatatoAPI(){
+//     axios.put('https://avtur-ankasa-ticketing.herokuapp.com/v1/profile')
+// }
+
   return (
     <>
         <div className={styles.container}>
+            <Navi />
+            <div className={styles.wrapper}>
             <div>
                 <ProfileCard className={styles.card} />
             </div>
@@ -16,7 +26,7 @@ const Profile = () => {
                 <Card className={styles.card2} />
                 <p className={styles.text}>Profile</p>
                 <p className={styles.text2}>Profile</p>
-                <form className={styles.form}>
+                <form method='post' className={styles.form}>
                     <div className={styles.contact}>
                         <p className={styles.contactText}>Contact</p>
                         <p className={styles.emailText}>Email</p>
@@ -36,9 +46,11 @@ const Profile = () => {
                             <Input type="number" className={styles.input6} placeholder="Insert Your Zip Code" />
                     </div>
                     <p className={styles.settingText}>Account Setting</p>
-                    <Button className={styles.btn} title="save" />
+                    <Button className={styles.btn} title="save" type="submit" />
                 </form>
             </div>
+            </div>
+            <Footer className={styles.footer} />
         </div>
     </>
   )

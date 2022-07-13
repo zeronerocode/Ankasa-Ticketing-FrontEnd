@@ -11,8 +11,9 @@ import youtube from '../../../assets/socmed/youtube.svg'
 
 import map from '../../../assets/map-pin.svg'
 
-const Footer = () => {
+const Footer = ({ className }) => {
   return (
+    <div className={className}>
     <div className={styles.footer}>
         <div className={styles['footer-left']}>
             <div>
@@ -61,6 +62,7 @@ const Footer = () => {
                 <span>Jakarta, Indonesia</span>
             </div>
         </div>
+    </div>
     </div>
   )
 }

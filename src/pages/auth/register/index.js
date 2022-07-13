@@ -5,21 +5,44 @@ import Input from '../../../components/base/inputv2'
 import PasswordInput from '../../../components/base/password'
 import Banner from '../../../components/module/banner'
 import Logo from '../../../components/module/logo'
-
+import axios from 'axios'
 import styles from '../auth.module.css'
 
 const Register = () => {
     const navigate = useNavigate();
 
-    const [passwordType, setPasswordType] = useState("password");
+    const [dataRegister, setDataRegister] = useState({
+        name: '',
+        email: '',
+        password: ''
+    })
 
-    const togglePassword =()=>{
-        if(passwordType==="password"){
-            setPasswordType("text")
-            return;
-        }
-        setPasswordType("password")
+    const handleChange = (e) => {
+        setDataRegister({
+            ...dataRegister,
+            [e.target.name]: e.target.value
+        })
     }
+
+    const handleRegister = (e) => {
+        e.preventDefault()
+        axios.post('https://avtur-ankasa-ticketing.herokuapp.com/v1/users/register', dataRegister)
+        .then((res)=>{
+            navigate('/login')
+        })
+        .catch((e)=>{
+            console.log(e);
+            alert('Register Failed')
+        })
+    }
+
+    // const togglePassword =()=>{
+    //     if(passwordType==="password"){
+    //         setPasswordType("text")
+    //         return;
+    //     }
+    //     setPasswordType("password")
+    // }
 
   return (
     <div style={{height: '100vh' ,display: 'flex'}}>
@@ -32,16 +55,18 @@ const Register = () => {
 
             <p className={styles.title}>Register</p>
 
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleRegister}>
                 <Input
-                id='fullname'
-                name='fullname'
+                id='name'
+                name='name'
                 type='text'
                 className={styles.input}
                 style={{
                     marginBottom: '25px'
                 }}
                 placeholder='Full name'
+                value={dataRegister.name}
+                onChange={handleChange}
                 // onChange={handleInput}
                 // value={loginData.email}
                 />
@@ -55,6 +80,8 @@ const Register = () => {
                     marginBottom: '25px'
                 }}
                 placeholder='E-mail'
+                value={dataRegister.email}
+                onChange={handleChange}
                 // onChange={handleInput}
                 // value={loginData.email}
                 />
@@ -62,13 +89,14 @@ const Register = () => {
                 <PasswordInput 
                 id='password'
                 name='password'
-                type={passwordType}
+                type='password'
                 className={styles.input}
                 // style={style}
                 placeholder='Password'
                 // onChange={handleInput}
                 // value={loginData.password}
-                onClick={togglePassword}
+                value={dataRegister.password}
+                onChange={handleChange}
                 />
 
                 <Button
@@ -77,7 +105,6 @@ const Register = () => {
                 type='submit'
                 className={styles['auth-btn']}
                 // style={style}
-                // onClick={handleLogin}
                 />
 
                 <small className={styles.small}>Already have an account?</small>
@@ -95,5 +122,6 @@ const Register = () => {
     </div>
   )
 }
+// ()=>navigate('/login')
 
 export default Register
