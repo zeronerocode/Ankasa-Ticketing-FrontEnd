@@ -1,29 +1,28 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './ticketCard.module.css'
 
-import airline from '../../../assets/airline.svg'
 import flight from '../../../assets/flight.svg'
-import wifi from '../../../assets/facility/wifi.svg'
-import luggage from '../../../assets/facility/luggage.svg'
-import meal from '../../../assets/facility/meal.svg'
-import Button from '../../base/buttonv2'
+import Button from '../../base/button'
 
-const TicketCard = () => {
-  return (
+const TicketCard = ({airlineImg, airline, origin, arr, destination, dept, price, luggage, meal, wifi, id}) => {
+    const navigate = useNavigate()
+  
+    return (
     <div className={styles.ticket}>
         <div className={styles.airline}>
-            <div>
-                <img src={airline} alt='' />
+            <div style={{width: '100px'}}>
+                <img src={airlineImg} alt='' style={{width: '100%'}}/>
             </div>    
-            <span>Garuda Indonesia</span>
+            <span>{airline}</span>
         </div>
 
         <div className={styles['flight-info']}>
             <div className={styles.schedule}>
                 <div>
-                    <p>IDN</p>
-                    <span>12:33</span>
+                    <p>{origin}</p>
+                    <span>{arr}</span>
                 </div>
 
                 <div>
@@ -31,8 +30,8 @@ const TicketCard = () => {
                 </div>
 
                 <div>
-                    <p>JPN</p>
-                    <span>15:21</span>
+                    <p>{destination}</p>
+                    <span>{dept}</span>
                 </div>
             </div>
 
@@ -54,7 +53,7 @@ const TicketCard = () => {
             </div>
 
             <div className={styles.pricetag}>
-                <p>$ 214,00</p>
+                <p>Rp {price}</p>
                 <span>/pax</span>
             </div>
             
@@ -62,6 +61,7 @@ const TicketCard = () => {
             title='Select'
             type='button'
             className={styles.select}
+            onClick={()=>navigate(`/flights/${id}`)}
             />
         </div>
     </div>
