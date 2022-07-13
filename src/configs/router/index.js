@@ -8,6 +8,7 @@ import FlightDetail from '../../pages/flightDetail/index';
 import Home from '../../pages/home';
 import MyBooking from '../../pages/myBooking/index';
 import Profile from '../../pages/profile/index';
+import SearchFlight from '../../pages/searchFlight';
 
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/searchflight" element={<SearchFlight />} />
         {/* <Route path="*" element={<Page404 />} /> */}
       </Routes>
     </BrowserRouter>

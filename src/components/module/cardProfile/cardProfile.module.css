@@ -104,7 +104,7 @@
 .cardNumber{
     position: absolute;
     left: 370px;
-    top: 445px;
+    top: 460px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
@@ -115,7 +115,7 @@
 .cardBank{
     position: absolute;
     left: 370px;
-    top: 470px;
+    top: 490px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -125,7 +125,7 @@
 .cardSaldo{
     position: absolute;
     left: 550px;
-    top: 470px;
+    top: 490px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -136,16 +136,18 @@
     position: absolute;
     left: 370px;
     top: 550px;
+    
 }
 .wrapper p{
     position: absolute;
-    top: -13px;
+    top: 3px;
     left: 50px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     color: #2395FF;
+    
 }
 .wrapper2{
     position: absolute;
@@ -155,7 +157,7 @@
 .wrapper2 p{
     position: absolute;
     width: 100px;
-    top: -13px;
+    top: 3px;
     left: 50px;
     font-family: 'Poppins';
     font-style: normal;
@@ -171,7 +173,7 @@
 .wrapper3 p{
     position: absolute;
     width: 100px;
-    top: -13px;
+    top: 3px;
     left: 50px;
     font-family: 'Poppins';
     font-style: normal;
@@ -187,7 +189,7 @@
 .wrapper4 p{
     position: absolute;
     width: 100px;
-    top: -13px;
+    top: 3px;
     left: 50px;
     font-family: 'Poppins';
     font-style: normal;

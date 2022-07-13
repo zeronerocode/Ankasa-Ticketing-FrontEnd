@@ -31,7 +31,7 @@ const ProfileCard = ( className ) => {
     <div className={className}>
         <Card className={styles.card}/>
                 <div>
-               <img src={data.profile.length > 0 ? data.profile[0].photo : Avatar} alt='photoprofile'/>
+               <img className={styles.ava} src={data.profile.length > 0 ? data.profile[0].photo : Avatar} alt='photoprofile'/>
                 </div>
                 <div className={styles.upload}>
                 <Button className={styles.btn} title="Select Photo"  />

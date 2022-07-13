@@ -39,6 +39,7 @@
     height: 400px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 150px;
     padding: 100px 100px 50px;
 }
 
@@ -79,9 +80,48 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-between; */
     background-color: #2395FF;
     color: #FFFFFF;
     border-radius: 50px;
     margin: 40px 100px;    
+}
+
+.topten{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0 60px;
+}
+
+.topten span{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.topten p{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.topten-img{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topten-img > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topten-img > div > span{
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 10px;
 }

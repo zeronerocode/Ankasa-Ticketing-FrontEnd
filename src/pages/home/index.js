@@ -10,6 +10,7 @@ import home1 from '../../assets/home1.svg'
 import home2 from '../../assets/home2.svg'
 import home3 from '../../assets/home3.svg'
 import japan from '../../assets/japan.svg'
+import destination from '../../assets/destination.svg'
 import Header from '../../components/module/nav/header'
 
 const Home = () => {
@@ -80,10 +81,31 @@ const Home = () => {
         </div>
 
         <div className={styles['top-destination']}>
-            <span>T O P   1 0</span>
-            <span>Top 10 destinations</span>
-            <div>
-
+            <div className={styles.topten}>
+                <span>T O P   5</span>
+                <p>Top 5 destinations</p>
+            </div>
+            <div className={styles['topten-img']}>
+                <div>
+                    <img src={destination} alt='' />
+                    <span>P a r i s</span>
+                </div>
+                <div>
+                    <img src={destination} alt='' />
+                    <span>P a r i s</span>
+                </div>
+                <div>
+                    <img src={destination} alt='' />
+                    <span>P a r i s</span>
+                </div>
+                <div>
+                    <img src={destination} alt='' />
+                    <span>P a r i s</span>
+                </div>
+                <div>
+                    <img src={destination} alt='' />
+                    <span>P a r i s</span>
+                </div>
             </div>
         </div>
 
