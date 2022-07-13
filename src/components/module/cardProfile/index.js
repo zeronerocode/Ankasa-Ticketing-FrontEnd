@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styles from './cardProfile.module.css'
 import Card from '../../base/card/index'
 import Button from '../../base/button/index'
@@ -7,45 +7,37 @@ import UserLogo from '../../../assets/user.png'
 import Setting from '../../../assets/setting.png'
 import Rating from '../../../assets/rating.png'
 import LogOut from '../../../assets/logOut.png'
-// import Avatar from '../../../assets/avatar.png'
+
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { detailUserAction } from '../../../configs/redux/actions/detailUserAction'
+import Avatar from '../../../assets/avatar.png'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 const ProfileCard = ( className ) => {
-    const [profile, setProfile] = useState ([])
-    useEffect(()=>{
-        async function fetchData(){
-            try {
-                const result = await axios({
-                    method: "GET",
-                    baseURL: "https://avtur-ankasa-ticketing.herokuapp.com/v1",
-                    url: "/profile"
-                });
-                setProfile(result.data.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData()
-    }, [])
+    useEffect(() => {
+        dispatch(detailUserAction(id))
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+     },[])
+  
+    //  const navigate = useNavigate()
+     const dispatch = useDispatch()
+    //  const [active, setActive] = useState('portfolio')
+     const {id} = useParams()
+     const { detailUser : { data } } = useSelector(state => state)
+    //  const [portoEx, setPortoEx] = useState({})
   return (
     <>
     <div className={className}>
         <Card className={styles.card}/>
                 <div>
-                    {profile.map((item)=>(
-                        <img src={item.photo} alt="avatar" className={styles.ava} />
-                    ))}
+               <img src={data.profile.length > 0 ? data.profile[0].photo : Avatar} alt='photoprofile'/>
                 </div>
                 <div className={styles.upload}>
                 <Button className={styles.btn} title="Select Photo"  />
                 <Input id="selectFile" type="file"  />
-                {profile.map((item)=>(
-                        <div className={styles.userName}>{item.name}</div>
-                    ))}
-                {profile.map((item)=>(
-                        <div className={styles.userOrigin}>{item.city}</div>
-                    ))}
+                        <div className={styles.userName}>{data.profile.length > 0 ? data.profile[0].username : ""}</div>
+                        <div className={styles.userOrigin}>{data.profile.length > 0 && data.profile[0].city}</div>
                 <div className={styles.cards}>Cards</div>
                 <Button className={styles.btn2} title="+ Add" />
                 <div className={styles.cardBox} />

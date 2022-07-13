@@ -9,10 +9,7 @@ import Footer from '../../components/module/footer/index'
 // import axios from 'axios'
 
 const Profile = () => {
-
-// SaveDatatoAPI(){
-//     axios.put('https://avtur-ankasa-ticketing.herokuapp.com/v1/profile')
-// }
+  
 
   return (
     <>
