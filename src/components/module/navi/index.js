@@ -3,9 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from '../../base/buttonv2'
 import Logo from '../logo'
 import Searchbar from '../searchbar'
-
 import styles from './navi.module.css'
-
 import switchIcon from '../../../assets/switchBlue.svg'
 import oneway from '../../../assets/oneway.svg'
 import round from '../../../assets/roundtrip.svg'
@@ -18,6 +16,7 @@ const Navi = () => {
   const handleShow = () => setShow(true);
   
   return (
+    <div className={className}>
     <div className={styles.navi}>
         <Logo />
 
@@ -154,6 +153,7 @@ const Navi = () => {
         className={styles['sign-btn']}
         // onClick={handleLogin}
         />
+    </div>
     </div>
   )
 }
