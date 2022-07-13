@@ -1,22 +1,42 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../../components/base/buttonv2'
 import Input from '../../../components/base/inputv2'
 import PasswordInput from '../../../components/base/password'
 import Banner from '../../../components/module/banner'
 import Logo from '../../../components/module/logo'
-
+import { useDispatch } from 'react-redux'
 import styles from '../auth.module.css'
+import { loginCustomer } from '../../../configs/redux/actions/userAction'
 
 const Login = () => {
-    const [passwordType, setPasswordType] = useState("password");
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    // const [passwordType, setPasswordType] = useState("password");
+    // const togglePassword =()=>{
+    //     if(passwordType==="password"){
+    //         setPasswordType("text")
+    //         return;
+    //     }
+    //     setPasswordType("password")
+    // }
+    
 
-    const togglePassword =()=>{
-        if(passwordType==="password"){
-            setPasswordType("text")
-            return;
-        }
-        setPasswordType("password")
+    const [formLogin, setLogin] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handleChage = (e) =>{
+        setLogin({
+            ...formLogin,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleLogin = (e) =>{
+        e.preventDefault()
+        dispatch(loginCustomer(formLogin, navigate))
     }
 
   return (
@@ -30,7 +50,7 @@ const Login = () => {
 
             <p className={styles.title}>Login</p>
 
-            <form className={styles.form}>
+            <form onSubmit={handleLogin} className={styles.form}>
                 <Input
                 id='email'
                 name='email'
@@ -40,20 +60,22 @@ const Login = () => {
                     marginBottom: '25px'
                 }}
                 placeholder='E-mail'
-                // onChange={handleInput}
+                value={formLogin.email}
+                onChange={handleChage}
                 // value={loginData.email}
                 />
 
                 <PasswordInput 
                 id='password'
                 name='password'
-                type={passwordType}
+                type='password'
                 className={styles.input}
                 // style={style}
                 placeholder='Password'
-                // onChange={handleInput}
+                value={formLogin.password}
+                onChange={handleChage}
                 // value={loginData.password}
-                onClick={togglePassword}
+                // onClick={togglePassword}
                 />
 
                 <Button

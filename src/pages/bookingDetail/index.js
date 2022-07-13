@@ -4,7 +4,8 @@ import styles from './bookingDetail.module.css'
 import IconOpt from '../../assets/iconOption.png'
 import Destination from '../../assets/dst.png'
 import Data from '../../components/base/QRCode'
-
+import Navi from '../../components/module/navi/index'
+import Footer from '../../components/module/footer/index'
 
 
 const BookingDetail = () => {
@@ -12,6 +13,7 @@ const BookingDetail = () => {
   return (
     <>
         <div className={styles.container}>
+            <Navi />
             <div className={styles.wrapper}>
                 <div>
                     <div>
@@ -35,12 +37,13 @@ const BookingDetail = () => {
                             <div className={styles.ellipse2}></div>
                             <div className={styles.line}></div>
                             <div className={styles.QR}>
-                                <Data />
+                            <Data />
                             </div>
                         </div>
                     </div>        
                 </div>
             </div>
+            <Footer />
         </div>
     </>
   )

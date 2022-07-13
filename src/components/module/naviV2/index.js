@@ -2,14 +2,17 @@ import React from 'react'
 import Button from '../../base/buttonv2'
 import Logo from '../logo'
 import Searchbar from '../searchbar'
-
 import styles from './naviv2.module.css'
-
 import mail from '../../../assets/mail.svg'
 import bell from '../../../assets/bell.svg'
 import user from '../../../assets/user.svg'
+import { Link } from 'react-router-dom'
 
-const NaviV2 = () => {
+export class NaviV2 extends React.Component {
+  // onNavigate() {
+  //   BrowserHistory.push('/myBooking')
+  // }
+  render(){
   return (
     <div className={styles.navi}>
         <Logo />
@@ -23,13 +26,16 @@ const NaviV2 = () => {
             className={styles['navi-btn']}
             // onClick={handleLogin}
             />
-            
+            <Link to={'/myBooking'}>
             <Button 
             title='My Booking'
             type='button'
             className={styles['navi-btn']}
-            // onClick={handleLogin}
+
+            // onClick={this.onNavigate}
             />
+            </Link>
+
         </div>
 
         <div className={styles['profile-section']}>
@@ -47,6 +53,7 @@ const NaviV2 = () => {
         </div>
     </div>
   )
+  }
 }
 
 export default NaviV2

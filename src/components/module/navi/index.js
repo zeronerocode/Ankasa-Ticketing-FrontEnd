@@ -5,8 +5,9 @@ import Searchbar from '../searchbar'
 
 import styles from './navi.module.css'
 
-const Navi = () => {
+const Navi = ({ className }) => {
   return (
+    <div className={className}>
     <div className={styles.navi}>
         <Logo />
 
@@ -34,6 +35,7 @@ const Navi = () => {
         className={styles['sign-btn']}
         // onClick={handleLogin}
         />
+    </div>
     </div>
   )
 }

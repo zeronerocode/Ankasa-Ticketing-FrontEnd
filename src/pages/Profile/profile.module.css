@@ -265,3 +265,10 @@
     font-size: 16px;
     color: #FFFFFF;
 }
+.wrapper{
+    position: relative;
+    top: 30px;
+}
+.footer{
+    margin-top: 230px;
+}

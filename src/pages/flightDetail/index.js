@@ -8,11 +8,14 @@ import LogoGaruda from '../../assets/logoGaruda.png'
 import Destination from '../../assets/dst.png'
 import Check from '../../assets/check.png'
 import Button from '../../components/base/button/index'
+import Navi from '../../components/module/navi'
+import Footer from '../../components/module/footer'
 
 const FlightDetail = () => {
   return (
     <>
         <div className={styles.container}>
+            <Navi />
             <div className={styles.bannerWrapper}>
                 <img className={styles.banner} src={Banner} alt="banner" />
                 <img src={Banner2} className={styles.banner2} alt="banner" />
@@ -113,6 +116,7 @@ const FlightDetail = () => {
                     <Button className={styles.paymentBtn} title="Proceed to Payment" />
                 </div>
             </div>
+            <Footer className={styles.footer} />
         </div>
     </>
   )

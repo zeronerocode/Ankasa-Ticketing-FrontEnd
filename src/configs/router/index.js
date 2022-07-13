@@ -7,7 +7,7 @@ import BookingDetail from '../../pages/bookingDetail/index';
 import FlightDetail from '../../pages/flightDetail/index';
 import Home from '../../pages/home';
 import MyBooking from '../../pages/myBooking/index';
-import Profile from '../../pages/Profile/index';
+import Profile from '../../pages/profile/index';
 
 
 function Router() {
@@ -15,7 +15,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/Profile" replace="true" />} />
+        <Route path="/" element={<Navigate to="/home" replace="true" />} />
         <Route path="/flightDetail" element={<FlightDetail />} />
         <Route path="/myBooking" element={<MyBooking />} />
         <Route path="/bookingDetail" element={<BookingDetail />} />
