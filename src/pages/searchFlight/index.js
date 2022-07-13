@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../components/base/buttonv2'
 import TicketCard from '../../components/module/ticketCard'
 import Dropdown from '../../components/base/dropdown'
@@ -12,6 +12,8 @@ import switchIcon from '../../assets/switch.svg'
 import sort from '../../assets/sort.svg'
 
 const SearchFlight = () => {
+    const [flights, setFlights] = useState([]);
+    
   return (
     <>
         <NaviV2 />
@@ -30,17 +32,39 @@ const SearchFlight = () => {
                         </div>
 
                         <div>
-                            <span>Medan (IDN)</span>
+                            <input
+                            type='text'
+                            className={styles.origin}
+                            />
                             <img src={switchIcon} alt='' />
-                            <span>Tokyo (JPN)</span>
+                            <input
+                            type='text'
+                            className={styles.dest}
+                            />
                         </div>
 
                         <div>
-                            <p>Monday, 20 July 20</p>
+                            <input 
+                            type='date' 
+                            name='departure'
+                            placeholder="dd-mm-yyyy" 
+                            min="1997-01-01" 
+                            max="2030-12-31"
+                            className={styles.date}
+                            />
                             <span> • </span>
-                            <p>6 Passenger(s)</p>
+                            <select name="ticket" id="ticket" className={styles.qty}>
+                                <option value="1">1 Passenger</option>
+                                <option value="2">2 Passengers</option>
+                                <option value="3">3 Passengers</option>
+                                <option value="4">4 Passengers</option>
+                            </select>
                             <span> • </span>
-                            <p>Economy</p>
+                            <select name="class" id="class" className={styles.class}>
+                                <option value="Economy">Economy</option>
+                                <option value="Business">Business</option>
+                                <option value="First Class">First Class</option>
+                            </select>
                         </div>
                     </div>
                 </div>
