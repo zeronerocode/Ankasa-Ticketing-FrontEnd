@@ -7,8 +7,8 @@ import UserLogo from '../../../assets/user.png'
 import Setting from '../../../assets/setting.png'
 import Rating from '../../../assets/rating.png'
 import LogOut from '../../../assets/logOut.png'
-
-import { useParams } from 'react-router-dom'
+// import axios from 'axios'
+// import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailUserAction } from '../../../configs/redux/actions/detailUserAction'
 import Avatar from '../../../assets/avatar.png'
@@ -16,28 +16,39 @@ import { Link } from 'react-router-dom'
 
 const ProfileCard = ( className ) => {
     useEffect(() => {
-        dispatch(detailUserAction(id))
+        dispatch(detailUserAction())
      // eslint-disable-next-line react-hooks/exhaustive-deps
      },[])
   
-    //  const navigate = useNavigate()
      const dispatch = useDispatch()
-    //  const [active, setActive] = useState('portfolio')
-     const {id} = useParams()
+    //  const {id} = useParams()
      const { detailUser : { data } } = useSelector(state => state)
-    //  const [portoEx, setPortoEx] = useState({})
-  return (
+     console.log(data);
+
+    // useEffect(()=>{
+    //     axios.get('https://avtur-ankasa-ticketing.herokuapp.com/v1/profil')
+    //     .then((res)=>{
+    //         console.log(res);
+    //     })
+    //     .catch((err)=>{
+    //         console.log(err);
+    //     })
+    // }, [])
+
+
+
+     return(
     <>
     <div className={className}>
         <Card className={styles.card}/>
                 <div>
-               <img className={styles.ava} src={data.profile.length > 0 ? data.profile[0].photo : Avatar} alt='photoprofile'/>
+               <img className={styles.ava} src={Avatar} alt='photoprofile'/>
                 </div>
                 <div className={styles.upload}>
                 <Button className={styles.btn} title="Select Photo"  />
                 <Input id="selectFile" type="file"  />
-                        <div className={styles.userName}>{data.profile.length > 0 ? data.profile[0].username : ""}</div>
-                        <div className={styles.userOrigin}>{data.profile.length > 0 && data.profile[0].city}</div>
+                        <div className={styles.userName}></div>
+                        <div className={styles.userOrigin}></div>
                 <div className={styles.cards}>Cards</div>
                 <Button className={styles.btn2} title="+ Add" />
                 <div className={styles.cardBox} />

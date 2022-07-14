@@ -10,8 +10,8 @@ const initialState = {
           ...state,
           data : {
              ...action.payload,
-             employee : [
-                ...action.payload.employee
+             profile : [
+                ...action.payload.profile
              ]
           }
        }

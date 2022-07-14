@@ -4,8 +4,9 @@ import ProfileCard from '../../components/module/cardProfile/index'
 import styles from './profile.module.css'
 import Input from '../../components/base/input/index'
 import Button from '../../components/base/button/index'
-import Navi from '../../components/module/navi/index'
+// import Navi from '../../components/module/navi/index'
 import Footer from '../../components/module/footer/index'
+import Header from '../../components/module/nav/header'
 // import axios from 'axios'
 
 const Profile = () => {
@@ -14,7 +15,7 @@ const Profile = () => {
   return (
     <>
         <div className={styles.container}>
-            <Navi />
+            <Header />
             <div className={styles.wrapper}>
             <div>
                 <ProfileCard className={styles.card} />
