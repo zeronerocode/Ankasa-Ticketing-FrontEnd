@@ -4,8 +4,9 @@ import styles from './bookingDetail.module.css'
 import IconOpt from '../../assets/iconOption.png'
 import Destination from '../../assets/dst.png'
 import Data from '../../components/base/QRCode'
-import Navi from '../../components/module/navi/index'
+// import Navi from '../../components/module/navi/index'
 import Footer from '../../components/module/footer/index'
+import Header from '../../components/module/nav/header'
 
 
 const BookingDetail = () => {
@@ -13,7 +14,7 @@ const BookingDetail = () => {
   return (
     <>
         <div className={styles.container}>
-            <Navi />
+            <Header />
             <div className={styles.wrapper}>
                 <div>
                     <div>

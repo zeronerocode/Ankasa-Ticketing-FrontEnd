@@ -17,13 +17,10 @@ import { Link } from 'react-router-dom'
 const ProfileCard = ( className ) => {
     useEffect(() => {
         dispatch(detailUserAction())
-     // eslint-disable-next-line react-hooks/exhaustive-deps
      },[])
   
      const dispatch = useDispatch()
-    //  const {id} = useParams()
      const { detailUser : { data } } = useSelector(state => state)
-     console.log(data);
 
     // useEffect(()=>{
     //     axios.get('https://avtur-ankasa-ticketing.herokuapp.com/v1/profil')

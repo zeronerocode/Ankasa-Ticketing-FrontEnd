@@ -6,6 +6,7 @@ import CardBooking from '../../components/module/cardBooking'
 // import Navi from '../../components/module/navi'
 import Footer from '../../components/module/footer'
 import Header from '../../components/module/nav/header'
+import { Link } from 'react-router-dom'
 
 
 const MyBooking = () => {
@@ -28,7 +29,9 @@ const MyBooking = () => {
             <CardBooking className={styles.btn} title="Waiting for Payment" />
           </div>
           <div className={styles.wcard3}>
+          <Link to={'/bookingDetail'}>
             <CardBooking className={styles.btn2} title="Eticket Issued" />
+          </Link>
           </div>
             <Card className={styles.card4}/>
             </div>

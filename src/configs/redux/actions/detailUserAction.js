@@ -8,7 +8,7 @@ export const detailUserAction = () => async(dispatch) =>{
             url : process.env.REACT_APP_API_BACKEND+`/profile`,
             headers : {"Authorization" : `Bearer ${token}`}
          })
-         const data = result.data
+         const data = result.data.data
          console.log(data);
          // const token = 
          // const result = await axios.get(process.env.REACT_APP_BACKEND_API+'/profile/')

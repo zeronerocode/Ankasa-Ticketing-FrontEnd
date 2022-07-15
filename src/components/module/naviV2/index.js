@@ -15,17 +15,22 @@ export class NaviV2 extends React.Component {
   render(){
   return (
     <div className={styles.navi}>
+      <Link to={'/home'}>
         <Logo />
+      </Link>
 
         <Searchbar />
 
         <div className={styles['btn-group']}>
+        <Link to={'/searchFlight'}>
             <Button 
             title='Find Ticket'
             type='button'
             className={styles['navi-btn']}
             // onClick={handleLogin}
             />
+        </Link>
+
             <Link to={'/myBooking'}>
             <Button 
             title='My Booking'
@@ -48,7 +53,9 @@ export class NaviV2 extends React.Component {
           </div>
           
           <div>
+          <Link to={'/profile'}>
             <img src={user} alt='' />
+            </Link>
           </div>
         </div>
     </div>
