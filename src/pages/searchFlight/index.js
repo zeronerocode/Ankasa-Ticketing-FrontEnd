@@ -21,15 +21,16 @@ import { useSearchParams } from "react-router-dom";
 const SearchFlight = () => {
   const [flights, setFlights] = useState([]);
 
-  const fetchFlight = async ({transitType, facilities, departure, arrival}) => {
+  const fetchFlight = async ({transitType, facilities, departure, arrival, airlines, sortBy}) => {
     try {
-      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?
-      ${transitType&& `&transit=${transitType}`}
-      ${facilities&& `&fasilitas=${facilities}`}
-      ${departure&& `&departure=${departure}`}
-      ${arrival&& `&arrival=${arrival}`}
+
+      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${sortBy&& `&sortBy=${sortBy}`}`);
       
-      `);
+      // ${facilities&& `&fasilitas=${facilities}`}
+      // ${departure&& `&departure=${departure}`}
+      // ${arrival&& `&arrival=${arrival}`}
+      // ${airlines&& `&airline=${airlines}`}
+      // ${sortBy&& `&sortBy=${sortBy}`}
       // console.log(result.data);
       setFlights(result.data.data);
     } catch (error) {
@@ -76,6 +77,8 @@ const SearchFlight = () => {
   // const [eveningDeparture, setEveningDeparture] = useState('')
   // const [nightDeparture, setNightDeparture] = useState('')
   const [departure, setDeparture] = useState("");
+  const [airlines, setArilines] = useState("");
+  const [sortBy, setSortBy] = useState("")
 
   const [query, setQuery] = useSearchParams({});
 
@@ -96,14 +99,24 @@ const SearchFlight = () => {
   // console.log(query)
   console.log(flights);
 
-  const dataParam = {
-    departure,
-    arrival,
-    transitType,
-    facilities
-  }
+  // const dataParam = {
+  //   departure,
+  //   arrival,
+  //   transitType,
+  //   facilities,
+  //   airlines,
+  //   sortBy
+  // }
 
   useEffect(() => {
+    const dataParam = {
+      departure,
+      arrival,
+      transitType,
+      facilities,
+      airlines,
+      sortBy
+    }
     fetchFlight(dataParam);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
@@ -1042,7 +1055,164 @@ const SearchFlight = () => {
               </div>
 
               <div className={styles.hl} />
-
+              <p>Airline</p>
+              <div className={styles.options}>
+                <div>
+                  <label>Garuda Indonesia</label>
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let airline = "garudaindonesia";
+                    let newAirlines = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
+                      setArilines(newAirlines);
+                      newParams = {
+                        airlines: newAirlines,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (airlines.includes("|")) {
+                        // console.log("apakah berjalan");
+                        newAirlines = airlines.split("|").filter((item) => {
+                          return item !== airline;
+                        });
+                        newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                        setArilines(newAirlines);
+                        newParams = {
+                          airlines: newAirlines,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setArilines("");
+                        delete params.airlines;
+                        setQuery({
+                          ...params,
+                        });
+                      }
+                    }
+                  }}
+                  />
+                </div>
+                <div>
+                <label>America</label>
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let airline = "america";
+                    let newAirlines = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
+                      setArilines(newAirlines);
+                      newParams = {
+                        airlines: newAirlines,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (airlines.includes("|")) {
+                        // console.log("apakah berjalan");
+                        newAirlines = airlines.split("|").filter((item) => {
+                          return item !== airline;
+                        });
+                        newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                        setArilines(newAirlines);
+                        newParams = {
+                          airlines: newAirlines,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setArilines("");
+                        delete params.airlines;
+                        setQuery({
+                          ...params,
+                        });
+                      }
+                    }
+                  }}
+                  />
+                </div>
+                <div>
+                <label>Batik Air</label>
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let airline = "batikair";
+                    let newAirlines = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
+                      setArilines(newAirlines);
+                      newParams = {
+                        airlines: newAirlines,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (airlines.includes("|")) {
+                        // console.log("apakah berjalan");
+                        newAirlines = airlines.split("|").filter((item) => {
+                          return item !== airline;
+                        });
+                        newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                        setArilines(newAirlines);
+                        newParams = {
+                          airlines: newAirlines,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setArilines("");
+                        delete params.airlines;
+                        setQuery({
+                          ...params,
+                        });
+                      }
+                    }
+                  }}
+                  />
+                </div>
+              </div>
+               
+              <div className={styles.hl} />   
               <p>Price Range</p>
               <div className={styles.options}>
                 <div className={styles.pricing}>
@@ -1063,7 +1233,12 @@ const SearchFlight = () => {
                 Select Ticket<span></span>
               </p>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Dropdown />
+                <Dropdown 
+                setSortBy={setSortBy}
+                setQuery={setQuery}
+                setParams={setParams}
+                params={params}
+                />
                 <button className={styles.sort}>{/* <img src={sort} alt='' /> */}</button>
               </div>
             </div>
