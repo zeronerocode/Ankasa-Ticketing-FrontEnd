@@ -9,36 +9,36 @@ import flight from '../../../assets/flight.svg'
 // import meal from '../../../assets/facility/meal.svg'
 import Button from '../../base/buttonv2'
 
-const TicketCard = () => {
+const TicketCard = ({airlineImg, airline, origin, arr, destination, dept, price, id, direct,transit,more_transit}) => {
   return (
     <div className={styles.ticket}>
         <div className={styles.airline}>
             {/* <div>
                 <img src={airline} alt='' />
             </div>     */}
-            <span>Garuda Indonesia</span>
+            <span>{airline}</span>
         </div>
 
         <div className={styles['flight-info']}>
             <div className={styles.schedule}>
                 <div>
-                    <p>IDN</p>
-                    <span>12:33</span>
+                    <p>{origin}</p>
+                    <span>{dept}</span>
+                </div>
+
+                <div className={styles.frame}>
+                    <img src={airlineImg} alt='' />
                 </div>
 
                 <div>
-                    <img src={flight} alt='' />
-                </div>
-
-                <div>
-                    <p>JPN</p>
-                    <span>15:21</span>
+                    <p>{destination}</p>
+                    <span>{arr}</span>
                 </div>
             </div>
 
             <div className={styles.duration}>
                 <p>3 hours 11 minutes</p>
-                <span>(1 transit)</span>
+                <span>{direct? 'direct' : transit || more_transit}</span>
             </div>
 
             <div className={styles.facilities}>
