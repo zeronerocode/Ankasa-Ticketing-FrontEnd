@@ -21,9 +21,15 @@ import { useSearchParams } from "react-router-dom";
 const SearchFlight = () => {
   const [flights, setFlights] = useState([]);
 
-  const fetchFlight = async (origin, destination) => {
+  const fetchFlight = async ({transitType, facilities, departure, arrival}) => {
     try {
-      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?origin=${origin}&destination=${destination}`);
+      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?
+      ${transitType&& `&transit=${transitType}`}
+      ${facilities&& `&fasilitas=${facilities}`}
+      ${departure&& `&departure=${departure}`}
+      ${arrival&& `&arrival=${arrival}`}
+      
+      `);
       // console.log(result.data);
       setFlights(result.data.data);
     } catch (error) {
@@ -31,10 +37,6 @@ const SearchFlight = () => {
     }
   };
 
- 
-
-  // console.log(query);
-  // console.log(query.get);
 
 
   const changeSearch = () => {
@@ -44,15 +46,7 @@ const SearchFlight = () => {
     });
   };
 
-  // const params = {
-  //   transit: '',
-  //   departure: ''
-  // }
-
-  const [params, setParams] = useState({
-  })
-
-
+  const [params, setParams] = useState({});
 
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
@@ -61,21 +55,21 @@ const SearchFlight = () => {
   const [setTicket] = useState("");
   const [setTicketType] = useState("");
 
-  const [direct, setDirect] = useState("");
-  const [transit, setTransit] = useState("");
-  const [moreTransit, setMoreTransit] = useState("");
+  // const [direct, setDirect] = useState("");
+  // const [transit, setTransit] = useState("");
+  // const [moreTransit, setMoreTransit] = useState("");
   let [transitType, setTransitType] = useState("");
 
-  const [luggage, setLuggage] = useState('')
-  const [meal, setMeal] = useState('')
-  const [wifi, setWifi] = useState('')
-  const [facilities, setFacilities] = useState('')
+  // const [luggage, setLuggage] = useState('')
+  // const [meal, setMeal] = useState('')
+  // const [wifi, setWifi] = useState('')
+  const [facilities, setFacilities] = useState("");
 
   // const [morningArrival, setMorningArrival] = useState('')
   // const [noonArrival, setNoonArrival] = useState('')
   // const [eveningArrival, setEveningArrival] = useState('')
   // const [nightArrival, setNightArrival] = useState('')
-  // const [arrival, setArrival] = useState('')
+  const [arrival, setArrival] = useState('')
 
   // const [morningDeparture, setMorningDeparture] = useState('')
   // const [noonDeparture, setNoonDeparture] = useState('')
@@ -94,12 +88,23 @@ const SearchFlight = () => {
   // console.log(ticketType)
   console.log("ini transitType");
   console.log(transitType);
+  console.log("ini departure");
+  console.log(departure);
+  console.log("ini facilites");
+  console.log(facilities);
   // console.log(`query : ${query}`)
   // console.log(query)
   console.log(flights);
 
+  const dataParam = {
+    departure,
+    arrival,
+    transitType,
+    facilities
+  }
+
   useEffect(() => {
-    fetchFlight(origin, destination);
+    fetchFlight(dataParam);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
   return (
@@ -194,49 +199,53 @@ const SearchFlight = () => {
                     onChange={(e) => {
                       let newDirect = "1";
                       let allTransit = "";
+                      let newParams = {};
                       if (e.target.checked) {
-                        setDirect(newDirect);
                         allTransit = transitType ? transitType + "." + newDirect : transitType + newDirect;
                         setTransitType(allTransit);
+                        newParams = {
+                          transit: allTransit,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
 
-                        if(departure){
-                          const newParams = {
-                            transit: allTransit,
-                            departure
-                          }
-                          setParams({
-                            ...newParams
-                          })
-                          setQuery(newParams);
-                        } else {
-                          setQuery({
-                            transit: allTransit,
-                            // departure: departure,
-                          });
-                        }
-                        if(facilities){
-                          const newParams = {
-                            transit: allTransit,
-                            facilities,
-                            departure
-                          }
-                          setParams(newParams)
-                          setQuery(newParams)
+                        // if(departure){
+                        //    newParams = {
+                        //     ...newParams,
+                        //     transit: allTransit,
+                        //   }
+                        //   setParams(newParams)
+                        //   setQuery(newParams);
+                        // } else {
+                        //   setQuery({
+                        //     ...params,
+                        //     transit: allTransit,
+                        //     // departure: departure,
+                        //   });
+                        // }
+                        // if(facilities){
+                        //   const newParams = {
+                        //     transit: allTransit,
+                        //     facilities,
+                        //     departure
+                        //   }
+                        //   setParams(newParams)
+                        //   setQuery(newParams)
 
-                        } else {
-                          setQuery({
-                            ...params,
-                            transit : allTransit
-                          })
-                        }
-
-                       
-                        
-
-                        newDirect = "";
+                        // } else {
+                        //   setQuery({
+                        //     ...params,
+                        //     transit : allTransit
+                        //   })
+                        // }
+                        // newDirect = "";
                       } else {
-                        setDirect("");
-
                         if (transitType.includes(".")) {
                           console.log("apakah berjalan");
                           allTransit = transitType.split(".").filter((item) => {
@@ -244,30 +253,43 @@ const SearchFlight = () => {
                           });
                           // console.log(allTransit.length);
                           allTransit = allTransit.length > 1 ? allTransit.join(".") : allTransit.join("");
-                          // if(allTransit.length > 1) {
-                          //   allTransit.join
-                          // }
-                          console.log(allTransit);
+                          // console.log(allTransit);
                           setTransitType(allTransit);
-                          setQuery({
-                            ...query,
-                            // departure
-                            // transit: allTransit,
-                            departure: departure,
+                          newParams = {
+                            transit: allTransit,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
                           });
-                        } else {
-                          setDirect("");
-                          setTransitType("");
-                          delete query.transit;
                           setQuery({
-                            ...query,
+                            ...params,
+                            ...newParams,
+                          });
+
+                          // if(departure){
+                          //   newParams = {
+                          //     ...newParams,
+                          //     departure,
+                          //     transit: allTransit
+                          //   }
+                          //   setParams(newParams)
+                          //   setQuery(newParams);
+                          // } else {
+                          //   setQuery({
+                          //     ...params,
+                          //     transit: allTransit,
+                          //     // departure: departure,
+                          //   });
+                          // }
+                        } else {
+                          setTransitType("");
+                          delete params.transit;
+                          setQuery({
+                            ...params,
                             // departure: departure,
                           });
-
-                          // console.log(query);
                         }
-
-                        console.log(allTransit);
                       }
                     }}
                   />
@@ -279,44 +301,50 @@ const SearchFlight = () => {
                     onChange={(e) => {
                       let newDirect = "2";
                       let allTransit = "";
+                      let newParams = {};
                       if (e.target.checked) {
-                        setTransit(newDirect);
                         allTransit = transitType ? transitType + "." + newDirect : transitType + newDirect;
                         setTransitType(allTransit);
-                        setQuery({
-                          ...{},
+                        newParams = {
                           transit: allTransit,
-                          // departure: departure,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
                         });
-                        newDirect = "";
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
                       } else {
-                        setTransit("");
                         if (transitType.includes(".")) {
-                          // console.log("apakah berjalan");
+                          console.log("apakah berjalan");
                           allTransit = transitType.split(".").filter((item) => {
                             return item !== "2";
                           });
+                          // console.log(allTransit.length);
                           allTransit = allTransit.length > 1 ? allTransit.join(".") : allTransit.join("");
-                          // allTransit.length > 1 ? allTransit.join('.') : allTransit.join('')
                           // console.log(allTransit);
                           setTransitType(allTransit);
-                          setQuery({
-                            ...{},
+                          newParams = {
                             transit: allTransit,
-                            // departure: departure&&fr,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
                           });
                         } else {
                           setTransitType("");
-                          delete query.transit;
+                          delete params.transit;
                           setQuery({
-                            ...{},
-                            departure: departure,
+                            ...params,
+                            // departure: departure,
                           });
-
-                          // console.log(query);
                         }
-
-                        console.log(allTransit);
                       }
                     }}
                   />
@@ -328,43 +356,50 @@ const SearchFlight = () => {
                     onChange={(e) => {
                       let newDirect = "3";
                       let allTransit = "";
+                      let newParams = {};
                       if (e.target.checked) {
-                        setMoreTransit(newDirect);
                         allTransit = transitType ? transitType + "." + newDirect : transitType + newDirect;
                         setTransitType(allTransit);
-                        setQuery({
-                          ...query,
+                        newParams = {
                           transit: allTransit,
-                          // departure: departure,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
                         });
-                        // newDirect = "";
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
                       } else {
-                        setMoreTransit("");
                         if (transitType.includes(".")) {
-                          // console.log("apakah berjalan");
+                          console.log("apakah berjalan");
                           allTransit = transitType.split(".").filter((item) => {
                             return item !== "3";
                           });
+                          // console.log(allTransit.length);
                           allTransit = allTransit.length > 1 ? allTransit.join(".") : allTransit.join("");
-                          console.log(allTransit);
+                          // console.log(allTransit);
                           setTransitType(allTransit);
-                          setQuery({
-                            ...query,
+                          newParams = {
                             transit: allTransit,
-                            // departure: departure,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
                           });
                         } else {
                           setTransitType("");
-                          delete query.transit;
+                          delete params.transit;
                           setQuery({
-                            ...query,
+                            ...params,
                             // departure: departure,
                           });
-
-                          // console.log(query);
                         }
-
-                        // console.log(allTransit);
                       }
                     }}
                   />
@@ -380,54 +415,154 @@ const SearchFlight = () => {
                   <input
                     type="checkbox"
                     onChange={(e) => {
-                      let lugage = "1";
-                      let allFas = "";
+                      let luggage = "1";
+                      let newFacilities = "";
+                      let newParams = {};
                       if (e.target.checked) {
-                        // set(newDirect);
-                        allFas = facilities ? facilities + "." + lugage : facilities + lugage;
-                        setFacilities(allFas);
+                        newFacilities = facilities ? facilities + "." + luggage : facilities + luggage;
+                        setFacilities(newFacilities);
+                        newParams = {
+                          facilities: newFacilities,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
                         setQuery({
-                          facilities : allFas,
+                          ...params,
+                          ...newParams,
                         });
                       } else {
-                        setDirect("");
-
                         if (facilities.includes(".")) {
                           console.log("apakah berjalan");
-                          allFas = facilities.split(".").filter((item) => {
+                          newFacilities = facilities.split(".").filter((item) => {
                             return item !== "1";
                           });
-                          // console.log(allTransit.length);
-                          allFas = allFas.length > 1 ? allFas.join(".") : allFas.join("");
-                          // if(allTransit.length > 1) {
-                          //   allTransit.join
-                          // }
-                          // console.log(allTransit);
-                          setFacilities(allFas);
+                          newFacilities = newFacilities.length > 1 ? newFacilities.join(".") : newFacilities.join("");
+                          setFacilities(newFacilities);
+                          newParams = {
+                            facilities: newFacilities,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
                           setQuery({
-                            facilities: allFas
+                            ...params,
+                            ...newParams,
                           });
                         } else {
-                          // setDirect("");
                           setFacilities("");
-                          delete query.facilities;
-                          setQuery(params);
-
-                          // console.log(query);
+                          delete params.facilities;
+                          setQuery({
+                            ...params,
+                          });
                         }
-
-                        // console.log(allTransit);
                       }
                     }}
                   />
                 </div>
                 <div>
                   <label>In-Flight Meal</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let meal = "2";
+                    let newFacilities = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newFacilities = facilities ? facilities + "." + meal : facilities + meal;
+                      setFacilities(newFacilities);
+                      newParams = {
+                        facilities: newFacilities,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (facilities.includes(".")) {
+                        console.log("apakah berjalan");
+                        newFacilities = facilities.split(".").filter((item) => {
+                          return item !== meal;
+                        });
+                        newFacilities = newFacilities.length > 1 ? newFacilities.join(".") : newFacilities.join("");
+                        setFacilities(newFacilities);
+                        newParams = {
+                          facilities: newFacilities,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setFacilities("");
+                        delete params.facilities;
+                        setQuery({
+                          ...params,
+                        });
+                      }
+                    }
+                  }}
+                  />
                 </div>
                 <div>
                   <label>Wi-Fi</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let wifi = "3";
+                    let newFacilities = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newFacilities = facilities ? facilities + "." + wifi : facilities + wifi;
+                      setFacilities(newFacilities);
+                      newParams = {
+                        facilities: newFacilities,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (facilities.includes(".")) {
+                        console.log("apakah berjalan");
+                        newFacilities = facilities.split(".").filter((item) => {
+                          return item !== wifi;
+                        });
+                        newFacilities = newFacilities.length > 1 ? newFacilities.join(".") : newFacilities.join("");
+                        setFacilities(newFacilities);
+                        newParams = {
+                          facilities: newFacilities,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setFacilities("");
+                        delete params.facilities;
+                        setQuery({
+                          ...params,
+                        });
+                      }
+                    }
+                  }}
+                  />
                 </div>
               </div>
 
@@ -442,16 +577,42 @@ const SearchFlight = () => {
                     onChange={(e) => {
                       let time = "dinihari";
                       let allDeparture = "";
+                      let newParams = {};
                       if (e.target.checked) {
                         // setMorningDeparture(newDirect);
                         allDeparture = departure ? departure + "." + time : departure + time;
                         setDeparture(allDeparture);
-                        // transitType ? set
-                        setQuery({
-                          ...{},
-                          // transit: transitType,
+                        newParams = {
                           departure: allDeparture,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
                         });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                        // if(transitType){
+                        //   newParams = {
+                        //     ...params,
+                        //     departure: allDeparture,
+                        //     transit: transitType
+                        //   }
+                        //   setParams(newParams)
+                        //   setQuery(newParams);
+                        // } else {
+                        //   setQuery({
+                        //     ...params,
+                        //     departure: allDeparture,
+                        //     // departure: departure,
+                        //   });
+                        // }
+                        // setQuery({
+                        //   ...{},
+                        //   // transit: transitType,
+                        //   departure: allDeparture,
+                        // });
                       } else {
                         if (departure.includes(".")) {
                           console.log("apakah berjalan");
@@ -459,18 +620,44 @@ const SearchFlight = () => {
                             return item !== "dinihari";
                           });
                           allDeparture = allDeparture.length > 1 ? allDeparture.join(".") : allDeparture.join("");
-                          console.log(allDeparture);
                           setDeparture(allDeparture);
-                          setQuery({
-                            // transit: transitType,
+                          newParams = {
                             departure: allDeparture,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
                           });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                          // if(transitType){
+                          //   newParams = {
+                          //     ...newParams,
+                          //     departure: allDeparture,
+                          //     transit: transitType
+                          //   }
+                          //   setParams(newParams)
+                          //   setQuery(newParams);
+                          // } else {
+                          //   setQuery({
+                          //     ...params,
+                          //     departure: allDeparture,
+                          //     // departure: departure,
+                          //   });
+                          // }
+                          // setQuery({
+                          //   // transit: transitType,
+                          //   departure: allDeparture,
+                          // });
                         } else {
                           // setDirect("");
                           setDeparture("");
-                          delete query.departure;
+                          delete params.departure;
                           setQuery({
-                            ...query,
+                            ...params,
+                            // ...newParams
                           });
                         }
 
@@ -486,14 +673,20 @@ const SearchFlight = () => {
                     onChange={(e) => {
                       let time = "pagi";
                       let allDeparture = "";
+                      let newParams = {};
                       if (e.target.checked) {
-                        // setMorningDeparture(newDirect);
                         allDeparture = departure ? departure + "." + time : departure + time;
                         setDeparture(allDeparture);
-                        setQuery({
-                          ...query,
-                          // transit: transitType,
+                        newParams = {
                           departure: allDeparture,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
                         });
                       } else {
                         if (departure.includes(".")) {
@@ -502,24 +695,26 @@ const SearchFlight = () => {
                             return item !== "pagi";
                           });
                           allDeparture = allDeparture.length > 1 ? allDeparture.join(".") : allDeparture.join("");
-                          console.log(allDeparture);
                           setDeparture(allDeparture);
-                          setQuery({
-                            ...query,
-                            // transit: transitType,
+                          newParams = {
                             departure: allDeparture,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
                           });
                         } else {
-                          // setDirect("");
                           setDeparture("");
-                          delete query.departure;
+                          delete params.departure;
                           setQuery({
-                            ...query,
-                            // transit: transitType,
+                            ...params,
+                            // ...newParams
                           });
                         }
-
-                        // console.log(allTransit);
                       }
                     }}
                   />
@@ -531,14 +726,20 @@ const SearchFlight = () => {
                     onChange={(e) => {
                       let time = "sore";
                       let allDeparture = "";
+                      let newParams = {};
                       if (e.target.checked) {
-                        // setMorningDeparture(newDirect);
                         allDeparture = departure ? departure + "." + time : departure + time;
                         setDeparture(allDeparture);
-                        setQuery({
-                          ...query,
-                          // transit: transitType,
+                        newParams = {
                           departure: allDeparture,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
                         });
                       } else {
                         if (departure.includes(".")) {
@@ -547,24 +748,26 @@ const SearchFlight = () => {
                             return item !== "sore";
                           });
                           allDeparture = allDeparture.length > 1 ? allDeparture.join(".") : allDeparture.join("");
-                          console.log(allDeparture);
                           setDeparture(allDeparture);
-                          setQuery({
-                            ...query,
-                            // transit: transitType,
+                          newParams = {
                             departure: allDeparture,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
                           });
                         } else {
-                          // setDirect("");
                           setDeparture("");
-                          delete query.departure;
+                          delete params.departure;
                           setQuery({
-                            ...query,
-                            // transit: transitType,
+                            ...params,
+                            // ...newParams
                           });
                         }
-
-                        // console.log(allTransit);
                       }
                     }}
                   />
@@ -576,14 +779,20 @@ const SearchFlight = () => {
                     onChange={(e) => {
                       let time = "malam";
                       let allDeparture = "";
+                      let newParams = {};
                       if (e.target.checked) {
-                        // setMorningDeparture(newDirect);
                         allDeparture = departure ? departure + "." + time : departure + time;
                         setDeparture(allDeparture);
-                        setQuery({
-                          ...query,
-                          // transit: transitType,
+                        newParams = {
                           departure: allDeparture,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
                         });
                       } else {
                         if (departure.includes(".")) {
@@ -592,24 +801,26 @@ const SearchFlight = () => {
                             return item !== "malam";
                           });
                           allDeparture = allDeparture.length > 1 ? allDeparture.join(".") : allDeparture.join("");
-                          console.log(allDeparture);
                           setDeparture(allDeparture);
-                          setQuery({
-                            ...query,
-                            // transit: transitType,
+                          newParams = {
                             departure: allDeparture,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
                           });
                         } else {
-                          // setDirect("");
                           setDeparture("");
-                          delete query.departure;
+                          delete params.departure;
                           setQuery({
-                            ...query,
-                            // transit: transitType,
+                            ...params,
+                            // ...newParams
                           });
                         }
-
-                        // console.log(allTransit);
                       }
                     }}
                   />
@@ -622,19 +833,211 @@ const SearchFlight = () => {
               <div className={styles.options}>
                 <div>
                   <label>00:00 - 06:00</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let time = "dinihari";
+                    let newArrival = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newArrival = arrival ? arrival + "." + time : arrival + time;
+                      setArrival(newArrival);
+                      newParams = {
+                        arrival: newArrival,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (arrival.includes(".")) {
+                        console.log("apakah berjalan");
+                        newArrival = arrival.split(".").filter((item) => {
+                          return item !== time;
+                        });
+                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                        setArrival(newArrival);
+                        newParams = {
+                          departure: newArrival,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setArrival("");
+                        delete params.arrival;
+                        setQuery({
+                          ...params,
+                          // ...newParams
+                        });
+                      }
+                    }
+                  }}
+                  />
                 </div>
                 <div>
                   <label>06:00 - 12:00</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let time = "pagi";
+                    let newArrival = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newArrival = arrival ? arrival + "." + time : arrival + time;
+                      setArrival(newArrival);
+                      newParams = {
+                        arrival: newArrival,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (arrival.includes(".")) {
+                        console.log("apakah berjalan");
+                        newArrival = arrival.split(".").filter((item) => {
+                          return item !== time;
+                        });
+                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                        setArrival(newArrival);
+                        newParams = {
+                          departure: newArrival,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setArrival("");
+                        delete params.arrival;
+                        setQuery({
+                          ...params,
+                          // ...newParams
+                        });
+                      }
+                    }
+                  }}
+                  />
                 </div>
                 <div>
                   <label>12:00 - 18:00</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let time = "sore";
+                    let newArrival = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newArrival = arrival ? arrival + "." + time : arrival + time;
+                      setArrival(newArrival);
+                      newParams = {
+                        arrival: newArrival,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (arrival.includes(".")) {
+                        console.log("apakah berjalan");
+                        newArrival = arrival.split(".").filter((item) => {
+                          return item !== time;
+                        });
+                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                        setArrival(newArrival);
+                        newParams = {
+                          departure: newArrival,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setArrival("");
+                        delete params.arrival;
+                        setQuery({
+                          ...params,
+                          // ...newParams
+                        });
+                      }
+                    }
+                  }}
+                  />
                 </div>
                 <div>
                   <label>18:00 - 24:00</label>
-                  <input type="checkbox" />
+                  <input type="checkbox" 
+                  onChange={(e) => {
+                    let time = "malam";
+                    let newArrival = "";
+                    let newParams = {};
+                    if (e.target.checked) {
+                      newArrival = arrival ? arrival + "." + time : arrival + time;
+                      setArrival(newArrival);
+                      newParams = {
+                        arrival: newArrival,
+                      };
+                      setParams({
+                        ...params,
+                        ...newParams,
+                      });
+                      setQuery({
+                        ...params,
+                        ...newParams,
+                      });
+                    } else {
+                      if (arrival.includes(".")) {
+                        console.log("apakah berjalan");
+                        newArrival = arrival.split(".").filter((item) => {
+                          return item !== time;
+                        });
+                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                        setArrival(newArrival);
+                        newParams = {
+                          departure: newArrival,
+                        };
+                        setParams({
+                          ...params,
+                          ...newParams,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newParams,
+                        });
+                      } else {
+                        setArrival("");
+                        delete params.arrival;
+                        setQuery({
+                          ...params,
+                          // ...newParams
+                        });
+                      }
+                    }
+                  }}
+                  />
                 </div>
               </div>
 
