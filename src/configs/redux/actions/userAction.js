@@ -50,7 +50,7 @@ export const loginCustomer = (dataForm, navigate) => async (dispatch) => {
     swal.fire({
       icon: "success",
       title: "Selamat anda berhasil Login",
-      text: `Hallo ${result.data}`,
+      text: `Hallo ${result.data.data.username}`,
     });
     navigate("/home");
   } catch (error) {

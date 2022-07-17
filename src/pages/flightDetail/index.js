@@ -15,6 +15,7 @@ import { createBooking } from "../../configs/redux/actions/detailBookingActions"
 import { detailFlightsAction } from "../../configs/redux/actions/flightAction";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import Swal from "sweetalert2"
 
 const FlightDetail = () => {
   const { id } = useParams();
@@ -66,7 +67,12 @@ const FlightDetail = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createBooking(form, navigate));
+      dispatch(createBooking(form, navigate));
+       Swal.fire({
+         icon: "success",
+         title: "Berhasil Memesan",
+         text: `Selamat : ${form.fullname}`,
+       });
   };
   console.log(add);
   return (
