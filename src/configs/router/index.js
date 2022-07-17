@@ -7,7 +7,8 @@ import BookingDetail from '../../pages/bookingDetail/index';
 import FlightDetail from '../../pages/flightDetail/index';
 import Home from '../../pages/home';
 import MyBooking from '../../pages/myBooking/index';
-import Profile from '../../pages/Profile/index';
+
+import Profile from '../../pages/Profile';
 import SearchFlight from '../../pages/searchFlight';
 
 
