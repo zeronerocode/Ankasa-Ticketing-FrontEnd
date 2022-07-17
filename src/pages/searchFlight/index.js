@@ -13,7 +13,7 @@ import plane from "../../assets/logoWhite.svg";
 import switchIcon from "../../assets/switch.svg";
 // import sort from '../../assets/sort.svg'
 
-// import wifiIcon from '../../assets/facility/wifi.svg'
+// import wifiIcon from '../../../src/assets/'
 // import luggageIcon from '../../assets/facility/luggage.svg'
 // import mealIcon from '../../assets/facility/meal.svg'
 import { useSearchParams } from "react-router-dom";
@@ -21,11 +21,20 @@ import { useSearchParams } from "react-router-dom";
 const SearchFlight = () => {
   const [flights, setFlights] = useState([]);
 
-  const fetchFlight = async ({transitType, facilities, departure, arrival, airlines, sortBy}) => {
+  const fetchFlight = async ({
+    transitType,
+    facilities,
+    departure,
+    arrival,
+    airlines,
+    sortBy,
+    minPrice,
+    maxPrice
+  }) => {
     try {
 
-      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${sortBy&& `&sortBy=${sortBy}`}`);
-      
+      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${minPrice&& `&min=${minPrice}`}${maxPrice&& `&max=${maxPrice}`}${sortBy&& `&sortBy=${sortBy}`}`);
+      // const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${minPrice&& `&min=${minPrice}`}${maxPrice&& `&max=${maxPrice}`}`);
       // ${facilities&& `&fasilitas=${facilities}`}
       // ${departure&& `&departure=${departure}`}
       // ${arrival&& `&arrival=${arrival}`}
@@ -48,73 +57,60 @@ const SearchFlight = () => {
   };
 
   const [params, setParams] = useState({});
-
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
-
-  const [setDate] = useState("");
-  const [setTicket] = useState("");
-  const [setTicketType] = useState("");
-
-  // const [direct, setDirect] = useState("");
-  // const [transit, setTransit] = useState("");
-  // const [moreTransit, setMoreTransit] = useState("");
   let [transitType, setTransitType] = useState("");
-
-  // const [luggage, setLuggage] = useState('')
-  // const [meal, setMeal] = useState('')
-  // const [wifi, setWifi] = useState('')
   const [facilities, setFacilities] = useState("");
-
-  // const [morningArrival, setMorningArrival] = useState('')
-  // const [noonArrival, setNoonArrival] = useState('')
-  // const [eveningArrival, setEveningArrival] = useState('')
-  // const [nightArrival, setNightArrival] = useState('')
   const [arrival, setArrival] = useState('')
-
-  // const [morningDeparture, setMorningDeparture] = useState('')
-  // const [noonDeparture, setNoonDeparture] = useState('')
-  // const [eveningDeparture, setEveningDeparture] = useState('')
-  // const [nightDeparture, setNightDeparture] = useState('')
   const [departure, setDeparture] = useState("");
   const [airlines, setArilines] = useState("");
   const [sortBy, setSortBy] = useState("")
-
   const [query, setQuery] = useSearchParams({});
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [date, setDate] = useState('')
+  const [ticket, setTicket] = useState('')
+  const [ticketType, setTicketType] = useState('')
 
   // console.log('ini statenya')
   // console.log(direct)
   // console.log(origin)
   // console.log(destination)
   // console.log(date)
-  // console.log(ticket)
-  // console.log(ticketType)
+  // console.log(airlines)
+  // console.log(sortBy)
   console.log("ini transitType");
   console.log(transitType);
   console.log("ini departure");
   console.log(departure);
   console.log("ini facilites");
   console.log(facilities);
-  // console.log(`query : ${query}`)
-  // console.log(query)
   console.log(flights);
 
-  // const dataParam = {
-  //   departure,
-  //   arrival,
-  //   transitType,
-  //   facilities,
-  //   airlines,
-  //   sortBy
-  // }
+  const onHandleReset = () =>{
+      setFacilities('')
+      setArrival('')
+      setDeparture('')
+      setArilines('')
+      setSortBy('')
+      setMinPrice('')
+      setMaxPrice('')
+      setParams({})
+      setQuery({})
+  }
 
   useEffect(() => {
     const dataParam = {
+      date,
+      ticket,
+      ticketType,
       departure,
       arrival,
       transitType,
       facilities,
       airlines,
+      minPrice,
+      maxPrice,
       sortBy
     }
     fetchFlight(dataParam);
@@ -197,7 +193,7 @@ const SearchFlight = () => {
                 title="Reset"
                 type="button"
                 className={styles["reset-filter"]}
-                // onClick={onClick}
+                onClick={()=>{onHandleReset()}}
               />
             </div>
 
@@ -207,6 +203,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Direct</label>
                   <input
+                    id="transit"
                     type="checkbox"
                     // checked={direct === "0" ? true : false}
                     onChange={(e) => {
@@ -1217,11 +1214,39 @@ const SearchFlight = () => {
               <div className={styles.options}>
                 <div className={styles.pricing}>
                   <label>Min. price</label>
-                  <input type="number" step="10000" min="0" />
+                  <input
+                  value={minPrice}
+                  onChange={(e)=>{
+                    let price = e.target.value
+                    setMinPrice(price)
+                    setParams({
+                      ...params,
+                      minPrice: price
+                    })
+                    setQuery({
+                      ...params,
+                      minPrice: price
+                    })
+                  }}
+                  type="number" step="10000" min="0" />
                 </div>
                 <div className={styles.pricing}>
                   <label>Max. price</label>
-                  <input type="number" step="10000" />
+                  <input
+                  value={maxPrice}
+                  onChange={(e)=>{
+                    let price = e.target.value
+                    setMaxPrice(price)
+                    setParams({
+                      ...params,
+                      maxPrice: price
+                    })
+                    setQuery({
+                      ...params,
+                      maxPrice: price
+                    })
+                  }}
+                  type="number" step="10000" />
                 </div>
               </div>
             </div>

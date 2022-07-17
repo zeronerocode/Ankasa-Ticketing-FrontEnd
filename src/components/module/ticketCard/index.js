@@ -9,7 +9,21 @@ import flight from '../../../assets/flight.svg'
 // import meal from '../../../assets/facility/meal.svg'
 import Button from '../../base/buttonv2'
 
-const TicketCard = ({airlineImg, airline, origin, arr, destination, dept, price, id, direct,transit,more_transit}) => {
+const TicketCard = ({airlineImg,
+    airline,
+    origin, 
+    arr, 
+    destination,
+    dept, 
+    price, 
+    id, 
+    direct,
+    transit,
+    more_transit,
+    luggage,
+    wifi,
+    meal
+}) => {
   return (
     <div className={styles.ticket}>
         <div className={styles.airline}>
@@ -42,7 +56,7 @@ const TicketCard = ({airlineImg, airline, origin, arr, destination, dept, price,
             </div>
 
             <div className={styles.facilities}>
-                {/* <div>
+                <div>
                     <img src={luggage} alt='' />
                 </div>
                 <div>
@@ -50,11 +64,11 @@ const TicketCard = ({airlineImg, airline, origin, arr, destination, dept, price,
                 </div>
                 <div>
                     <img src={wifi} alt='' />
-                </div> */}
+                </div>
             </div>
 
             <div className={styles.pricetag}>
-                <p>$ 214,00</p>
+                <p>{`Rp ${price}`}</p>
                 <span>/pax</span>
             </div>
             
