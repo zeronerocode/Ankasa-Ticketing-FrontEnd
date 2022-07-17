@@ -45,12 +45,14 @@ const SearchFlight = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query])
 
+    
+
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
     
-    const [ setDate] = useState('');
-    const [ setTicket] = useState('');
-    const [ setTicketType] = useState('');
+    const [date, setDate] = useState('');
+    const [ticket, setTicket] = useState('');
+    const [ticketType, setTicketType] = useState('');
 
     const [direct, setDirect] = useState('')
     const [transit, setTransit] = useState('')
