@@ -1,6 +1,11 @@
 .container{
     position: relative;
 }
+.dflex{
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
 .wrapper{
     position: relative;
     top: 30px;

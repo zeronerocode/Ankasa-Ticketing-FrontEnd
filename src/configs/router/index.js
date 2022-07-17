@@ -10,7 +10,13 @@ import MyBooking from '../../pages/myBooking/index';
 import Profile from '../../pages/Profile/index';
 import SearchFlight from '../../pages/searchFlight';
 
-
+const RequireAuth = ({ children }) => {
+  const isAuth = localStorage.getItem("token");
+  if (!isAuth) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 function Router() {
     
   return (
@@ -19,13 +25,14 @@ function Router() {
         <Route path="/" element={<Navigate to="/home" replace="true" />} />
         <Route path="/flightDetail" element={<FlightDetail />} />
         <Route path="/myBooking" element={<MyBooking />} />
-        <Route path="/bookingDetail" element={<BookingDetail />} />
+        {/* <Route path="/bookingDetail" element={<BookingDetail />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/searchflight" element={<SearchFlight />} />
+        <Route path="/bookingDetail/:id" element={<BookingDetail />} />
         {/* <Route path="*" element={<Page404 />} /> */}
       </Routes>
     </BrowserRouter>

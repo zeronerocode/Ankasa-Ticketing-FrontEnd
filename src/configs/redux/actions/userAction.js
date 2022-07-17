@@ -3,26 +3,64 @@ import swal from "sweetalert2";
 
 
 
-export const loginCustomer = (data) => {
-  return new Promise((resolve, reject) => {
-    axios
-      .post(`${process.env.REACT_APP_API_BACKEND}/users/login`, data, {})
-      .then((response) => {
-        resolve(response);
-        console.log(response.data.data.token);
-        localStorage.setItem("refreshToken", response.data.data.refreshToken);
-        localStorage.setItem("token", response.data.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.data));
-      })
-      .catch((error) => {
-        swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "password and email wrong!",
-        });
-        reject(error);
-      });
-  });
+// export const loginCustomer = (data) => {
+//   return new Promise((resolve, reject) => {
+//     axios
+//       .post(`${process.env.REACT_APP_API_BACKEND}/users/login`, data, {})
+//       .then((response) => {
+//         resolve(response);
+//         //  const user = result.data.data;
+//         console.log(response.data.data.token);
+//         localStorage.setItem("refreshToken", response.data.data.refreshToken);
+//         localStorage.setItem("token", response.data.data.token);
+//         localStorage.setItem("user", JSON.stringify(response.data.data));
+//       //  dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
+//       })
+//       .catch((error) => {
+//         swal.fire({
+//           icon: "error",
+//           title: "Oops...",
+//           text: "password and email wrong!",
+//         });
+//         reject(error);
+//       });
+//   });
+// };
+
+
+export const loginCustomer = (dataForm, navigate) => async (dispatch) => {
+  try {
+    dispatch({ type: "USER_LOGIN_PENDING" });
+    const result = await axios.post(
+      `${process.env.REACT_APP_API_BACKEND}/users/login`,
+      dataForm
+    );
+    const user = result.data.data;
+    // console.log(result.data.data.token);
+    const token = result.data.data.token;
+    localStorage.setItem("token", token);
+    localStorage.setItem("refreshToken", user.refreshToken);
+    dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
+
+    dispatch({
+      type: "USER_LOGIN_SUCCESS",
+      token: token.data,
+      payload: user,
+    });
+    swal.fire({
+      icon: "success",
+      title: "Selamat anda berhasil Login",
+      text: `Hallo ${result.data}`,
+    });
+    navigate("/home");
+  } catch (error) {
+    swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "data yang anda inputkan salah, anda bukan admin",
+    });
+    console.log(error);
+  }
 };
 
 export const register = (data) => {

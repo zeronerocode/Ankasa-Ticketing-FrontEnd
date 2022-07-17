@@ -11,22 +11,42 @@ import { useSelector, useDispatch } from "react-redux";
 import styless from "../../components/module/cardProfile/cardProfile.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { updateUser } from "../../configs/redux/actions/detailUserAction";
+import {
+  updateUser,
+  detailUserAction,
+} from "../../configs/redux/actions/detailUserAction";
 import { useNavigate } from "react-router-dom";
+import avatar from "../../assets/avatar.png"
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.auth);
-  const id = user.id;
+  const { data } = useSelector((state) => state.detail);
+  // const id = user.id;
+  // const {city} = data
   const dispatch = useDispatch();
   const [phone_number, setPhone_number] = useState("");
   const [username, setUsername] = useState("");
-  const [city, setCity] = useState("");
+  const [citys, setCity] = useState("");
   const [address, setAddress] = useState("");
-    const [email, setEmail] = useState("");
   const [post_code, setPost_code] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [imagePreview, setImagePreview] = useState(photo);
+  const [imagePreview, setImagePreview] = useState(avatar);
+  const [photo, setPhoto] = useState(imagePreview);
+  // const [email, setEmail] = useState("");
 
+  //  const [form, setForm] = useState({
+  //    city: "",
+  //    username: "",
+  //  });
+  useEffect(() => {
+    datas();
+    dispatch(detailUserAction());
+    // setUsername(data.username);
+    //   setPhoto(data.photo);
+    //   setPost_code(data.post_code);
+    //   setCity(data.city);
+    //   setPhone_number(data.phone_number);
+    //   setAddress(data.address);
+  }, []);
+  console.log(citys);
   const onImageUpload = (e) => {
     const file = e.target.files[0];
     setPhoto(file);
@@ -41,7 +61,7 @@ const Profile = () => {
     const data = new FormData();
     data.append("phone_number", phone_number);
     data.append("username", username);
-    data.append("city", city);
+    data.append("city", citys);
     data.append("address", address);
     // data.append("email", email);
     data.append("post_code", post_code);
@@ -61,7 +81,7 @@ const Profile = () => {
         Swal.fire({
           icon: "success",
           title: "Berhasil mengupdate users",
-          text: `users :`,
+          text: `username : ${username}`,
         });
       })
       .catch((err) => {
@@ -73,12 +93,8 @@ const Profile = () => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    getProductById();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log(username);
-  const getProductById = async () => {
+
+  const datas = async () => {
     const token = localStorage.getItem("token");
     const response = await axios.get(
       `${process.env.REACT_APP_API_BACKEND}/profile`,
@@ -88,16 +104,14 @@ const Profile = () => {
         },
       }
     );
-    console.log(response.data.data[0].username);
-    setUsername(response.data.data[0].username);
-    setPhoto(response.data.data[0].photo);
-    setPost_code(response.data.data[0].post_code);
-    setCity(response.data.data[0].city);
-    setEmail(response.data.data[0].email);
-    setPhone_number(response.data.data[0].phone_number);
-    setAddress(response.data.data[0].address);
+    console.log(response.data.data.username);
+    setUsername(response.data.data.username);
+    setImagePreview(response.data.data.photo);
+    setPost_code(response.data.data.post_code);
+    setCity(response.data.data.city);
+    setPhone_number(response.data.data.phone_number);
+    setAddress(response.data.data.address);
   };
-
   return (
     <>
       <div className={styles.container}>
@@ -107,7 +121,7 @@ const Profile = () => {
             <div>
               <ProfileCard
                 className={styles.card}
-                srcs={imagePreview}
+                gambar={imagePreview}
                 images={
                   <input
                     id="selectFile"
@@ -130,14 +144,15 @@ const Profile = () => {
                   type="email"
                   name="email"
                   className={styles.input}
-                  value={email}
+                  value={data.email}
                   //   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Insert Your Email"
+                  disabled
                 />
                 <p className={styles.phoneText}>Phone Number</p>
                 <input
                   type="number"
-                    value={phone_number}
+                  value={phone_number}
                   onChange={(e) => setPhone_number(e.target.value)}
                   name="phone_number"
                   className={styles.input2}
@@ -151,7 +166,7 @@ const Profile = () => {
                   type="text"
                   //   name="username"
                   id="text"
-                    value={username || ""}
+                  value={username || ""}
                   onChange={(e) => setUsername(e.target.value)}
                   className={styles.input3}
                   placeholder="Insert Your Name"
@@ -160,7 +175,7 @@ const Profile = () => {
                 <input
                   type="text"
                   name="city"
-                    value={city}
+                  value={citys}
                   onChange={(e) => setCity(e.target.value)}
                   className={styles.input4}
                   placeholder="Insert Your City"
@@ -169,7 +184,7 @@ const Profile = () => {
                 <input
                   type="text"
                   className={styles.input5}
-                    value={address}
+                  value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Insert Your Adress"
                 />
@@ -178,7 +193,7 @@ const Profile = () => {
                   type="number"
                   className={styles.input6}
                   name="post_code"
-                    value={post_code}
+                  value={post_code}
                   onChange={(e) => setPost_code(e.target.value)}
                   placeholder="Insert Your Zip Code"
                 />

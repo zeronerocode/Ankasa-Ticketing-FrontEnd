@@ -2,10 +2,12 @@ import React from 'react'
 import Button from '../../base/buttonv2'
 import Logo from '../logo'
 import Searchbar from '../searchbar'
-
+import { useSelector } from 'react-redux/es/exports'
 import styles from './navi.module.css'
 
 const Navi = ({ className }) => {
+  const {user} = useSelector((state) => state.auth);
+  console.log(user);
   return (
     <div className={className}>
     <div className={styles.navi}>

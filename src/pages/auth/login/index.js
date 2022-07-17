@@ -12,36 +12,23 @@ import { loginCustomer } from '../../../configs/redux/actions/userAction'
 
 const Login = () => {
 
-    const dispatch = useDispatch()
-
      const navigate = useNavigate();
-     const [form, setForm] = useState({
+     const dispatch = useDispatch();
+     const [formLogin, setFormLogin] = useState({
        email: "",
        password: "",
      });
 
-     const onSubmit = (e) => {
+     const handleChange = (e) => {
+       setFormLogin({
+         ...formLogin,
+         [e.target.name]: e.target.value,
+       });
+     };
+     console.log(formLogin.admin);
+     const handleLogin = (e) => {
        e.preventDefault();
-       if (!form.email || !form.password) {
-         swal.fire("Error!", "All field must be filled", "error");
-
-       } else {
-         loginCustomer(form)
-           .then((response) => {
-             swal.fire(
-               "Success!",
-               `success anda berhasil login ${form.email}`,
-               "success"
-             );
-             navigate("/home");
-           })
-           .catch((err) => {
-             console.log(err);
-             swal.fire("Failed!", "password atau email salah", "error");
-           })
-           .finally(() => {
-           });
-       }
+       dispatch(loginCustomer(formLogin, navigate));
      };
 
   return (
@@ -55,12 +42,7 @@ const Login = () => {
 
         <p className={styles.title}>Login</p>
 
-        <form
-          onSubmit={(e) => {
-            onSubmit(e);
-          }}
-          className={styles.form}
-        >
+        <form onSubmit={handleLogin} className={styles.form}>
           <Input
             id="email"
             name="email"
@@ -69,10 +51,9 @@ const Login = () => {
             style={{
               marginBottom: "25px",
             }}
+            value={formLogin.email}
             placeholder="E-mail"
-            onChange={(e) => {
-              setForm({ ...form, email: e.target.value });
-            }}
+            onChange={handleChange}
             // value={loginData.email}
           />
 
@@ -83,9 +64,8 @@ const Login = () => {
             className={styles.input}
             // style={style}
             placeholder="Password"
-            onChange={(e) => {
-              setForm({ ...form, password: e.target.value });
-            }}
+            value={formLogin.password}
+            onChange={handleChange}
             // value={loginData.password}
             // onClick={togglePassword}
           />
@@ -100,7 +80,7 @@ const Login = () => {
           />
 
           <small className={styles.small}>
-          SIGN UP{" "}
+            SIGN UP{" "}
             <Link to="/register" className={styles.links}>
               Gooo ....
             </Link>

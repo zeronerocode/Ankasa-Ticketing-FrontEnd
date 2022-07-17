@@ -1,10 +1,6 @@
 import { ActionTypes } from "../constants/action-types";
 const initialState = {
-   user: {
-    name: "",
-    username: "",
-    email: "",
-  },
+  data: [],
   isLoading: false,
 };
 const detailUser = (state = initialState, action) => {
@@ -12,7 +8,7 @@ const detailUser = (state = initialState, action) => {
     case "GET_PROFILE_SUCCESS":
       return {
         ...state,
-        profile: action.payload,
+        data: action.payload,
         isLoading: false,
       };
     default:

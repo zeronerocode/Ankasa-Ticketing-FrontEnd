@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./cardProfile.module.css";
 import Card from "../../base/card/index";
 import Button from "../../base/button/index";
@@ -7,7 +7,7 @@ import UserLogo from "../../../assets/user.png";
 import Setting from "../../../assets/setting.png";
 import Rating from "../../../assets/rating.png";
 import LogOut from "../../../assets/logOut.png";
-import axios from 'axios'
+import axios from "axios";
 // import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,68 +16,53 @@ import {
 } from "../../../configs/redux/actions/detailUserAction";
 import Avatar from "../../../assets/avatar.png";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
-const ProfileCard = ({ className, images }) => {
-     const { user } = useSelector((state) => state.auth);
-     console.log(user);
-     const handleSignOut = () => {
-       localStorage.removeItem("refreshToken");
-       localStorage.removeItem("id");
-       dispatch(signOut());
-       Swal.fire({
-         icon: "success",
-         title: "Selamat anda berhasil logout",
-         text: `Selamat tinggal`,
-       });
-     };
+const ProfileCard = ({ className, images,gambar }) => {
+  // const { data } = useSelector((state) => state.detail);
+  // // const id = user.id;
+  // console.log(data);
+  // const { photo,username,email } = data;
+  // console.log(photo)
+  const handleSignOut = () => {
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("id");
+    dispatch(signOut());
+    Swal.fire({
+      icon: "success",
+      title: "Selamat anda berhasil logout",
+      text: `Selamat tinggal`,
+    });
+  };
   const dispatch = useDispatch();
-  //  const {id} = useParams()
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [photo, setPhoto] = useState("");
-  useEffect(() => {
-    dispatch(detailUserAction());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const {profile}  = useSelector((state) => state.detail);
-//   const {username,email,name} = profile
-      useEffect(() => {
-        getProductById();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
-      const getProductById = async () => {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_BACKEND}/profile`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(response.data.data[0].username);
-        setUsername(response.data.data[0].username);
-        setPhoto(response.data.data[0].photo);
-        setEmail(response.data.data[0].email);
-      };
-// console.log(username);
-  // useEffect(()=>{
-  //     axios.get('https://avtur-ankasa-ticketing.herokuapp.com/v1/profil')
-  //     .then((res)=>{
-  //         console.log(res);
-  //     })
-  //     .catch((err)=>{
-  //         console.log(err);
-  //     })
-  // }, [])
-
+   const [username, setUsername] = useState("");
+   const [photo, setPhoto] = useState("");
+   const [email, setEmail] = useState("");
+useEffect(() => {
+  datas()
+}, []);
+  
+   const datas = async () => {
+     const token = localStorage.getItem("token");
+     const response = await axios.get(
+       `${process.env.REACT_APP_API_BACKEND}/profile`,
+       {
+         headers: {
+           Authorization: `Bearer ${token}`,
+         },
+       }
+     );
+     console.log(response.data.data.username);
+     setUsername(response.data.data.username);
+     setPhoto(response.data.data.photo);
+     setEmail(response.data.data.email);
+   };
   return (
     <>
       <div className={className}>
         <Card className={styles.card} />
         <div>
-          <img className={styles.ava} src={photo} alt="photoprofile" />
+          <img className={styles.ava} src={gambar ? gambar : photo} alt="photoprofile" />
         </div>
         <div className={styles.upload}>
           <Button className={styles.btn} title="Select Photo" />

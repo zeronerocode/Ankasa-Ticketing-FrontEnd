@@ -15,7 +15,8 @@ export const signOut = () => {
 
 export const detailUserAction = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("refreshToken");
+    console.log(token);
     dispatch({ type: "GET_PROFILE_PENDING" });
     const result = await axios.get(
       `${process.env.REACT_APP_API_BACKEND}/profile`,
@@ -25,12 +26,12 @@ export const detailUserAction = () => async (dispatch) => {
         },
       }
     );
-    const profile = result.data.data;
-    console.log(profile);
+    const data = result.data.data;
+    console.log(result);
     // const token =
     // const result = await axios.get(process.env.REACT_APP_BACKEND_API+'/profile/')
     // const data = result.data.data
-    dispatch({ type: "GET_PROFILE_SUCCESS", payload: result });
+    dispatch({ type: "GET_PROFILE_SUCCESS", payload: data });
     console.log(result);
   } catch (error) {
     console.log(error);
