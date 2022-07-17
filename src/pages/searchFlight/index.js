@@ -16,24 +16,33 @@ import switchIcon from "../../assets/switch.svg";
 // import wifiIcon from '../../../src/assets/'
 // import luggageIcon from '../../assets/facility/luggage.svg'
 // import mealIcon from '../../assets/facility/meal.svg'
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const SearchFlight = () => {
   const [flights, setFlights] = useState([]);
+  const [params, setParams] = useState({});
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  let [transitType, setTransitType] = useState("");
+  const [facilities, setFacilities] = useState("");
+  const [arrival, setArrival] = useState("");
+  const [departure, setDeparture] = useState("");
+  const [airlines, setArilines] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [query, setQuery] = useSearchParams({});
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [date, setDate] = useState("");
+  const [ticket, setTicket] = useState("");
+  const [ticketType, setTicketType] = useState("");
 
-  const fetchFlight = async ({
-    transitType,
-    facilities,
-    departure,
-    arrival,
-    airlines,
-    sortBy,
-    minPrice,
-    maxPrice
-  }) => {
+  const fetchFlight = async ({ origin, destination, date, ticketType, transitType, facilities, departure, arrival, airlines, sortBy, minPrice, maxPrice }) => {
     try {
-
-      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${minPrice&& `&min=${minPrice}`}${maxPrice&& `&max=${maxPrice}`}${sortBy&& `&sortBy=${sortBy}`}`);
+      const result = await axios.get(
+        `https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${origin && `&origin=${origin}`}${destination && `&destination=${destination}`}${date && `&date=${date}`}${ticketType && `&type=${ticketType}`}${transitType && `&transit=${transitType}`}${facilities && `&fasilitas=${facilities}`}${
+          departure && `&departure=${departure}`
+        }${arrival && `&arrival=${arrival}`}${airlines && `&airline=${airlines}`}${minPrice && `&min=${minPrice}`}${maxPrice && `&max=${maxPrice}`}${sortBy && `&sortBy=${sortBy}`}`
+      );
       // const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${minPrice&& `&min=${minPrice}`}${maxPrice&& `&max=${maxPrice}`}`);
       // ${facilities&& `&fasilitas=${facilities}`}
       // ${departure&& `&departure=${departure}`}
@@ -47,38 +56,34 @@ const SearchFlight = () => {
     }
   };
 
-
-
-  const changeSearch = () => {
-    setQuery({
+  const changeSearch = (origin, destination, date, ticketType ) => {
+    const newParams = {
       origin,
       destination,
+      date,
+      ticketType
+    }
+
+    setParams({
+      ...newParams
+    })
+    setQuery({
+      ...newParams
     });
   };
 
-  const [params, setParams] = useState({});
-  const [origin, setOrigin] = useState("");
-  const [destination, setDestination] = useState("");
-  let [transitType, setTransitType] = useState("");
-  const [facilities, setFacilities] = useState("");
-  const [arrival, setArrival] = useState('')
-  const [departure, setDeparture] = useState("");
-  const [airlines, setArilines] = useState("");
-  const [sortBy, setSortBy] = useState("")
-  const [query, setQuery] = useSearchParams({});
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [date, setDate] = useState('')
-  const [ticket, setTicket] = useState('')
-  const [ticketType, setTicketType] = useState('')
+ 
+  // const {origin} = useParams()
 
   // console.log('ini statenya')
   // console.log(direct)
   // console.log(origin)
   // console.log(destination)
   // console.log(date)
-  // console.log(airlines)
-  // console.log(sortBy)
+  console.log("ini origin");
+  console.log(query.get("origin"));
+  console.log("ini destination");
+  console.log(query.get("destination"));
   console.log("ini transitType");
   console.log(transitType);
   console.log("ini departure");
@@ -87,22 +92,56 @@ const SearchFlight = () => {
   console.log(facilities);
   console.log(flights);
 
-  const onHandleReset = () =>{
-      setFacilities('')
-      setArrival('')
-      setDeparture('')
-      setArilines('')
-      setSortBy('')
-      setMinPrice('')
-      setMaxPrice('')
-      setParams({})
-      setQuery({})
-  }
+  const onHandleReset = () => {
+    let x = document.getElementsByClassName("checkbox");
+    for(let item of x){
+      item.checked = false
+    }
+    console.log("ini checkbox");
+    console.log(x);
+    setDate("")
+    setTicketType("")
+    setTransitType("");
+    setFacilities("");
+    setArrival("");
+    setDeparture("");
+    setArilines("");
+    setSortBy("");
+    setMinPrice("");
+    setMaxPrice("");
+    const defaultParams = {
+      origin,
+      destination,
+    };
+    setParams({
+      ...defaultParams,
+    });
+    setQuery({
+      ...defaultParams,
+    });
+  };
 
   useEffect(() => {
+    const newOrigin = query.get("origin");
+    const newDestination = query.get("destination");
+    const newParams = {
+      origin: newOrigin,
+      destination: newDestination,
+    };
+    setOrigin(newOrigin);
+    setDestination(newDestination);
+    setParams({
+      ...params,
+      ...newParams,
+    });
+    // setQuery({
+    //   ...params,
+    //   ...newParams
+    // });
     const dataParam = {
+      origin: newOrigin,
+      destination: newDestination,
       date,
-      ticket,
       ticketType,
       departure,
       arrival,
@@ -111,8 +150,8 @@ const SearchFlight = () => {
       airlines,
       minPrice,
       maxPrice,
-      sortBy
-    }
+      sortBy,
+    };
     fetchFlight(dataParam);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
@@ -182,7 +221,7 @@ const SearchFlight = () => {
             </div>
           </div>
 
-          <Button title="Change Search" type="button" className={styles["change-search"]} onClick={changeSearch} />
+          <Button title="Change Search" type="button" className={styles["change-search"]} onClick={()=>{changeSearch(origin,destination,date,ticketType)}} />
         </div>
 
         <div className={styles["search-result"]}>
@@ -193,7 +232,9 @@ const SearchFlight = () => {
                 title="Reset"
                 type="button"
                 className={styles["reset-filter"]}
-                onClick={()=>{onHandleReset()}}
+                onClick={() => {
+                  onHandleReset();
+                }}
               />
             </div>
 
@@ -203,6 +244,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Direct</label>
                   <input
+                    className="checkbox"
                     id="transit"
                     type="checkbox"
                     // checked={direct === "0" ? true : false}
@@ -307,6 +349,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Transit</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let newDirect = "2";
@@ -362,6 +405,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Transit 2+</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let newDirect = "3";
@@ -423,6 +467,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Luggage</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let luggage = "1";
@@ -474,32 +519,15 @@ const SearchFlight = () => {
                 </div>
                 <div>
                   <label>In-Flight Meal</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let meal = "2";
-                    let newFacilities = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newFacilities = facilities ? facilities + "." + meal : facilities + meal;
-                      setFacilities(newFacilities);
-                      newParams = {
-                        facilities: newFacilities,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (facilities.includes(".")) {
-                        console.log("apakah berjalan");
-                        newFacilities = facilities.split(".").filter((item) => {
-                          return item !== meal;
-                        });
-                        newFacilities = newFacilities.length > 1 ? newFacilities.join(".") : newFacilities.join("");
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let meal = "2";
+                      let newFacilities = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newFacilities = facilities ? facilities + "." + meal : facilities + meal;
                         setFacilities(newFacilities);
                         newParams = {
                           facilities: newFacilities,
@@ -513,44 +541,46 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setFacilities("");
-                        delete params.facilities;
-                        setQuery({
-                          ...params,
-                        });
+                        if (facilities.includes(".")) {
+                          console.log("apakah berjalan");
+                          newFacilities = facilities.split(".").filter((item) => {
+                            return item !== meal;
+                          });
+                          newFacilities = newFacilities.length > 1 ? newFacilities.join(".") : newFacilities.join("");
+                          setFacilities(newFacilities);
+                          newParams = {
+                            facilities: newFacilities,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setFacilities("");
+                          delete params.facilities;
+                          setQuery({
+                            ...params,
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
                 <div>
                   <label>Wi-Fi</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let wifi = "3";
-                    let newFacilities = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newFacilities = facilities ? facilities + "." + wifi : facilities + wifi;
-                      setFacilities(newFacilities);
-                      newParams = {
-                        facilities: newFacilities,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (facilities.includes(".")) {
-                        console.log("apakah berjalan");
-                        newFacilities = facilities.split(".").filter((item) => {
-                          return item !== wifi;
-                        });
-                        newFacilities = newFacilities.length > 1 ? newFacilities.join(".") : newFacilities.join("");
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let wifi = "3";
+                      let newFacilities = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newFacilities = facilities ? facilities + "." + wifi : facilities + wifi;
                         setFacilities(newFacilities);
                         newParams = {
                           facilities: newFacilities,
@@ -564,14 +594,33 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setFacilities("");
-                        delete params.facilities;
-                        setQuery({
-                          ...params,
-                        });
+                        if (facilities.includes(".")) {
+                          console.log("apakah berjalan");
+                          newFacilities = facilities.split(".").filter((item) => {
+                            return item !== wifi;
+                          });
+                          newFacilities = newFacilities.length > 1 ? newFacilities.join(".") : newFacilities.join("");
+                          setFacilities(newFacilities);
+                          newParams = {
+                            facilities: newFacilities,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setFacilities("");
+                          delete params.facilities;
+                          setQuery({
+                            ...params,
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
               </div>
@@ -583,6 +632,7 @@ const SearchFlight = () => {
                 <div>
                   <label>00:00 - 06:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "dinihari";
@@ -679,6 +729,7 @@ const SearchFlight = () => {
                 <div>
                   <label>06:00 - 12:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "pagi";
@@ -732,6 +783,7 @@ const SearchFlight = () => {
                 <div>
                   <label>12:00 - 18:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "sore";
@@ -785,6 +837,7 @@ const SearchFlight = () => {
                 <div>
                   <label>18:00 - 24:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "malam";
@@ -843,35 +896,18 @@ const SearchFlight = () => {
               <div className={styles.options}>
                 <div>
                   <label>00:00 - 06:00</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let time = "dinihari";
-                    let newArrival = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newArrival = arrival ? arrival + "." + time : arrival + time;
-                      setArrival(newArrival);
-                      newParams = {
-                        arrival: newArrival,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (arrival.includes(".")) {
-                        console.log("apakah berjalan");
-                        newArrival = arrival.split(".").filter((item) => {
-                          return item !== time;
-                        });
-                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let time = "dinihari";
+                      let newArrival = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newArrival = arrival ? arrival + "." + time : arrival + time;
                         setArrival(newArrival);
                         newParams = {
-                          departure: newArrival,
+                          arrival: newArrival,
                         };
                         setParams({
                           ...params,
@@ -882,48 +918,50 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setArrival("");
-                        delete params.arrival;
-                        setQuery({
-                          ...params,
-                          // ...newParams
-                        });
+                        if (arrival.includes(".")) {
+                          console.log("apakah berjalan");
+                          newArrival = arrival.split(".").filter((item) => {
+                            return item !== time;
+                          });
+                          newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                          setArrival(newArrival);
+                          newParams = {
+                            departure: newArrival,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setArrival("");
+                          delete params.arrival;
+                          setQuery({
+                            ...params,
+                            // ...newParams
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
                 <div>
                   <label>06:00 - 12:00</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let time = "pagi";
-                    let newArrival = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newArrival = arrival ? arrival + "." + time : arrival + time;
-                      setArrival(newArrival);
-                      newParams = {
-                        arrival: newArrival,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (arrival.includes(".")) {
-                        console.log("apakah berjalan");
-                        newArrival = arrival.split(".").filter((item) => {
-                          return item !== time;
-                        });
-                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let time = "pagi";
+                      let newArrival = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newArrival = arrival ? arrival + "." + time : arrival + time;
                         setArrival(newArrival);
                         newParams = {
-                          departure: newArrival,
+                          arrival: newArrival,
                         };
                         setParams({
                           ...params,
@@ -934,48 +972,50 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setArrival("");
-                        delete params.arrival;
-                        setQuery({
-                          ...params,
-                          // ...newParams
-                        });
+                        if (arrival.includes(".")) {
+                          console.log("apakah berjalan");
+                          newArrival = arrival.split(".").filter((item) => {
+                            return item !== time;
+                          });
+                          newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                          setArrival(newArrival);
+                          newParams = {
+                            departure: newArrival,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setArrival("");
+                          delete params.arrival;
+                          setQuery({
+                            ...params,
+                            // ...newParams
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
                 <div>
                   <label>12:00 - 18:00</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let time = "sore";
-                    let newArrival = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newArrival = arrival ? arrival + "." + time : arrival + time;
-                      setArrival(newArrival);
-                      newParams = {
-                        arrival: newArrival,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (arrival.includes(".")) {
-                        console.log("apakah berjalan");
-                        newArrival = arrival.split(".").filter((item) => {
-                          return item !== time;
-                        });
-                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let time = "sore";
+                      let newArrival = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newArrival = arrival ? arrival + "." + time : arrival + time;
                         setArrival(newArrival);
                         newParams = {
-                          departure: newArrival,
+                          arrival: newArrival,
                         };
                         setParams({
                           ...params,
@@ -986,48 +1026,50 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setArrival("");
-                        delete params.arrival;
-                        setQuery({
-                          ...params,
-                          // ...newParams
-                        });
+                        if (arrival.includes(".")) {
+                          console.log("apakah berjalan");
+                          newArrival = arrival.split(".").filter((item) => {
+                            return item !== time;
+                          });
+                          newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                          setArrival(newArrival);
+                          newParams = {
+                            departure: newArrival,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setArrival("");
+                          delete params.arrival;
+                          setQuery({
+                            ...params,
+                            // ...newParams
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
                 <div>
                   <label>18:00 - 24:00</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let time = "malam";
-                    let newArrival = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newArrival = arrival ? arrival + "." + time : arrival + time;
-                      setArrival(newArrival);
-                      newParams = {
-                        arrival: newArrival,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (arrival.includes(".")) {
-                        console.log("apakah berjalan");
-                        newArrival = arrival.split(".").filter((item) => {
-                          return item !== time;
-                        });
-                        newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let time = "malam";
+                      let newArrival = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newArrival = arrival ? arrival + "." + time : arrival + time;
                         setArrival(newArrival);
                         newParams = {
-                          departure: newArrival,
+                          arrival: newArrival,
                         };
                         setParams({
                           ...params,
@@ -1038,15 +1080,34 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setArrival("");
-                        delete params.arrival;
-                        setQuery({
-                          ...params,
-                          // ...newParams
-                        });
+                        if (arrival.includes(".")) {
+                          console.log("apakah berjalan");
+                          newArrival = arrival.split(".").filter((item) => {
+                            return item !== time;
+                          });
+                          newArrival = newArrival.length > 1 ? newArrival.join(".") : newArrival.join("");
+                          setArrival(newArrival);
+                          newParams = {
+                            departure: newArrival,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setArrival("");
+                          delete params.arrival;
+                          setQuery({
+                            ...params,
+                            // ...newParams
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
               </div>
@@ -1056,32 +1117,15 @@ const SearchFlight = () => {
               <div className={styles.options}>
                 <div>
                   <label>Garuda Indonesia</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let airline = "garudaindonesia";
-                    let newAirlines = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
-                      setArilines(newAirlines);
-                      newParams = {
-                        airlines: newAirlines,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (airlines.includes("|")) {
-                        // console.log("apakah berjalan");
-                        newAirlines = airlines.split("|").filter((item) => {
-                          return item !== airline;
-                        });
-                        newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let airline = "garudaindonesia";
+                      let newAirlines = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
                         setArilines(newAirlines);
                         newParams = {
                           airlines: newAirlines,
@@ -1095,44 +1139,46 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setArilines("");
-                        delete params.airlines;
-                        setQuery({
-                          ...params,
-                        });
+                        if (airlines.includes("|")) {
+                          // console.log("apakah berjalan");
+                          newAirlines = airlines.split("|").filter((item) => {
+                            return item !== airline;
+                          });
+                          newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                          setArilines(newAirlines);
+                          newParams = {
+                            airlines: newAirlines,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setArilines("");
+                          delete params.airlines;
+                          setQuery({
+                            ...params,
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
                 <div>
-                <label>America</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let airline = "america";
-                    let newAirlines = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
-                      setArilines(newAirlines);
-                      newParams = {
-                        airlines: newAirlines,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (airlines.includes("|")) {
-                        // console.log("apakah berjalan");
-                        newAirlines = airlines.split("|").filter((item) => {
-                          return item !== airline;
-                        });
-                        newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                  <label>America</label>
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let airline = "america";
+                      let newAirlines = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
                         setArilines(newAirlines);
                         newParams = {
                           airlines: newAirlines,
@@ -1146,44 +1192,46 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setArilines("");
-                        delete params.airlines;
-                        setQuery({
-                          ...params,
-                        });
+                        if (airlines.includes("|")) {
+                          // console.log("apakah berjalan");
+                          newAirlines = airlines.split("|").filter((item) => {
+                            return item !== airline;
+                          });
+                          newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                          setArilines(newAirlines);
+                          newParams = {
+                            airlines: newAirlines,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setArilines("");
+                          delete params.airlines;
+                          setQuery({
+                            ...params,
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
                 <div>
-                <label>Batik Air</label>
-                  <input type="checkbox" 
-                  onChange={(e) => {
-                    let airline = "batikair";
-                    let newAirlines = "";
-                    let newParams = {};
-                    if (e.target.checked) {
-                      newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
-                      setArilines(newAirlines);
-                      newParams = {
-                        airlines: newAirlines,
-                      };
-                      setParams({
-                        ...params,
-                        ...newParams,
-                      });
-                      setQuery({
-                        ...params,
-                        ...newParams,
-                      });
-                    } else {
-                      if (airlines.includes("|")) {
-                        // console.log("apakah berjalan");
-                        newAirlines = airlines.split("|").filter((item) => {
-                          return item !== airline;
-                        });
-                        newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                  <label>Batik Air</label>
+                  <input
+                    className="checkbox"
+                    type="checkbox"
+                    onChange={(e) => {
+                      let airline = "batikair";
+                      let newAirlines = "";
+                      let newParams = {};
+                      if (e.target.checked) {
+                        newAirlines = airlines ? airlines + "|" + airline : airlines + airline;
                         setArilines(newAirlines);
                         newParams = {
                           airlines: newAirlines,
@@ -1197,56 +1245,80 @@ const SearchFlight = () => {
                           ...newParams,
                         });
                       } else {
-                        setArilines("");
-                        delete params.airlines;
-                        setQuery({
-                          ...params,
-                        });
+                        if (airlines.includes("|")) {
+                          // console.log("apakah berjalan");
+                          newAirlines = airlines.split("|").filter((item) => {
+                            return item !== airline;
+                          });
+                          newAirlines = newAirlines.length > 1 ? newAirlines.join("|") : newAirlines.join("");
+                          setArilines(newAirlines);
+                          newParams = {
+                            airlines: newAirlines,
+                          };
+                          setParams({
+                            ...params,
+                            ...newParams,
+                          });
+                          setQuery({
+                            ...params,
+                            ...newParams,
+                          });
+                        } else {
+                          setArilines("");
+                          delete params.airlines;
+                          setQuery({
+                            ...params,
+                          });
+                        }
                       }
-                    }
-                  }}
+                    }}
                   />
                 </div>
               </div>
-               
-              <div className={styles.hl} />   
+
+              <div className={styles.hl} />
               <p>Price Range</p>
               <div className={styles.options}>
                 <div className={styles.pricing}>
                   <label>Min. price</label>
                   <input
-                  value={minPrice}
-                  onChange={(e)=>{
-                    let price = e.target.value
-                    setMinPrice(price)
-                    setParams({
-                      ...params,
-                      minPrice: price
-                    })
-                    setQuery({
-                      ...params,
-                      minPrice: price
-                    })
-                  }}
-                  type="number" step="10000" min="0" />
+                    value={minPrice}
+                    onChange={(e) => {
+                      let price = e.target.value;
+                      setMinPrice(price);
+                      setParams({
+                        ...params,
+                        minPrice: price,
+                      });
+                      setQuery({
+                        ...params,
+                        minPrice: price,
+                      });
+                    }}
+                    type="number"
+                    step="10000"
+                    min="0"
+                  />
                 </div>
                 <div className={styles.pricing}>
                   <label>Max. price</label>
                   <input
-                  value={maxPrice}
-                  onChange={(e)=>{
-                    let price = e.target.value
-                    setMaxPrice(price)
-                    setParams({
-                      ...params,
-                      maxPrice: price
-                    })
-                    setQuery({
-                      ...params,
-                      maxPrice: price
-                    })
-                  }}
-                  type="number" step="10000" />
+                    value={maxPrice}
+                    onChange={(e) => {
+                      let price = e.target.value;
+                      setMaxPrice(price);
+                      setParams({
+                        ...params,
+                        maxPrice: price,
+                      });
+                      setQuery({
+                        ...params,
+                        maxPrice: price,
+                      });
+                    }}
+                    type="number"
+                    step="10000"
+                  />
                 </div>
               </div>
             </div>
@@ -1258,12 +1330,7 @@ const SearchFlight = () => {
                 Select Ticket<span></span>
               </p>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Dropdown 
-                setSortBy={setSortBy}
-                setQuery={setQuery}
-                setParams={setParams}
-                params={params}
-                />
+                <Dropdown setSortBy={setSortBy} setQuery={setQuery} setParams={setParams} params={params} />
                 <button className={styles.sort}>{/* <img src={sort} alt='' /> */}</button>
               </div>
             </div>

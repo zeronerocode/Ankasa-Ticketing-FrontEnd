@@ -31,9 +31,9 @@ const NaviV2  = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSearchFlight = (origin, destination) => {
+  const handleSearchFlight = (origin, destination, date, ticketType) => {
     console.log(`handle search ${origin}`)
-    navigate(`/searchflight?origin=${origin}&destination=${destination}`)
+    navigate(`/searchflight?${origin&&`&origin=${origin}`}${destination&&`&destination=${destination}`}`)
   }
 
     // console.log(`${origin}`)
