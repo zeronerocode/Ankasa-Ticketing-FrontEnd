@@ -4,7 +4,7 @@ import styles from "./bookingDetail.module.css";
 import IconOpt from "../../assets/iconOption.png";
 import Destination from "../../assets/dst.png";
 import Data from "../../components/base/QRCode";
-import Navi from "../../components/module/navi/index";
+import Navi from "../../components/module/nav/nav";
 import Footer from "../../components/module/footer/index";
 import { detailBookingAction } from "../../configs/redux/actions/detailBookingActions";
 import { useParams, Link } from "react-router-dom";

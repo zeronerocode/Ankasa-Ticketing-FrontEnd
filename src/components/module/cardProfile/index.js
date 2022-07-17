@@ -15,7 +15,7 @@ import {
   signOut,
 } from "../../../configs/redux/actions/detailUserAction";
 import Avatar from "../../../assets/avatar.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ProfileCard = ({ className, images,gambar }) => {
@@ -24,9 +24,12 @@ const ProfileCard = ({ className, images,gambar }) => {
   // console.log(data);
   // const { photo,username,email } = data;
   // console.log(photo)
+  const navigate = useNavigate()
   const handleSignOut = () => {
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("token");
     localStorage.removeItem("id");
+    navigate('/login')
     dispatch(signOut());
     Swal.fire({
       icon: "success",
@@ -62,7 +65,11 @@ useEffect(() => {
       <div className={className}>
         <Card className={styles.card} />
         <div>
-          <img className={styles.ava} src={gambar ? gambar : photo} alt="photoprofile" />
+          <img
+            className={styles.ava}
+            src={gambar ? gambar : photo}
+            alt="photoprofile"
+          />
         </div>
         <div className={styles.upload}>
           <Button className={styles.btn} title="Select Photo" />
@@ -89,13 +96,8 @@ useEffect(() => {
             <img src={Setting} className={styles.setting} alt="user" />
             <p>Setting</p>
           </div>
-          <div className={styles.wrapper4}>
-            <img
-              src={LogOut}
-              className={styles.logout}
-              onClick={() => handleSignOut()}
-              alt="user"
-            />
+          <div className={styles.wrapper4} onClick={() => handleSignOut()}>
+            <img src={LogOut} className={styles.logout} alt="user" />
             <p>Logout</p>
           </div>
         </div>

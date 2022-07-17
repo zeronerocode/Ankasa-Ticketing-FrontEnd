@@ -8,7 +8,7 @@ import LogoGaruda from "../../assets/logoGaruda.png";
 import Destination from "../../assets/dst.png";
 import Check from "../../assets/check.png";
 import Button from "../../components/base/button/index";
-import Navi from "../../components/module/navi";
+import Navi from "../../components/module/nav/nav";
 import Footer from "../../components/module/footer";
 
 const FlightDetail = () => {

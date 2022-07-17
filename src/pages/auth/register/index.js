@@ -12,15 +12,14 @@ import swal from "sweetalert2";
 import { register } from "../../../configs/redux/actions/userAction";
 
 const Register = () => {
-    const navigate = useNavigate();
-    
- 
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
   });
-const [getErorr, setErorr] = useState("");
+  const [getErorr, setErorr] = useState("");
   console.log(form.password);
   const onSubmit = (e) => {
     e.preventDefault();
@@ -32,17 +31,17 @@ const [getErorr, setErorr] = useState("");
 
     if (form.name && form.email && form.password) {
       if (!form.name.match(/^[a-zA-Z ']*$/i)) {
-         setErorr("name only alphabet!");
+        setErorr("name only alphabet!");
       } else if (
         !form.email.match(
           /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )
       ) {
-         setErorr("wrong email address!");
+        setErorr("wrong email address!");
       } else if (form.password.length < 7) {
-       setErorr(
-         "password must contain uppercase letters, special characters and at least 8 letters."
-       );
+        setErorr(
+          "password must contain uppercase letters, special characters and at least 8 letters."
+        );
       } else if (form) {
         register(body)
           .then((response) => {
@@ -58,7 +57,7 @@ const [getErorr, setErorr] = useState("");
           });
       }
     } else {
-         setErorr("all inputs must be filled!");
+      setErorr("all inputs must be filled!");
     }
   };
 
@@ -127,7 +126,6 @@ const [getErorr, setErorr] = useState("");
           <PasswordInput
             id="password"
             name="password"
-          
             className={styles.input}
             // style={style}
             placeholder="Password"
@@ -137,7 +135,7 @@ const [getErorr, setErorr] = useState("");
               setForm({ ...form, password: e.target.value });
             }}
           />
-         
+
           {getErorr ? (
             <p className="text-danger text-[13px]">{getErorr.toLowerCase()}</p>
           ) : null}

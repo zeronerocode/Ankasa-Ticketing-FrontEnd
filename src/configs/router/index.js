@@ -9,6 +9,7 @@ import Home from '../../pages/home';
 import MyBooking from '../../pages/myBooking/index';
 import Profile from '../../pages/Profile/index';
 import SearchFlight from '../../pages/searchFlight';
+import Page404 from '../../pages/Page404/Page404';
 
 const RequireAuth = ({ children }) => {
   const isAuth = localStorage.getItem("token");
@@ -23,17 +24,45 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace="true" />} />
-        <Route path="/flightDetail" element={<FlightDetail />} />
-        <Route path="/myBooking" element={<MyBooking />} />
+        <Route
+          path="/flightDetail"
+          element={
+            <RequireAuth>
+              <FlightDetail />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/myBooking"
+          element={
+            <RequireAuth>
+              <MyBooking />
+            </RequireAuth>
+          }
+        />
         {/* <Route path="/bookingDetail" element={<BookingDetail />} /> */}
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/searchflight" element={<SearchFlight />} />
-        <Route path="/bookingDetail/:id" element={<BookingDetail />} />
-        {/* <Route path="*" element={<Page404 />} /> */}
+        <Route
+          path="/bookingDetail/:id"
+          element={
+            <RequireAuth>
+              <BookingDetail />
+            </RequireAuth>
+          }
+        />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   );
