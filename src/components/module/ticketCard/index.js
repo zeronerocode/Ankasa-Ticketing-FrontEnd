@@ -23,6 +23,7 @@ const TicketCard = ({
   more_transit,
   luggage,
   wifi,
+  button,
   meal,
 }) => {
   return (
@@ -73,7 +74,7 @@ const TicketCard = ({
           <span>/pax</span>
         </div>
 
-        <Button title="Select" type="button" className={styles.select} />
+              { button}
       </div>
     </div>
   );

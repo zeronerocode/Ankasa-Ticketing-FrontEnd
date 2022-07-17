@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./flightDetail.module.css";
 import Banner from "../../assets/img1.png";
 import Banner2 from "../../assets/mobile/banner.png";
@@ -10,8 +10,34 @@ import Check from "../../assets/check.png";
 import Button from "../../components/base/button/index";
 import Navi from "../../components/module/nav/nav";
 import Footer from "../../components/module/footer";
+import { useNavigate, useParams } from "react-router-dom";
+import { createBooking } from "../../configs/redux/actions/detailBookingActions";
+import { detailFlightsAction } from "../../configs/redux/actions/flightAction";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 const FlightDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.detailFlights);
+  const { user } = useSelector((state) => state.auth);
+  const { username, email, phone_number } = user;
+
+  const {
+    destination,
+    origin,
+    airline_image,
+    airline_name,
+    price,
+    departure_date,
+  } = data;
+  const harga = price;
+  console.log(harga);
+
+  useEffect(() => {
+    dispatch(detailFlightsAction(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [add, setAdd] = useState(false);
   const onGroup = () => {
     if (add) {
@@ -19,6 +45,28 @@ const FlightDetail = () => {
     } else {
       setAdd(true);
     }
+  };
+
+  const [form, setForm] = useState({
+    flight_id: id,
+    title: "",
+    fullname: "",
+    nationality: "",
+    totalPayment: price,
+    totalorder: "",
+  });
+  console.log(form.totalPayment);
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createBooking(form, navigate));
   };
   console.log(add);
   return (
@@ -35,16 +83,20 @@ const FlightDetail = () => {
             <form>
               <div className={styles.contactBox}>
                 <p className={styles.textFullname}>Full Name</p>
-                <Input
+                <input
                   type="text"
+                  value={username}
                   className={styles.input1}
                   placeholder="Insert Full Name"
+                  disabled
                 />
                 <p className={styles.emailText}>Email</p>
-                <Input
+                <input
                   type="email"
+                  value={email}
                   className={styles.input2}
                   placeholder="Insert Your Email"
+                  disabled
                 />
                 <p className={styles.phoneText}>Phone Number</p>
                 <select className={styles.sBtn} name="phone" id="phoneNumber">
@@ -55,10 +107,14 @@ const FlightDetail = () => {
                   <option value="+4">+4</option>
                   <option value="+5">+5</option>
                 </select>
-                <Input
+                <input
                   type="number"
+                  value={
+                    phone_number ? phone_number : "silahkan update profil anda"
+                  }
                   className={styles.input3}
                   placeholder="Insert Your Phone Number"
+                  disabled
                 />
                 <div className={styles.line}></div>
                 <div className={styles.warning}>
@@ -79,16 +135,25 @@ const FlightDetail = () => {
             <i className={styles.viewDetailText}>View Detail</i>
             <div className={styles.fDetailBox}>
               <div className={styles.airLinesLogo}>
-                <img className={styles.imgLogo} src={LogoGaruda} alt="logo" />
-                <p className={styles.airLinesName}>Garuda Indonesia</p>
+                <img
+                  className={styles.imgLogo}
+                  src={airline_image}
+                  alt="logo"
+                />
+                <p className={styles.airLinesName}>{airline_name}</p>
               </div>
               <div className={styles.flightDestination}>
-                <p className={styles.origin}>Medan (IDN)</p>
+                <p className={styles.origin}>{origin}</p>
                 <img className={styles.destIcon} src={Destination} alt="" />
-                <p className={styles.destina}>Tokyo (JPN)</p>
-                <p className={styles.dateFlight}>Date Flight</p>
+                <p className={styles.destina}>{destination} </p>
+                <p className={styles.dateFlight}>
+                  {moment(departure_date).format("dddd")},
+                  {moment(departure_date).format("ll")}
+                </p>
                 <div className={styles.ellipse}></div>
-                <p className={styles.timeFlight}>Time Flight</p>
+                <p className={styles.timeFlight}>
+                  {moment(departure_date).format("LT")}
+                </p>
                 <div>
                   <img className={styles.check} src={Check} alt="" />
                   <p className={styles.refund}>Refundable</p>
@@ -99,71 +164,91 @@ const FlightDetail = () => {
               </div>
               <div className={styles.payment}>
                 <p className={styles.paymentText}>Total Payment</p>
-                <p className={styles.price}>$ 145,00</p>
+                <p className={styles.price}>$ {price}</p>
               </div>
             </div>
           </div>
-          <div className={styles.passengerWrapper}>
-            <p className={styles.passengerText}>Passenger Details</p>
-            <div className={styles.passengerBox}>
-              <div className={styles.confirm}>
-                <p className={styles.textConfirm}>Passenger: 1 Adult</p>
-                <p className={styles.textConfirm2}>Same as contact person</p>
-                <input type="checkbox" onClick={() => onGroup()} />
+          <form action="" onSubmit={onSubmit}>
+            <div className={styles.passengerWrapper}>
+              <p className={styles.passengerText}>Passenger Details</p>
+              <div className={styles.passengerBox}>
+                <div className={styles.confirm}>
+                  <p className={styles.textConfirm}>Passenger: 1 Adult</p>
+                  <p className={styles.textConfirm2}>Same as contact person</p>
+                  <input type="checkbox" onClick={() => onGroup()} />
+                </div>
+                {add ? (
+                  <>
+                    <p p className={styles.titleText}>
+                      Title
+                    </p>
+                    <select
+                      className={styles.sBtn2}
+                      value={form.title}
+                      onChange={handleChange}
+                      name="title"
+                      id="title"
+                    >
+                      <option value="Mr.">Mr.</option>
+                      <option value="Mrs.">Mrs.</option>
+                    </select>
+                    <div className={styles.line3}></div>
+                    <p className={styles.passengerName}>Full Name</p>
+                    <input
+                      name="fullname"
+                      type="text"
+                      value={form.fullname}
+                      onChange={handleChange}
+                      className={styles.input4}
+                      placeholder="Insert Your Name"
+                    />
+                    <p className={styles.nationalityText}>Nationality</p>
+                    <select
+                      className={styles.sBtn3}
+                      name="nationality"
+                      id="ntionality"
+                      value={form.nationality}
+                      onChange={handleChange}
+                    >
+                      <option value="Indonesia">Indonesia</option>
+                      <option value="Norwey">Norwey</option>
+                      <option value="Iceland">Iceland</option>
+                      <option value="Switzerland">Switzerland</option>
+                      <option value="Sweden">Sweden</option>
+                      <option value="Finland">Finland</option>
+                    </select>
+                    <div className={styles.line4}></div>
+                    <p className={styles.passengerSeat}>Seat</p>
+                    <input
+                      type="number"
+                      name="totalorder"
+                      value={form.totalorder}
+                      onChange={handleChange}
+                      className={styles.input5}
+                      placeholder="Insert How many seat"
+                    />
+                  </>
+                ) : null}
               </div>
-              {add ? (
-                <>
-                  <p p className={styles.titleText}>
-                    Title
-                  </p>
-                  <select className={styles.sBtn2} name="title" id="title">
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
-                  </select>
-                  <div className={styles.line3}></div>
-                  <p className={styles.passengerName}>Full Name</p>
-                  <Input
-                    type="text"
-                    className={styles.input4}
-                    placeholder="Insert Your Name"
-                  />
-                  <p className={styles.nationalityText}>Nationality</p>
-                  <select
-                    className={styles.sBtn3}
-                    name="nationality"
-                    id="ntionality"
-                  >
-                    <option value="Indonesia">Indonesia</option>
-                    <option value="Norwey">Norwey</option>
-                    <option value="Iceland">Iceland</option>
-                    <option value="Switzerland">Switzerland</option>
-                    <option value="Sweden">Sweden</option>
-                    <option value="Finland">Finland</option>
-                  </select>
-                  <div className={styles.line4}></div>
-                  <p className={styles.passengerSeat}>Seat</p>
-                  <Input
-                    type="number"
-                    className={styles.input5}
-                    placeholder="Insert How many seat"
-                  />
-                </>
-              ) : null}
+              <p className={styles.passengerText2}>Passenger Details</p>
+              <div className={styles.passengerBox2}>
+                <input type="checkbox" />
+                <p className={styles.textInsurance}>Travel Insurance</p>
+                <p className={styles.textPrice}>
+                  $ 2.00<span>/pax</span>
+                </p>
+                <div className={styles.line5}></div>
+                <p className={styles.textCompensation}>
+                  Get travel compensation $ 10.000,00
+                </p>
+              </div>
+              <Button
+                className={styles.paymentBtn}
+                type="submit"
+                title="Proceed to Payment"
+              />
             </div>
-            <p className={styles.passengerText2}>Passenger Details</p>
-            <div className={styles.passengerBox2}>
-              <input type="checkbox" />
-              <p className={styles.textInsurance}>Travel Insurance</p>
-              <p className={styles.textPrice}>
-                $ 2.00<span>/pax</span>
-              </p>
-              <div className={styles.line5}></div>
-              <p className={styles.textCompensation}>
-                Get travel compensation $ 10.000,00
-              </p>
-            </div>
-            <Button className={styles.paymentBtn} title="Proceed to Payment" />
-          </div>
+          </form>
         </div>
         <Footer className={styles.footer} />
       </div>

@@ -4,6 +4,7 @@ import detailFlightReducer from './detailFlightReducer';
 import detailUser from "./detailUserReducer";
 import UpdateUserReducer from "./detailUserReducer";
 import flightReducer from './flightReducer';
+import {flightsDetailReducer} from "./flightReducer";
 import { userReducer } from "./userReducer";
 
 const rootReducers = combineReducers({
@@ -12,6 +13,7 @@ const rootReducers = combineReducers({
   detailFlight: detailFlightReducer,
   detail: detailUser,
   updateUser: UpdateUserReducer,
+  detailFlights: flightsDetailReducer,
   // BOOKING DETAIL
   bookingDetail: bookingAction,
   myBooking: bookingGetAction,

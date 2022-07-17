@@ -574,6 +574,14 @@ body{
     top: 350px;
     background: rgba(210, 194, 255, 0.68);
 }
+.line8{
+    position: absolute;
+    width: 733px;
+    height: 2px;
+    left: 25px;
+    top: 450px;
+    background: rgba(210, 194, 255, 0.68);
+}
 .sBtn3 option{
     font-family: 'Lato';
     font-style: normal;

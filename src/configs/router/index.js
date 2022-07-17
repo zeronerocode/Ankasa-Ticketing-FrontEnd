@@ -25,7 +25,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace="true" />} />
         <Route
-          path="/flightDetail"
+          path="/flightDetail/:id"
           element={
             <RequireAuth>
               <FlightDetail />
