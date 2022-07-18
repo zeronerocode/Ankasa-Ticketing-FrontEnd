@@ -9,7 +9,8 @@ import flight from '../../../assets/flight.svg'
 // import meal from '../../../assets/facility/meal.svg'
 import Button from '../../base/buttonv2'
 
-const TicketCard = ({airlineImg,
+const TicketCard = ({
+    airlineImg,
     airline,
     origin, 
     arr, 
@@ -22,7 +23,8 @@ const TicketCard = ({airlineImg,
     more_transit,
     luggage,
     wifi,
-    meal
+    meal,
+    onClick
 }) => {
   return (
     <div className={styles.ticket}>
@@ -72,7 +74,8 @@ const TicketCard = ({airlineImg,
                 <span>/pax</span>
             </div>
             
-            <Button 
+            <Button
+            onClick={()=> {onClick(id)}}
             title='Select'
             type='button'
             className={styles.select}

@@ -16,10 +16,12 @@ import switchIcon from "../../assets/switch.svg";
 // import wifiIcon from '../../../src/assets/'
 // import luggageIcon from '../../assets/facility/luggage.svg'
 // import mealIcon from '../../assets/facility/meal.svg'
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 const SearchFlight = () => {
   const [flights, setFlights] = useState([]);
+  const [pagination, setPaginaiton] = useState([])
+  const navigate = useNavigate()
   const [params, setParams] = useState({});
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
@@ -36,12 +38,11 @@ const SearchFlight = () => {
   const [ticket, setTicket] = useState("");
   const [ticketType, setTicketType] = useState("");
 
-  const fetchFlight = async ({ origin, destination, date, ticketType, transitType, facilities, departure, arrival, airlines, sortBy, minPrice, maxPrice }) => {
+  const fetchFlight = async ({ origin, destination, date, ticketType, transitType, facilities, departure, arrival, airlines, sortBy, minPrice, maxPrice, page, limit }) => {
     try {
       const result = await axios.get(
-        `https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${origin && `&origin=${origin}`}${destination && `&destination=${destination}`}${date && `&date=${date}`}${ticketType && `&type=${ticketType}`}${transitType && `&transit=${transitType}`}${facilities && `&fasilitas=${facilities}`}${
-          departure && `&departure=${departure}`
-        }${arrival && `&arrival=${arrival}`}${airlines && `&airline=${airlines}`}${minPrice && `&min=${minPrice}`}${maxPrice && `&max=${maxPrice}`}${sortBy && `&sortBy=${sortBy}`}`
+        `https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${origin && `&origin=${origin}`}${destination && `&destination=${destination}`}${date && `&date=${date}`}${ticketType && `&type=${ticketType}`}${transitType && `&transit=${transitType}`}${facilities && `&fasilitas=${facilities}`}${departure && `&departure=${departure}`
+        }${arrival && `&arrival=${arrival}`}${airlines && `&airline=${airlines}`}${minPrice && `&min=${minPrice}`}${maxPrice && `&max=${maxPrice}`}${sortBy && `&sortBy=${sortBy}`}${page && `&page=${page}`}${limit && `&limit=${limit}`}`
       );
       // const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${minPrice&& `&min=${minPrice}`}${maxPrice&& `&max=${maxPrice}`}`);
       // ${facilities&& `&fasilitas=${facilities}`}
@@ -51,17 +52,19 @@ const SearchFlight = () => {
       // ${sortBy&& `&sortBy=${sortBy}`}
       // console.log(result.data);
       setFlights(result.data.data);
+      setPaginaiton(result.data.pagination)
     } catch (error) {
       console.log(error);
     }
   };
 
-  const changeSearch = (origin, destination, date, ticketType ) => {
+  const changeSearch = (origin, destination, date, ticketType) => {
     const newParams = {
       origin,
       destination,
       date,
-      ticketType
+      ticketType,
+      ...page
     }
 
     setParams({
@@ -72,7 +75,21 @@ const SearchFlight = () => {
     });
   };
 
- 
+  const onSelect = (id) => {
+    navigate(`/flightDetail/${id}`)
+  }
+
+  const btn = [];
+  for (let i = 0; i < pagination.totalPage; i += 1) {
+    btn.push(i);
+  }
+
+  const [page, setPage] = useState({
+    limit: 3,
+    currentPage: 1
+  })
+
+
   // const {origin} = useParams()
 
   // console.log('ini statenya')
@@ -80,6 +97,8 @@ const SearchFlight = () => {
   // console.log(origin)
   // console.log(destination)
   // console.log(date)
+  console.log("ini pagination");
+  console.log(page);
   console.log("ini origin");
   console.log(query.get("origin"));
   console.log("ini destination");
@@ -94,11 +113,15 @@ const SearchFlight = () => {
 
   const onHandleReset = () => {
     let x = document.getElementsByClassName("checkbox");
-    for(let item of x){
+    for (let item of x) {
       item.checked = false
     }
     console.log("ini checkbox");
     console.log(x);
+    setPage({
+      currentPage: 1,
+      limit:3
+    })
     setDate("")
     setTicketType("")
     setTransitType("");
@@ -112,6 +135,7 @@ const SearchFlight = () => {
     const defaultParams = {
       origin,
       destination,
+      ...page
     };
     setParams({
       ...defaultParams,
@@ -127,6 +151,7 @@ const SearchFlight = () => {
     const newParams = {
       origin: newOrigin,
       destination: newDestination,
+      // ...page
     };
     setOrigin(newOrigin);
     setDestination(newDestination);
@@ -151,6 +176,8 @@ const SearchFlight = () => {
       minPrice,
       maxPrice,
       sortBy,
+      page: page.currentPage,
+      limit: page.limit
     };
     fetchFlight(dataParam);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -221,7 +248,7 @@ const SearchFlight = () => {
             </div>
           </div>
 
-          <Button title="Change Search" type="button" className={styles["change-search"]} onClick={()=>{changeSearch(origin,destination,date,ticketType)}} />
+          <Button title="Change Search" type="button" className={styles["change-search"]} onClick={() => { changeSearch(origin, destination, date, ticketType) }} />
         </div>
 
         <div className={styles["search-result"]}>
@@ -1352,8 +1379,84 @@ const SearchFlight = () => {
                   // meal={flight.meal === 1 ? mealIcon : ""}
                   // wifi={flight.wifi === 1 ? wifiIcon : ""}
                   id={flight.id}
+                  onClick={onSelect}
                 />
               ))}
+            </div>
+            <div>
+              <nav className="mt-4">
+                <ul className="pagination">
+                  <li
+                    className={`page-item ${page.currentPage <= 1 && 'disabled'}`}
+                  >
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={() => {
+                        const newPage = {
+                          currentPage: page.currentPage - 1,
+                          limit: page.limit
+                        }
+                        setPage((current) => ({ ...current, currentPage: newPage.currentPage }))
+
+                        setParams({
+                          ...params,
+                          ...newPage
+                        })
+                        setQuery({
+                          ...params,
+                          ...newPage
+                        })
+                      }
+                      }
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  {btn.map((item, index) => (
+                    <li
+                      className={`page-item ${index + 1 === page.currentPage && 'active'
+                        }`}
+                      key={Math.random(100)}
+                    >
+                      <button
+                        onClick={() => index + 1}
+                        type="button"
+                        className="page-link"
+                      >
+                        {index + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${page.currentPage === pagination.totalPage && 'disabled'
+                      }`}
+                  >
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={() => {
+                        const newPage = {
+                          currentPage: page.currentPage + 1,
+                          limit: page.limit
+                        }
+                        setPage((current) => ({ ...current, currentPage: newPage.currentPage }))
+
+                        setParams({
+                          ...params,
+                          ...newPage
+                        })
+                        setQuery({
+                          ...params,
+                          ...newPage
+                        })
+                      }}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>

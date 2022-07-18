@@ -18,7 +18,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace="true" />} />
-        <Route path="/flightDetail" element={<FlightDetail />} />
+        <Route path="/flightDetail/:id" element={<FlightDetail />} />
         <Route path="/myBooking" element={<MyBooking />} />
         <Route path="/bookingDetail" element={<BookingDetail />} />
         <Route path="/profile" element={<Profile />} />
