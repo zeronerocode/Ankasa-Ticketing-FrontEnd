@@ -33,7 +33,7 @@ const NaviV2  = () => {
 
   const handleSearchFlight = (origin, destination) => {
     console.log(`handle search ${origin}`)
-    navigate(`/searchflight?${origin && `&origin=${origin}`}${destination && `&destination=${destination}&ppage=1&limit=3`}`)
+    navigate(`/searchflight?${origin && `&origin=${origin}`}${destination && `&destination=${destination}`}`)
   }
 
     // console.log(`${origin}`)
