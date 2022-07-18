@@ -39,7 +39,10 @@
 }
 .date{
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px
+}
+.airLines{
+    color:#979797;
 }
 .destiFlight p{
     text-transform: capitalize;
@@ -56,6 +59,7 @@
     flex-direction: row;
     gap: 40px;
     align-items: center;
+    color: #979797
 }
 .ticketIssued{
     background-color: #4FCF4D;

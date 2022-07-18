@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 // import { bookingAction } from "../../../configs/redux/actions/detailBookingActions";
 // import { useDispatch, useSelector } from "react-redux";
 
-const CardBooking = ({ id, origin, destination, airline_name, payment_status}) => {
+const CardBooking = ({ id, origin, destination, airline_name, payment_status, departure_date, departure_time}) => {
   // const dispatch = useDispatch();
   // const datas = useSelector((state) => state.myBooking);
   // const data = datas.data
@@ -22,7 +22,7 @@ const CardBooking = ({ id, origin, destination, airline_name, payment_status}) =
         <div className={styles.wcard3} key={id}>
         <Link to={`/bookingDetail/${id}`}>
         <div className={styles.sect1}>
-          <p className={styles.date}>Date and Time</p>
+          <p className={styles.date}>{departure_date}:{departure_time}</p>
           <div className={styles.destiFlight}>
           <p className={styles.origin}>{origin}</p>
           <img className={styles.destIcon} src={Destination} alt="" />

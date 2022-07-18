@@ -37,7 +37,7 @@ const MyBooking = () => {
           </div>
           <div className={styles.dflex}>
             {data.map((item) => (
-                <CardBooking id={item.id} origin={item.origin} destination={item.destination} airline_name={item.airline_name} payment_status={item.payment_status} />
+                <CardBooking id={item.id} origin={item.origin} destination={item.destination} airline_name={item.airline_name} payment_status={item.payment_status} departure_time={item.departure_time} departure_date={item.departure_date} />
             ))}
           </div>
         </div>
