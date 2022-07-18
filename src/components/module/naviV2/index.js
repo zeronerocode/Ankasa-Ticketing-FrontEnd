@@ -12,10 +12,12 @@ import oneway from "../../../assets/oneway.svg";
 import round from "../../../assets/roundtrip.svg";
 import arrow from "../../../assets/arrow.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NaviV2 = () => {
   const navigate = useNavigate();
-
+  const datas = useSelector((state) => state.myBooking);
+  const data = datas.data;
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
 
@@ -219,6 +221,9 @@ const NaviV2 = () => {
 
         <div>
           <img src={bell} alt="" />
+          <span className=" top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {data.length}
+          </span>
         </div>
 
         <div>

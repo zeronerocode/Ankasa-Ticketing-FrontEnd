@@ -31,7 +31,7 @@
     position: absolute;
 }
 .btnLabel{
-    margin: 10px auto;
+    margin: 20px auto 0 auto;
     border: 4px solid #2395FF;
     border-radius: 10px;
     width:150px;
@@ -41,6 +41,12 @@
     font-weight: 700;
     font-size: 16px;
     text-align: center  ;
+    cursor: pointer;
+    transition: 400ms;
+}
+.btnLabel:hover{
+    box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
+    transform: translateY(-1px);
 }
 .userName{
     margin: 0 auto;
@@ -73,6 +79,9 @@ color: #6B6B6B;
     align-items: space-between;
     color: #fff;
 }
+.btn2{
+    cursor: pointer;
+}
 .cardIdentity{
     width: 100%;
     display: flex;
@@ -84,10 +93,12 @@ color: #6B6B6B;
     display: flex;
     flex-direction: row;
     width: 100%;
+    align-items: baseline;
     gap: 10px;
     height:22px;
     font-weight: 600;
-font-size: 14px;
+    font-size: 14px;
+    cursor: pointer;
 }
 #profile{
     color:#2395FF

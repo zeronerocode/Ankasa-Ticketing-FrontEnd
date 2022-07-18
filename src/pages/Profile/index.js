@@ -118,92 +118,88 @@ const Profile = () => {
         <Header />
         <form onSubmit={onSubmit} className={styles.form}>
           <div className={styles.wrapper}>
-            <div>
-              <ProfileCard
-                className={styles.card}
-                gambar={imagePreview}
-                images={
-                  <input
-                    id="selectFile"
-                    type="file"
-                    onChange={(e) => onImageUpload(e)}
-                    name="photo"
-                  />
-                }
-              />
+            <div className={styles.sect1}>
+              <ProfileCard />
             </div>
-            <div>
-              <Card className={styles.card2} />
+            <div className={styles.sect2}>
               <p className={styles.text}>Profile</p>
               <p className={styles.text2}>Profile</p>
-
+              <div className={styles.formSheet}>
               <div className={styles.contact}>
                 <p className={styles.contactText}>Contact</p>
-                <p className={styles.emailText}>Email</p>
+                <label htmlFor="email" className={styles.label}>Email</label>
                 <input
                   type="email"
                   name="email"
+                  id="email"
                   className={styles.input}
                   value={data.email}
                   //   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Insert Your Email"
                   disabled
                 />
-                <p className={styles.phoneText}>Phone Number</p>
+                <label htmlFor="phone_number" className={styles.label}>Phone Number</label>
                 <input
+                id="phone_number"
                   type="number"
                   value={phone_number}
                   onChange={(e) => setPhone_number(e.target.value)}
                   name="phone_number"
-                  className={styles.input2}
+                  className={styles.input}
                   placeholder="Insert Your Phone Number"
                 />
+                <p className={styles.settingText}>{'Account Setting >'}</p>
               </div>
               <div className={styles.biodata}>
                 <p className={styles.biodataText}>Biodata</p>
-                <p className={styles.username}>Username</p>
+                <label htmlFor="username" className={styles.label}>Username</label>
                 <input
                   type="text"
-                  //   name="username"
-                  id="text"
+                  name="username"
+                  id="username"
                   value={username || ""}
                   onChange={(e) => setUsername(e.target.value)}
-                  className={styles.input3}
+                  className={styles.input}
                   placeholder="Insert Your Name"
                 />
-                <p className={styles.city}>City</p>
+                <label htmlFor="city" className={styles.city}>City</label>
                 <input
                   type="text"
                   name="city"
+                  id="city"
                   value={citys}
                   onChange={(e) => setCity(e.target.value)}
-                  className={styles.input4}
+                  className={styles.input}
                   placeholder="Insert Your City"
                 />
-                <p className={styles.adress}>Adress</p>
+                <label htmlFor="address" className={styles.label}>Adress</label>
                 <input
                   type="text"
-                  className={styles.input5}
+                  id="address"
+                  className={styles.input}
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Insert Your Adress"
                 />
-                <p className={styles.zip}>Zip Coder</p>
+                <label htmlFor="postcode" className={styles.label}>Zip Coder</label>
                 <input
                   type="number"
-                  className={styles.input6}
+                  id="postcode"
+                  className={styles.input}
                   name="post_code"
                   value={post_code}
                   onChange={(e) => setPost_code(e.target.value)}
                   placeholder="Insert Your Zip Code"
                 />
               </div>
-              <p className={styles.settingText}>Account Setting</p>
+              </div>
+              <div className={styles.btnDiv}>
               <Button className={styles.btn} title="save" type="submit" />
-            </div>
+              </div>
+              </div>
           </div>
         </form>
-        <Footer className={styles.footer} />
+        <Footer/>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./myBooking.module.css";
-import Card from "../../components/base/card/index";
+// import Card from "../../components/base/card/index";
 import ProfileCard from "../../components/module/cardProfile/index";
 import CardBooking from "../../components/module/cardBooking";
 // import Navi from '../../components/module/navi'
@@ -19,6 +19,9 @@ const MyBooking = () => {
     dispatch(bookingAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  let styless = {
+    marginTop: "600px",
+  };
   return (
     <>
       <div className={styles.container}>

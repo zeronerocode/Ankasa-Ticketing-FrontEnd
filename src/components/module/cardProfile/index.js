@@ -71,7 +71,7 @@ useEffect(() => {
         </div>
         <div className={styles.upload}>
           <label className={styles.btnLabel} htmlFor={'uploadAva'} >Select Photo</label>
-          <Input type={'file'} id={'uploadAva'} className={styles.btn} />
+          <Input type={'file'} id={'uploadAva'} className={styles.btn} accept=".jpeg, .jpg, .png" />
           {images}
           <div className={styles.userName}>{username}</div>
           <div className={styles.userOrigin}>{email}</div>

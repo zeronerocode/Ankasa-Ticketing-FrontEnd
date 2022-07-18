@@ -15,15 +15,17 @@ import { createBooking } from "../../configs/redux/actions/detailBookingActions"
 import { detailFlightsAction } from "../../configs/redux/actions/flightAction";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
+import axios from "axios";
+import persistCombineReducers from "redux-persist/es/persistCombineReducers";
 
 const FlightDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.detailFlights);
   const { user } = useSelector((state) => state.auth);
   const { username, email, phone_number } = user;
-
+  
+  const { data } = useSelector((state) => state.detailFlights);
   const {
     destination,
     origin,
@@ -35,18 +37,26 @@ const FlightDetail = () => {
   const harga = price;
   console.log(harga);
 
-  useEffect(() => {
-    dispatch(detailFlightsAction(id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const [add, setAdd] = useState(false);
+  const [add, setAdd] = useState(true);
   const onGroup = () => {
     if (add) {
-      setAdd(false);
-    } else {
       setAdd(true);
+    } else {
+      setAdd(false);
     }
   };
+  const asuransi = price + 200;
+  const nonasuransi = asuransi - 200;
+  const [ceklis, setCeklist] = useState(nonasuransi);
+  const onCheck = () => {
+    if (ceklis) {
+      setCeklist(asuransi);
+    } else {
+      setCeklist(nonasuransi);
+    }
+  };
+
+  console.log(ceklis);
 
   const [form, setForm] = useState({
     flight_id: id,
@@ -57,24 +67,25 @@ const FlightDetail = () => {
     totalorder: "",
   });
   console.log(form.totalPayment);
+
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
+      totalPayment: price,
     });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-      dispatch(createBooking(form, navigate));
-       Swal.fire({
-         icon: "success",
-         title: "Berhasil Memesan",
-         text: `Selamat : ${form.fullname}`,
-       });
+    dispatch(createBooking(form, navigate));
   };
-  console.log(add);
+  useEffect(() => {
+    dispatch(detailFlightsAction(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <div className={styles.container}>
@@ -194,6 +205,7 @@ const FlightDetail = () => {
                       onChange={handleChange}
                       name="title"
                       id="title"
+                      required
                     >
                       <option value="Mr.">Mr.</option>
                       <option value="Mrs.">Mrs.</option>
@@ -207,6 +219,7 @@ const FlightDetail = () => {
                       onChange={handleChange}
                       className={styles.input4}
                       placeholder="Insert Your Name"
+                      required
                     />
                     <p className={styles.nationalityText}>Nationality</p>
                     <select
@@ -215,6 +228,7 @@ const FlightDetail = () => {
                       id="ntionality"
                       value={form.nationality}
                       onChange={handleChange}
+                      required
                     >
                       <option value="Indonesia">Indonesia</option>
                       <option value="Norwey">Norwey</option>
@@ -232,16 +246,17 @@ const FlightDetail = () => {
                       onChange={handleChange}
                       className={styles.input5}
                       placeholder="Insert How many seat"
+                      required
                     />
                   </>
                 ) : null}
               </div>
               <p className={styles.passengerText2}>Passenger Details</p>
               <div className={styles.passengerBox2}>
-                <input type="checkbox" />
+                <input type="checkbox" onClick={() => onCheck()} />
                 <p className={styles.textInsurance}>Travel Insurance</p>
                 <p className={styles.textPrice}>
-                  $ 2.00<span>/pax</span>
+                  $ 200<span>/pax</span>
                 </p>
                 <div className={styles.line5}></div>
                 <p className={styles.textCompensation}>
