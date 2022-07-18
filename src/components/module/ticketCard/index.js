@@ -22,7 +22,7 @@ const TicketCard = ({
   wifi,
   meal,
   onClick,
-  button,
+  button
 }) => {
   return (
     <div className={styles.ticket}>
@@ -40,8 +40,8 @@ const TicketCard = ({
             <span>{dept}</span>
           </div>
 
-          <div className={styles.frame}>
-            <img src={airlineImg} alt="" />
+          <div>
+            <img src={flight} alt="" />
           </div>
 
           <div>
@@ -72,10 +72,8 @@ const TicketCard = ({
           <span>/pax</span>
         </div>
 
-      
-      {button}
+        { button}
       </div>
-
     </div>
   );
 };
