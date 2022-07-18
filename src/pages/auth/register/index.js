@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../../components/base/buttonv2";
 import Input from "../../../components/base/inputv2";
 import PasswordInput from "../../../components/base/password";
@@ -148,6 +148,8 @@ const Register = () => {
           />
 
           <small className={styles.small}>Already have an account?</small>
+        </form>
+        <Link to="/login">
           <Button
             // htmlFor='login'
             title="Sign In"
@@ -156,7 +158,7 @@ const Register = () => {
             // style={style}
             // onClick={() => navigate("/login")}
           />
-        </form>
+        </Link>
       </div>
     </div>
   );

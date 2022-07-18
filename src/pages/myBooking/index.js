@@ -19,6 +19,9 @@ const MyBooking = () => {
     dispatch(bookingAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  let styless = {
+    marginTop: "600px",
+  };
   return (
     <>
       <div className={styles.container}>
@@ -38,6 +41,7 @@ const MyBooking = () => {
               <div className={styles.wcard2} key={item.id}>
                 {/* <h1>{item.id}</h1> */}
                 <CardBooking
+                  style={styless}
                   className={
                     item.payment_status === 1 ? styles.btn2 : styles.btn
                   }

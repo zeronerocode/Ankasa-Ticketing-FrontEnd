@@ -2,14 +2,14 @@
     position: absolute;
     width: 870px;
     height: 223px;
-    top: 390px;
+    top: 290px;
     z-index: -1000;
-    margin-top: 180px;
+    /* margin-top: 180px; */
     left: 725px;
     background-color: blue;
 }
 .wcard3{
-    margin-top: -120px;
+
     position: relative;
     background-color: red;
 }
