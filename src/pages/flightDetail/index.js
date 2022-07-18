@@ -74,7 +74,7 @@ const FlightDetail = () => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      totalPayment: ceklis,
+      totalPayment: price,
     });
   };
 
