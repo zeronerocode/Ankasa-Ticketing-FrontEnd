@@ -1,14 +1,22 @@
 import { combineReducers } from 'redux';
+import { bookingAction, bookingGetAction } from "./bookingsReducer";
 import detailFlightReducer from './detailFlightReducer';
-import detailUserReducer from './detailUserReducer'
+import detailUser from "./detailUserReducer";
+import UpdateUserReducer from "./detailUserReducer";
 import flightReducer from './flightReducer';
-import userReducer from './userReducer';
+import {flightsDetailReducer} from "./flightReducer";
+import { userReducer } from "./userReducer";
 
 const rootReducers = combineReducers({
-  user: userReducer,
+  auth: userReducer,
   flight: flightReducer,
   detailFlight: detailFlightReducer,
-  detailUser: detailUserReducer
+  detail: detailUser,
+  updateUser: UpdateUserReducer,
+  detailFlights: flightsDetailReducer,
+  // BOOKING DETAIL
+  bookingDetail: bookingAction,
+  myBooking: bookingGetAction,
 });
 
 export default rootReducers;

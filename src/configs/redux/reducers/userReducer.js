@@ -1,11 +1,12 @@
 const initialState = {
   user: {
-      name: '',
-      email: '',
-      password : ''
+    name: "",
+    email: "",
+    username: "",
+    password: "",
   },
-  isLoading: false
-}
+  isLoading: false,
+};
 
 export const userReducer = (state = initialState, action) => {
 

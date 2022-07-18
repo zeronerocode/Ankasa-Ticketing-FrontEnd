@@ -1,10 +1,99 @@
-.card3{
-    position: absolute;
-    width: 870px;
-    height: 223px;
-    top: 240px;
-    left: 725px;
+
+.wcard3{
+    width: 100%;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top:10px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    text-transform: capitalize;
+    font-family: 'Poppins';
+    background-color: #FFFFFF;
+    /* gap: 10px; */
 }
+.wcard3 a {
+    text-decoration: none;
+    color:black
+}
+.wcard3 a:hover{
+    text-decoration: none;
+    color:black
+}
+.destiFlight{display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: baseline;
+}
+.destIcon{
+    width: 10px;
+    height: 10px;
+}
+.stat{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.date{
+    font-weight: 400;
+    font-size: 18px;
+}
+.destiFlight p{
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 16px;
+}
+.sect2{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+.stats{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+}
+.ticketIssued{
+    background-color: #4FCF4D;
+    font-weight: 600;
+    font-size: 10px;
+    color: #fff;
+    padding: 8px 18px 8px 18px;
+    border-radius: 10px;
+}
+.waiting{
+    background-color: #FF7F23;
+    font-weight: 600;
+    font-size: 10px;
+    color: #fff;
+    padding: 8px 18px 8px 18px;
+    border-radius: 10px;
+}
+
+.sBtn{
+    /* position: absolute; */
+    /* width: 150px; */
+    background: none;
+    border: none;
+    outline: none;
+    color: #2395FF;
+}
+.viewDetail{
+    /* position: absolute; */
+    /* width: 150px; */
+    background: none;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2395FF;
+}
+/*
 .date{
     position: absolute;
     width: 200px;
@@ -36,11 +125,7 @@
     font-size: 20px;
     color: #000000;
 }
-.destIcon{
-    position: absolute;
-    left: 837px;
-    top: 305px;
-}
+
 .airLines{
     position: absolute;
     width: 200px;
@@ -76,29 +161,4 @@
     height: 223px;
     top: 540px;
     left: 725px;
-}
-.sBtn{
-    position: absolute;
-    width: 150px;
-    height: 24px;
-    left: 1400px;
-    top: 410px;
-    background: none;
-    border: none;
-    outline: none;
-    color: #2395FF;
-}
-.viewDetail{
-    position: absolute;
-    width: 150px;
-    height: 24px;
-    left: 1390px;
-    top: 395px;
-    background: none;
-    border: none;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    color: #2395FF;
-}
+} */
