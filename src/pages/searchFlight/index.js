@@ -9,14 +9,22 @@ import Footer from "../../components/module/footer";
 
 import styles from "./searchFlight.module.css";
 
-import plane from "../../assets/logoWhite.svg";
-import switchIcon from "../../assets/switch.svg";
+// import plane from "../../assets/logoWhite.svg";
+// import switchIcon from "../../assets/switch.svg";
 // import sort from '../../assets/sort.svg'
 
 // import wifiIcon from '../../../src/assets/'
 // import luggageIcon from '../../assets/facility/luggage.svg'
 // import mealIcon from '../../assets/facility/meal.svg'
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+
+import plane from '../../assets/logoWhite.svg'
+import switchIcon from '../../assets/switch.svg'
+import sort from '../../assets/sort.svg'
+
+import wifiIcon from '../../assets/facility/wifi.svg'
+import luggageIcon from '../../assets/facility/luggage.svg'
+import mealIcon from '../../assets/facility/meal.svg'
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SearchFlight = () => {
   const [flights, setFlights] = useState([]);
@@ -1375,9 +1383,9 @@ const SearchFlight = () => {
                   direct={flight.direct}
                   transit={flight.transit}
                   mtransit={flight.more_transit}
-                  // luggage={flight.luggage === 1 ? luggageIcon : ""}
-                  // meal={flight.meal === 1 ? mealIcon : ""}
-                  // wifi={flight.wifi === 1 ? wifiIcon : ""}
+                  luggage={flight.luggage === 1 ? luggageIcon : ""}
+                  meal={flight.meal === 1 ? mealIcon : ""}
+                  wifi={flight.wifi === 1 ? wifiIcon : ""}
                   id={flight.id}
                   onClick={onSelect}
                 />
