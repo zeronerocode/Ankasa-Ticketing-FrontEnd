@@ -205,7 +205,7 @@ const FlightDetail = () => {
                       onChange={handleChange}
                       name="title"
                       id="title"
-                      // required
+                      required
                     >
                       <option value="Mr.">Mr.</option>
                       <option value="Mrs.">Mrs.</option>
@@ -219,7 +219,7 @@ const FlightDetail = () => {
                       onChange={handleChange}
                       className={styles.input4}
                       placeholder="Insert Your Name"
-                      // required
+                      required
                     />
                     <p className={styles.nationalityText}>Nationality</p>
                     <select
@@ -228,7 +228,7 @@ const FlightDetail = () => {
                       id="ntionality"
                       value={form.nationality}
                       onChange={handleChange}
-                      // required
+                      required
                     >
                       <option value="Indonesia">Indonesia</option>
                       <option value="Norwey">Norwey</option>
@@ -246,7 +246,7 @@ const FlightDetail = () => {
                       onChange={handleChange}
                       className={styles.input5}
                       placeholder="Insert How many seat"
-                      // required
+                      required
                     />
                   </>
                 ) : null}
