@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./cardProfile.module.css";
-import Card from "../../base/card/index";
-import Button from "../../base/button/index";
+// import Card from "../../base/card/index";
+// import Button from "../../base/button/index";
 import Input from "../../base/inputv2/index";
 import UserLogo from "../../../assets/user.png";
 import Setting from "../../../assets/setting.png";
@@ -9,13 +9,12 @@ import Rating from "../../../assets/rating.png";
 import LogOut from "../../../assets/logOut.png";
 import axios from "axios";
 // import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
-  detailUserAction,
   signOut,
 } from "../../../configs/redux/actions/detailUserAction";
-import Avatar from "../../../assets/avatar.png";
-import { Link, useNavigate } from "react-router-dom";
+// import Avatar from "../../../assets/avatar.png";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ProfileCard = ({ className, images,gambar }) => {

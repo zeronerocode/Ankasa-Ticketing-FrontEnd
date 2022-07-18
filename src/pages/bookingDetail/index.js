@@ -7,7 +7,7 @@ import Data from "../../components/base/QRCode";
 import Navi from "../../components/module/nav/nav";
 import Footer from "../../components/module/footer/index";
 import { detailBookingAction } from "../../configs/redux/actions/detailBookingActions";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 

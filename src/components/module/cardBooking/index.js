@@ -1,11 +1,11 @@
-import React,{useEffect} from 'react'
+// import React,{useEffect} from 'react'
 import styles from './cardBooking.module.css'
-import Card from '../../base/card/index'
-import Button from '../../base/button/index'
+// import Card from '../../base/card/index'
+// import Button from '../../base/button/index'
 import Destination from '../../../assets/dst.png'
 import { Link } from 'react-router-dom'
-import { bookingAction } from "../../../configs/redux/actions/detailBookingActions";
-import { useDispatch, useSelector } from "react-redux";
+// import { bookingAction } from "../../../configs/redux/actions/detailBookingActions";
+// import { useDispatch, useSelector } from "react-redux";
 
 const CardBooking = ({ id, origin, destination, airline_name, payment_status}) => {
   // const dispatch = useDispatch();
