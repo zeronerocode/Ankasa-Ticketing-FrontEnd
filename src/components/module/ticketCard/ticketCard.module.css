@@ -44,6 +44,17 @@
     font-weight: 400;
 }
 
+.frame {
+    width: 30%;
+    /* background-color: rebeccapurple; */
+}
+
+.frame img {
+    /* background-color: rebeccapurple; */
+    width: 100%;
+    object-fit: cover;
+}
+
 .schedule > div:nth-of-type(2){
     display: flex;
     position: relative;

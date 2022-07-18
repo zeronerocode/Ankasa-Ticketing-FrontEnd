@@ -8,32 +8,55 @@ import NaviV2 from "../../components/module/naviV2";
 import Footer from "../../components/module/footer";
 
 import styles from "./searchFlight.module.css";
-import styless from "../../components/module/ticketCard/ticketCard.module.css"
-import plane from "../../assets/logoWhite.svg";
-import switchIcon from "../../assets/switch.svg";
+
+// import plane from "../../assets/logoWhite.svg";
+// import switchIcon from "../../assets/switch.svg";
 // import sort from '../../assets/sort.svg'
 
 // import wifiIcon from '../../../src/assets/'
 // import luggageIcon from '../../assets/facility/luggage.svg'
 // import mealIcon from '../../assets/facility/meal.svg'
-import { Link, useSearchParams } from "react-router-dom";
+
+import plane from '../../assets/logoWhite.svg'
+import switchIcon from '../../assets/switch.svg'
+import sort from '../../assets/sort.svg'
+
+import wifiIcon from '../../assets/facility/wifi.svg'
+import luggageIcon from '../../assets/facility/luggage.svg'
+import mealIcon from '../../assets/facility/meal.svg'
+import { useNavigate, useSearchParams } from "react-router-dom";
+import styless from "../../components/module/ticketCard/ticketCard.module.css"
+// import wifiIcon from '../../../src/assets/'
+// import luggageIcon from '../../assets/facility/luggage.svg'
+// import mealIcon from '../../assets/facility/meal.svg'
+import { Link} from "react-router-dom";
 
 const SearchFlight = () => {
   const [flights, setFlights] = useState([]);
+  const [pagination, setPaginaiton] = useState([])
+  const navigate = useNavigate()
+  const [params, setParams] = useState({});
+  const [origin, setOrigin] = useState("");
+  const [destination, setDestination] = useState("");
+  let [transitType, setTransitType] = useState("");
+  const [facilities, setFacilities] = useState("");
+  const [arrival, setArrival] = useState("");
+  const [departure, setDeparture] = useState("");
+  const [airlines, setArilines] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [query, setQuery] = useSearchParams({});
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [date, setDate] = useState("");
+  const [ticket, setTicket] = useState("");
+  const [ticketType, setTicketType] = useState("");
 
-  const fetchFlight = async ({
-    transitType,
-    facilities,
-    departure,
-    arrival,
-    airlines,
-    sortBy,
-    minPrice,
-    maxPrice
-  }) => {
+  const fetchFlight = async ({ origin, destination, date, ticketType, transitType, facilities, departure, arrival, airlines, sortBy, minPrice, maxPrice, page, limit }) => {
     try {
-
-      const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${minPrice&& `&min=${minPrice}`}${maxPrice&& `&max=${maxPrice}`}${sortBy&& `&sortBy=${sortBy}`}`);
+      const result = await axios.get(
+        `https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${origin && `&origin=${origin}`}${destination && `&destination=${destination}`}${date && `&date=${date}`}${ticketType && `&type=${ticketType}`}${transitType && `&transit=${transitType}`}${facilities && `&fasilitas=${facilities}`}${departure && `&departure=${departure}`
+        }${arrival && `&arrival=${arrival}`}${airlines && `&airline=${airlines}`}${minPrice && `&min=${minPrice}`}${maxPrice && `&max=${maxPrice}`}${sortBy && `&sortBy=${sortBy}`}${page && `&page=${page}`}${limit && `&limit=${limit}`}`
+      );
       // const result = await axios.get(`https://avtur-ankasa-ticketing.herokuapp.com/v1/flights?${transitType&&`&transit=${transitType}`}${facilities&& `&fasilitas=${facilities}`}${departure&& `&departure=${departure}`}${arrival&& `&arrival=${arrival}`}${airlines&& `&airline=${airlines}`}${minPrice&& `&min=${minPrice}`}${maxPrice&& `&max=${maxPrice}`}`);
       // ${facilities&& `&fasilitas=${facilities}`}
       // ${departure&& `&departure=${departure}`}
@@ -42,43 +65,57 @@ const SearchFlight = () => {
       // ${sortBy&& `&sortBy=${sortBy}`}
       // console.log(result.data);
       setFlights(result.data.data);
+      setPaginaiton(result.data.pagination)
     } catch (error) {
       console.log(error);
     }
   };
 
-
-
-  const changeSearch = () => {
-    setQuery({
+  const changeSearch = (origin, destination, date, ticketType) => {
+    const newParams = {
       origin,
       destination,
+      date,
+      ticketType,
+      ...page
+    }
+
+    setParams({
+      ...newParams
+    })
+    setQuery({
+      ...newParams
     });
   };
 
-  const [params, setParams] = useState({});
-  const [origin, setOrigin] = useState("");
-  const [destination, setDestination] = useState("");
-  let [transitType, setTransitType] = useState("");
-  const [facilities, setFacilities] = useState("");
-  const [arrival, setArrival] = useState('')
-  const [departure, setDeparture] = useState("");
-  const [airlines, setArilines] = useState("");
-  const [sortBy, setSortBy] = useState("")
-  const [query, setQuery] = useSearchParams({});
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [date, setDate] = useState('')
-  const [ticket, setTicket] = useState('')
-  const [ticketType, setTicketType] = useState('')
+  const onSelect = (id) => {
+    navigate(`/flightDetail/${id}`)
+  }
+
+  const btn = [];
+  for (let i = 0; i < pagination.totalPage; i += 1) {
+    btn.push(i);
+  }
+
+  const [page, setPage] = useState({
+    limit: 3,
+    currentPage: 1
+  })
+
+
+  // const {origin} = useParams()
 
   // console.log('ini statenya')
   // console.log(direct)
   // console.log(origin)
   // console.log(destination)
   // console.log(date)
-  // console.log(airlines)
-  // console.log(sortBy)
+  console.log("ini pagination");
+  console.log(page);
+  console.log("ini origin");
+  console.log(query.get("origin"));
+  console.log("ini destination");
+  console.log(query.get("destination"));
   console.log("ini transitType");
   console.log(transitType);
   console.log("ini departure");
@@ -87,22 +124,62 @@ const SearchFlight = () => {
   console.log(facilities);
   console.log(flights);
 
-  const onHandleReset = () =>{
-      setFacilities('')
-      setArrival('')
-      setDeparture('')
-      setArilines('')
-      setSortBy('')
-      setMinPrice('')
-      setMaxPrice('')
-      setParams({})
-      setQuery({})
-  }
+  const onHandleReset = () => {
+    let x = document.getElementsByClassName("checkbox");
+    for (let item of x) {
+      item.checked = false
+    }
+    console.log("ini checkbox");
+    console.log(x);
+    setPage({
+      currentPage: 1,
+      limit:3
+    })
+    setDate("")
+    setTicketType("")
+    setTransitType("");
+    setFacilities("");
+    setArrival("");
+    setDeparture("");
+    setArilines("");
+    setSortBy("");
+    setMinPrice("");
+    setMaxPrice("");
+    const defaultParams = {
+      origin,
+      destination,
+      ...page
+    };
+    setParams({
+      ...defaultParams,
+    });
+    setQuery({
+      ...defaultParams,
+    });
+  };
 
   useEffect(() => {
+    const newOrigin = query.get("origin");
+    const newDestination = query.get("destination");
+    const newParams = {
+      origin: newOrigin,
+      destination: newDestination,
+      // ...page
+    };
+    setOrigin(newOrigin);
+    setDestination(newDestination);
+    setParams({
+      ...params,
+      ...newParams,
+    });
+    // setQuery({
+    //   ...params,
+    //   ...newParams
+    // });
     const dataParam = {
+      origin: newOrigin,
+      destination: newDestination,
       date,
-      ticket,
       ticketType,
       departure,
       arrival,
@@ -111,8 +188,10 @@ const SearchFlight = () => {
       airlines,
       minPrice,
       maxPrice,
-      sortBy
-    }
+      sortBy,
+      page: page.currentPage,
+      limit: page.limit
+    };
     fetchFlight(dataParam);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
@@ -195,7 +274,9 @@ const SearchFlight = () => {
             title="Change Search"
             type="button"
             className={styles["change-search"]}
-            onClick={changeSearch}
+            onClick={() => {
+              changeSearch(origin, destination, date, ticketType);
+            }}
           />
         </div>
 
@@ -219,6 +300,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Direct</label>
                   <input
+                    className="checkbox"
                     id="transit"
                     type="checkbox"
                     // checked={direct === "0" ? true : false}
@@ -328,6 +410,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Transit</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let newDirect = "2";
@@ -388,6 +471,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Transit 2+</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let newDirect = "3";
@@ -454,6 +538,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Luggage</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let luggage = "1";
@@ -513,6 +598,7 @@ const SearchFlight = () => {
                 <div>
                   <label>In-Flight Meal</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let meal = "2";
@@ -572,6 +658,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Wi-Fi</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let wifi = "3";
@@ -637,6 +724,7 @@ const SearchFlight = () => {
                 <div>
                   <label>00:00 - 06:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "dinihari";
@@ -738,6 +826,7 @@ const SearchFlight = () => {
                 <div>
                   <label>06:00 - 12:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "pagi";
@@ -796,6 +885,7 @@ const SearchFlight = () => {
                 <div>
                   <label>12:00 - 18:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "sore";
@@ -854,6 +944,7 @@ const SearchFlight = () => {
                 <div>
                   <label>18:00 - 24:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "malam";
@@ -918,6 +1009,7 @@ const SearchFlight = () => {
                 <div>
                   <label>00:00 - 06:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "dinihari";
@@ -976,6 +1068,7 @@ const SearchFlight = () => {
                 <div>
                   <label>06:00 - 12:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "pagi";
@@ -1034,6 +1127,7 @@ const SearchFlight = () => {
                 <div>
                   <label>12:00 - 18:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "sore";
@@ -1092,6 +1186,7 @@ const SearchFlight = () => {
                 <div>
                   <label>18:00 - 24:00</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let time = "malam";
@@ -1155,6 +1250,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Garuda Indonesia</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let airline = "garudaindonesia";
@@ -1212,6 +1308,7 @@ const SearchFlight = () => {
                 <div>
                   <label>America</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let airline = "america";
@@ -1269,6 +1366,7 @@ const SearchFlight = () => {
                 <div>
                   <label>Batik Air</label>
                   <input
+                    className="checkbox"
                     type="checkbox"
                     onChange={(e) => {
                       let airline = "batikair";
@@ -1404,6 +1502,11 @@ const SearchFlight = () => {
                   direct={flight.direct}
                   transit={flight.transit}
                   mtransit={flight.more_transit}
+                  luggage={flight.luggage === 1 ? luggageIcon : ""}
+                  meal={flight.meal === 1 ? mealIcon : ""}
+                  wifi={flight.wifi === 1 ? wifiIcon : ""}
+                  id={flight.id}
+                  onClick={onSelect}
                   button={
                     <>
                       <Link to={`/flightDetail/${flight.id}`}>
@@ -1415,12 +1518,92 @@ const SearchFlight = () => {
                       </Link>
                     </>
                   }
-                  // luggage={flight.luggage === 1 ? luggageIcon : ""}
-                  // meal={flight.meal === 1 ? mealIcon : ""}
-                  // wifi={flight.wifi === 1 ? wifiIcon : ""}
-                  id={flight.id}
                 />
               ))}
+            </div>
+            <div>
+              <nav className="mt-4">
+                <ul className="pagination">
+                  <li
+                    className={`page-item ${
+                      page.currentPage <= 1 && "disabled"
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={() => {
+                        const newPage = {
+                          currentPage: page.currentPage - 1,
+                          limit: page.limit,
+                        };
+                        setPage((current) => ({
+                          ...current,
+                          currentPage: newPage.currentPage,
+                        }));
+
+                        setParams({
+                          ...params,
+                          ...newPage,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newPage,
+                        });
+                      }}
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  {btn.map((item, index) => (
+                    <li
+                      className={`page-item ${
+                        index + 1 === page.currentPage && "active"
+                      }`}
+                      key={Math.random(100)}
+                    >
+                      <button
+                        onClick={() => index + 1}
+                        type="button"
+                        className="page-link"
+                      >
+                        {index + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${
+                      page.currentPage === pagination.totalPage && "disabled"
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={() => {
+                        const newPage = {
+                          currentPage: page.currentPage + 1,
+                          limit: page.limit,
+                        };
+                        setPage((current) => ({
+                          ...current,
+                          currentPage: newPage.currentPage,
+                        }));
+
+                        setParams({
+                          ...params,
+                          ...newPage,
+                        });
+                        setQuery({
+                          ...params,
+                          ...newPage,
+                        });
+                      }}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>

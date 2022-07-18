@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import Button from '../../base/buttonv2'
-import Logo from '../logo'
-import Searchbar from '../searchbar'
-import { useSelector } from 'react-redux/es/exports'
-import styles from './navi.module.css'
-import switchIcon from '../../../assets/switchBlue.svg'
-import oneway from '../../../assets/oneway.svg'
-import round from '../../../assets/roundtrip.svg'
-import arrow from '../../../assets/arrow.svg'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Button from "../../base/buttonv2";
+import Logo from "../logo";
+import Searchbar from "../searchbar";
+import { useSelector } from "react-redux/es/exports";
+import styles from "./navi.module.css";
+import switchIcon from "../../../assets/switchBlue.svg";
+import oneway from "../../../assets/oneway.svg";
+import round from "../../../assets/roundtrip.svg";
+import arrow from "../../../assets/arrow.svg";
+import { Link } from "react-router-dom";
 
 const Navi = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
   return (
     <div>
       <div className={styles.navi}>
@@ -148,6 +148,6 @@ const Navi = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Navi
+export default Navi;

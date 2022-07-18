@@ -1,12 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./ticketCard.module.css";
 
-// import airline from '../../../assets/airline.svg'
 import flight from "../../../assets/flight.svg";
-// import wifi from '../../../assets/facility/wifi.svg'
-// import luggage from '../../../assets/facility/luggage.svg'
-// import meal from '../../../assets/facility/meal.svg'
 import Button from "../../base/buttonv2";
 
 const TicketCard = ({
@@ -23,15 +20,16 @@ const TicketCard = ({
   more_transit,
   luggage,
   wifi,
-  button,
   meal,
+  onClick,
+  button,
 }) => {
   return (
     <div className={styles.ticket}>
       <div className={styles.airline}>
-        {/* <div>
-                <img src={airline} alt='' />
-            </div>     */}
+        <div style={{ width: "100px" }}>
+          <img style={{ width: "100%" }} src={airlineImg} alt="" />
+        </div>
         <span>{airline}</span>
       </div>
 
@@ -74,8 +72,10 @@ const TicketCard = ({
           <span>/pax</span>
         </div>
 
-              { button}
+      
+      {button}
       </div>
+
     </div>
   );
 };
