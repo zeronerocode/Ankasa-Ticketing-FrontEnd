@@ -31,7 +31,7 @@ const Profile = () => {
   const [post_code, setPost_code] = useState("");
   const [imagePreview, setImagePreview] = useState(avatar);
   const [photo, setPhoto] = useState(imagePreview);
-  // const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");git 
   useEffect(() => {
     datas();
     dispatch(detailUserAction());
