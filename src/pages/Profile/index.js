@@ -110,87 +110,103 @@ const Profile = () => {
         <form onSubmit={onSubmit} className={styles.form}>
           <div className={styles.wrapper}>
             <div className={styles.sect1}>
-              <ProfileCard />
+              <ProfileCard
+                onChange={(e) => onImageUpload(e)}
+                names="photo"
+                gambar={imagePreview}
+              />
             </div>
             <div className={styles.sect2}>
               <p className={styles.text}>Profile</p>
               <p className={styles.text2}>Profile</p>
               <div className={styles.formSheet}>
-              <div className={styles.contact}>
-                <p className={styles.contactText}>Contact</p>
-                <label htmlFor="email" className={styles.label}>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className={styles.input}
-                  value={data.email}
-                  //   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Insert Your Email"
-                  disabled
-                />
-                <label htmlFor="phone_number" className={styles.label}>Phone Number</label>
-                <input
-                id="phone_number"
-                  type="number"
-                  value={phone_number}
-                  onChange={(e) => setPhone_number(e.target.value)}
-                  name="phone_number"
-                  className={styles.input}
-                  placeholder="Insert Your Phone Number"
-                />
-                <p className={styles.settingText}>{'Account Setting >'}</p>
-              </div>
-              <div className={styles.biodata}>
-                <p className={styles.biodataText}>Biodata</p>
-                <label htmlFor="username" className={styles.label}>Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  value={username || ""}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className={styles.input}
-                  placeholder="Insert Your Name"
-                />
-                <label htmlFor="city" className={styles.city}>City</label>
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  value={citys}
-                  onChange={(e) => setCity(e.target.value)}
-                  className={styles.input}
-                  placeholder="Insert Your City"
-                />
-                <label htmlFor="address" className={styles.label}>Adress</label>
-                <input
-                  type="text"
-                  id="address"
-                  className={styles.input}
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Insert Your Adress"
-                />
-                <label htmlFor="postcode" className={styles.label}>Zip Coder</label>
-                <input
-                  type="number"
-                  id="postcode"
-                  className={styles.input}
-                  name="post_code"
-                  value={post_code}
-                  onChange={(e) => setPost_code(e.target.value)}
-                  placeholder="Insert Your Zip Code"
-                />
-              </div>
+                <div className={styles.contact}>
+                  <p className={styles.contactText}>Contact</p>
+                  <label htmlFor="email" className={styles.label}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className={styles.input}
+                    value={data.email}
+                    //   onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Insert Your Email"
+                    disabled
+                  />
+                  <label htmlFor="phone_number" className={styles.label}>
+                    Phone Number
+                  </label>
+                  <input
+                    id="phone_number"
+                    type="number"
+                    value={phone_number}
+                    onChange={(e) => setPhone_number(e.target.value)}
+                    name="phone_number"
+                    className={styles.input}
+                    placeholder="Insert Your Phone Number"
+                  />
+                  <p className={styles.settingText}>{"Account Setting >"}</p>
+                </div>
+                <div className={styles.biodata}>
+                  <p className={styles.biodataText}>Biodata</p>
+                  <label htmlFor="username" className={styles.label}>
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    value={username || ""}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className={styles.input}
+                    placeholder="Insert Your Name"
+                  />
+                  <label htmlFor="city" className={styles.city}>
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    value={citys}
+                    onChange={(e) => setCity(e.target.value)}
+                    className={styles.input}
+                    placeholder="Insert Your City"
+                  />
+                  <label htmlFor="address" className={styles.label}>
+                    Adress
+                  </label>
+                  <input
+                    type="text"
+                    id="address"
+                    className={styles.input}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Insert Your Adress"
+                  />
+                  <label htmlFor="postcode" className={styles.label}>
+                    Zip Coder
+                  </label>
+                  <input
+                    type="number"
+                    id="postcode"
+                    className={styles.input}
+                    name="post_code"
+                    value={post_code}
+                    onChange={(e) => setPost_code(e.target.value)}
+                    placeholder="Insert Your Zip Code"
+                  />
+                </div>
               </div>
               <div className={styles.btnDiv}>
-              <Button className={styles.btn} title="save" type="submit" />
+                <Button className={styles.btn} title="save" type="submit" />
               </div>
-              </div>
+            </div>
           </div>
         </form>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );
