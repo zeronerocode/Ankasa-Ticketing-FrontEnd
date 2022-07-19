@@ -32,6 +32,7 @@ const CardBooking = ({ id, origin, destination, airline_name, payment_status, de
           <div className={styles.line}></div>
           </div>
           </Link>
+          <div className={styles.line}/>
           <div className={styles.stat}>
           <div className={styles.stats}>
           <p className={styles.status}>Status</p>

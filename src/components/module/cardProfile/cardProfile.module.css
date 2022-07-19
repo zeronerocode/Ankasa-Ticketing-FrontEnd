@@ -14,6 +14,11 @@
   flex-direction: column;
   gap: 15px;
 }
+.btn {
+    z-index: -1000;
+    opacity: 0;
+    position:absolute
+}
 .btnLabel{
     margin: 20px auto 0 auto;
     border: 4px solid #2395FF;
@@ -32,12 +37,19 @@
     box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
     transform: translateY(-1px);
 }
+.ava{
+    display: flex;
+    justify-content: center;
+}
 .ava img {
-  margin: 0 0 0 86px;
   width: 42%;
   height: 110px;
   border: #2395ff 4px solid;
   border-radius: 50%;
+}
+.userName{
+    margin-top: 10px;
+    text-align: center;
 }
 .userOrigin{
     font-weight: 400;
