@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "../../base/buttonv2";
@@ -84,12 +85,14 @@ const NaviV2 = () => {
                   type="text"
                   className={styles.origin}
                   onChange={(e) => setOrigin(e.target.value)}
+                  required
                 />
                 <img src={switchIcon} alt="" />
                 <input
                   type="text"
                   className={styles.dest}
                   onChange={(e) => setDestination(e.target.value)}
+                  required
                 />
               </div>
             </div>

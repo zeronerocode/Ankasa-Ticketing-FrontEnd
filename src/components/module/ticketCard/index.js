@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import styles from "./ticketCard.module.css";
 
 import flight from "../../../assets/flight.svg";
-import Button from "../../base/buttonv2";
+// import Button from "../../base/buttonv2";
 
 const TicketCard = ({
   airlineImg,

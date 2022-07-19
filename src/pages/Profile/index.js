@@ -1,14 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Card from "../../components/base/card/index";
 import ProfileCard from "../../components/module/cardProfile/index";
 import styles from "./profile.module.css";
-import Input from "../../components/base/input/index";
+// import Input from "../../components/base/input/index";
 import Button from "../../components/base/button/index";
 // import Navi from '../../components/module/navi/index'
 import Footer from "../../components/module/footer/index";
 import Header from "../../components/module/nav/header";
 import { useSelector, useDispatch } from "react-redux";
-import styless from "../../components/module/cardProfile/cardProfile.module.css";
+// import styless from "../../components/module/cardProfile/cardProfile.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {
@@ -126,6 +127,7 @@ const Profile = () => {
                   <input
                     id="selectFile"
                     type="file"
+                    accept="image/*"
                     onChange={(e) => onImageUpload(e)}
                     name="photo"
                   />

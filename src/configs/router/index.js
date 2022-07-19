@@ -10,6 +10,7 @@ import MyBooking from '../../pages/myBooking/index';
 import Profile from '../../pages/Profile/index';
 import SearchFlight from '../../pages/searchFlight';
 import Page404 from '../../pages/Page404/Page404';
+// import Test from '../../pages/test';
 
 const RequireAuth = ({ children }) => {
   const isAuth = localStorage.getItem("token");

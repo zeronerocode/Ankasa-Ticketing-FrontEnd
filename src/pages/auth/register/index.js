@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-escape */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../../components/base/buttonv2";
@@ -5,7 +7,7 @@ import Input from "../../../components/base/inputv2";
 import PasswordInput from "../../../components/base/password";
 import Banner from "../../../components/module/banner";
 import Logo from "../../../components/module/logo";
-import axios from "axios";
+// import axios from "axios";
 import styles from "../auth.module.css";
 
 import swal from "sweetalert2";
@@ -40,7 +42,7 @@ const Register = () => {
         setErorr("wrong email address!");
       } else if (form.password.length < 7) {
         setErorr(
-          "password must contain uppercase letters, special characters and at least 8 letters."
+          "password must contain characters and at least 8 letters."
         );
       } else if (form) {
         register(body)
@@ -50,7 +52,7 @@ const Register = () => {
               `success anda berhasil register, ${form.name} silahkan login `,
               "success"
             );
-            navigate("/");
+            navigate("/login");
           })
           .catch((err) => {
             setErorr(err.response.data.error.toLowerCase());
@@ -62,7 +64,7 @@ const Register = () => {
   };
 
   const onNavigate = () => {
-    navigate("/");
+    navigate("/login");
   };
   // const togglePassword =()=>{
   //     if(passwordType==="password"){

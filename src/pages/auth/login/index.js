@@ -7,7 +7,7 @@ import Banner from '../../../components/module/banner'
 import Logo from '../../../components/module/logo'
 import { useDispatch } from 'react-redux'
 import styles from '../auth.module.css'
-import swal from "sweetalert2";
+// import swal from "sweetalert2";
 import { loginCustomer } from '../../../configs/redux/actions/userAction'
 
 const Login = () => {

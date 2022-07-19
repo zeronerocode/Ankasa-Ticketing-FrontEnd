@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./flightDetail.module.css";
 import Banner from "../../assets/img1.png";
 import Banner2 from "../../assets/mobile/banner.png";
-import Input from "../../components/base/input/index";
+// import Input from "../../components/base/input/index";
 import WarningLogo from "../../assets/warning.png";
-import LogoGaruda from "../../assets/logoGaruda.png";
+// import LogoGaruda from "../../assets/logoGaruda.png";
 import Destination from "../../assets/dst.png";
 import Check from "../../assets/check.png";
 import Button from "../../components/base/button/index";
@@ -15,9 +15,9 @@ import { createBooking } from "../../configs/redux/actions/detailBookingActions"
 import { detailFlightsAction } from "../../configs/redux/actions/flightAction";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import Swal from "sweetalert2";
-import axios from "axios";
-import persistCombineReducers from "redux-persist/es/persistCombineReducers";
+// import Swal from "sweetalert2";
+// import axios from "axios";
+// import persistCombineReducers from "redux-persist/es/persistCombineReducers";
 
 const FlightDetail = () => {
   const { id } = useParams();

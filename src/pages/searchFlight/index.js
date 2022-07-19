@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,13 +20,13 @@ import styles from "./searchFlight.module.css";
 
 import plane from '../../assets/logoWhite.svg'
 import switchIcon from '../../assets/switch.svg'
-import sort from '../../assets/sort.svg'
+// import sort from '../../assets/sort.svg'
 
 import wifiIcon from '../../assets/facility/wifi.svg'
 import luggageIcon from '../../assets/facility/luggage.svg'
 import mealIcon from '../../assets/facility/meal.svg'
 import { useNavigate, useSearchParams } from "react-router-dom";
-import styless from "../../components/module/ticketCard/ticketCard.module.css"
+import styless from "../../components/module/ticketCard/ticketCard.module.css";
 // import wifiIcon from '../../../src/assets/'
 // import luggageIcon from '../../assets/facility/luggage.svg'
 // import mealIcon from '../../assets/facility/meal.svg'
@@ -1499,10 +1500,14 @@ const SearchFlight = () => {
                   destination={flight.destination}
                   dept={flight.departure_time}
                   price={flight.price}
-                  direct={flight.direct}
-                  transit={flight.transit}
-                  mtransit={flight.more_transit}
-                  luggage={flight.luggage === 1 ? luggageIcon : ""}
+                  direct={flight.direct === 1 ? "Direct" : "Non Direct"}
+                  transit={flight.transit === 1 ? "Transit" : "Non Transit"}
+                  mtransit={
+                    flight.more_transit === 1
+                      ? "More Transit"
+                      : "Non More Transit"
+                  }
+                  luggage={flight.lugage === 1 ? luggageIcon : ""}
                   meal={flight.meal === 1 ? mealIcon : ""}
                   wifi={flight.wifi === 1 ? wifiIcon : ""}
                   id={flight.id}

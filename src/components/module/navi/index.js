@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "../../base/buttonv2";
 import Logo from "../logo";
 import Searchbar from "../searchbar";
-import { useSelector } from "react-redux/es/exports";
+// import { useSelector } from "react-redux/es/exports";
 import styles from "./navi.module.css";
 import switchIcon from "../../../assets/switchBlue.svg";
 import oneway from "../../../assets/oneway.svg";

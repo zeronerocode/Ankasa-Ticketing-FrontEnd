@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import styles from "./myBooking.module.css";
-import Card from "../../components/base/card/index";
+// import Card from "../../components/base/card/index";
 import ProfileCard from "../../components/module/cardProfile/index";
 import CardBooking from "../../components/module/cardBooking";
 // import Navi from '../../components/module/navi'
@@ -27,37 +28,25 @@ const MyBooking = () => {
       <div className={styles.container}>
         <Header />
         <div className={styles.wrapper}>
-          <div className={styles.wcard}>
-            <ProfileCard className={styles.cardBio} />
-          </div>
-          <div className={styles.wcard2}>
-            <Card className={styles.card2} />
+        <div className={styles.sect1}>
+        <ProfileCard/>
+        </div>
+        <div className={styles.sect2}>
+        <div className={styles.wcard2}>
             <p className={styles.text}>My Booking</p>
+            <div className={styles.headers}>
             <p className={styles.text2}>My Booking</p>
             <p className={styles.text3}>Order History</p>
+            </div>
           </div>
           <div className={styles.dflex}>
             {data.map((item) => (
-              <div className={styles.wcard2} key={item.id}>
-                {/* <h1>{item.id}</h1> */}
-                <CardBooking
-                  style={styless}
-                  className={
-                    item.payment_status === 1 ? styles.btn2 : styles.btn
-                  }
-                  title={
-                    item.payment_status === 1
-                      ? " Eticket Success"
-                      : "Waithing payment"
-                  }
-                />
-              </div>
+                <CardBooking id={item.id} origin={item.origin} destination={item.destination} airline_name={item.airline_name} payment_status={item.payment_status} departure_time={item.departure_time} departure_date={item.departure_date} />
             ))}
           </div>
-
-          <Card className={styles.card4} />
         </div>
-        <Footer className={styles.footer} />
+        </div>
+        <Footer/>
       </div>
     </>
   );
