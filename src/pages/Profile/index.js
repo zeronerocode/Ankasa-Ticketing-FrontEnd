@@ -32,20 +32,9 @@ const Profile = () => {
   const [imagePreview, setImagePreview] = useState(avatar);
   const [photo, setPhoto] = useState(imagePreview);
   // const [email, setEmail] = useState("");
-
-  //  const [form, setForm] = useState({
-  //    city: "",
-  //    username: "",
-  //  });
   useEffect(() => {
     datas();
     dispatch(detailUserAction());
-    // setUsername(data.username);
-    //   setPhoto(data.photo);
-    //   setPost_code(data.post_code);
-    //   setCity(data.city);
-    //   setPhone_number(data.phone_number);
-    //   setAddress(data.address);
   }, []);
   console.log(citys);
   const onImageUpload = (e) => {
