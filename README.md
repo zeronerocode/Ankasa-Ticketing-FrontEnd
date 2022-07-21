@@ -114,13 +114,13 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
     <td>Register Page</td>
   </tr>
   <tr>
-    <td><image src="./screenshoot/register.png" alt="Register Page" width=100%></td>
+    <image src="./screenshoot/register.png" alt="Register Page" width=100%>
   </tr>
   <tr>
     <td>Login Page</td>
   </tr>
   <tr>
-    <td><image src="./screenshoot/Angkasa Tiketing.png" alt="Login Pagee" width=100%/></td>
+    <image src="./screenshoot/Angkasa Tiketing.png" alt="Login Pagee" width=100%/>
   </tr>
   <tr>
     <td><image src="./screenshoot/Home.png" alt="Home Page" width=100% ></td>
