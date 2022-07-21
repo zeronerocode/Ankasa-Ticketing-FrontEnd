@@ -123,30 +123,40 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
     <image src="./screenshoot/Angkasa Tiketing.png" alt="Login Pagee" width=100%/>
   </tr>
   <tr>
-    <td><image src="./screenshoot/Home.png" alt="Home Page" width=100% ></td>
-    <td><image src="./screenshoot/detail.png" alt="Detail Product Page" width=100%/></td>
+   <h4 style="margin-buttom:8px">Home Page</h4>
+  </tr>
+ <tr>
+    <image src="./screenshoot/home.png" alt="Login Pagee" width=100%/>
   </tr>
   <tr>
-    <td>Home Page</td>
-    <td>Search Flight</td>
-  </tr>
-
-  <tr>
-    <td><image src="./screenshoot/my Poruducts.png" alt="My Product" width=100%></td>
-    <td><image src="./screenshoot/chekout.png" alt="Checkout Page" width=100%></td>
+     <h4 style="margin-buttom:8px">Search Flight</h4>
   </tr>
   <tr>
-      <td>Flight detail</td>
-      <td>My Booking</td>
+      <image src="./screenshoot/search.png" alt="Login Pagee" width=100%/>
   </tr>
-  
-  <tr>
-    <td><image src="./screenshoot/products list.png" alt="List My Product" width=100%></td>
-        <td><image src="./screenshoot/add.png" alt="Salling Product" width=100%></td>
+   <tr>
+     <h4 style="margin-buttom:8px">Flight Detail</h4>
   </tr>
   <tr>
-      <td>Update Profil</td>
-       <td>Booking detail</td>
+      <image src="./screenshoot/detail flights.png" alt="Login Pagee" width=100%/>
+  </tr>
+   <tr>
+     <h4 style="margin-buttom:8px">My Booking</h4>
+  </tr>
+  <tr>
+      <image src="./screenshoot/myBooking.png" alt="Login Pagee" width=100%/>
+  </tr>
+  <tr>
+     <h4 style="margin-buttom:8px">Profil</h4>
+  </tr>
+  <tr>
+      <image src="./screenshoot/profile.png" alt="Login Pagee" width=100%/>
+  </tr>
+   <tr>
+     <h4 style="margin-buttom:8px">Booking Detail</h4>
+  </tr>
+  <tr>
+      <image src="./screenshoot/booking detail.png" alt="Login Pagee" width=100%/>
   </tr>
 </table>
 
