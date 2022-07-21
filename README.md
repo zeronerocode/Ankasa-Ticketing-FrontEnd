@@ -21,8 +21,8 @@
 
 [![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE)
 
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)
-[![made with hearth by team avtur](https://img.shields.io/badge/made%20with%20%E2%99%A5%20by-infinitebug-ff1414.svg?style=flat-square)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](diskusion)
+[![made with hearth by team avtur](https://img.shields.io/badge/made%20with%20%E2%99%A5%20by-avtur-ff1414.svg?style=flat-square)](avtur-team)
  </div>
 
 
@@ -111,7 +111,7 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
 <table>
  
   <tr>
-    <td><image src="./screenshoot/register.png" alt="Register Page" width=100%><td>Register Page</td></td>
+    <td><image src="./screenshoot/register.png" alt="Register Page" width=100%>Register Page</td>
     <td><image src="./screenshoot/Angkasa Tiketing.png" alt="Login Pagee" width=100%/><td>Login Page</td></td>
   </tr>
   <tr>
@@ -197,7 +197,7 @@ Don't forget to give the project a star! Thanks again!
       </td>
       <td align="center">
         <a href="https://github.com/brndnwjy">
-          <img width="150" src="https://avatars.githubusercontent.com/u/97004294?v=4" alt="Brandon Wijaya"><br/>
+          <img width="150" src="https://avatars.githubusercontent.com/u/68231097?v=4" alt="Brandon Wijaya"><br/>
           <b>Brandon Wijaya</b>
         </a>
       </td>
