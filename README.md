@@ -111,7 +111,7 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
 <table>
  
   <tr>
-    Register Page
+   <h3 style="margin-buttom:10px">Register Page</h3>
   </tr>
   <tr>
     <image src="./screenshoot/register.png" alt="Register Page" width=100%>
