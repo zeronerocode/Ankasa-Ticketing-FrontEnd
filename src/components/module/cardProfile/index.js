@@ -11,25 +11,23 @@ import LogOut from "../../../assets/logOut.png";
 import axios from "axios";
 // import { useParams } from 'react-router-dom'
 import { useDispatch } from "react-redux";
-import {
-  signOut,
-} from "../../../configs/redux/actions/detailUserAction";
+import { signOut } from "../../../configs/redux/actions/detailUserAction";
 // import Avatar from "../../../assets/avatar.png";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ProfileCard = ({ className, images,gambar,onChange,names }) => {
+const ProfileCard = ({ className, images, gambar, onChange, names }) => {
   // const { data } = useSelector((state) => state.detail);
   // // const id = user.id;
   // console.log(data);
   // const { photo,username,email } = data;
   // console.log(photo)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSignOut = () => {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("token");
     localStorage.removeItem("id");
-    navigate('/login')
+    navigate("/login");
     dispatch(signOut());
     Swal.fire({
       icon: "success",
@@ -38,28 +36,28 @@ const ProfileCard = ({ className, images,gambar,onChange,names }) => {
     });
   };
   const dispatch = useDispatch();
-   const [username, setUsername] = useState("");
-   const [photo, setPhoto] = useState("");
-   const [email, setEmail] = useState("");
-useEffect(() => {
-  datas()
-}, []);
-  
-   const datas = async () => {
-     const token = localStorage.getItem("token");
-     const response = await axios.get(
-       `${process.env.REACT_APP_API_BACKEND}/profile`,
-       {
-         headers: {
-           Authorization: `Bearer ${token}`,
-         },
-       }
-     );
-     console.log(response.data.data.username);
-     setUsername(response.data.data.username);
-     setPhoto(response.data.data.photo);
-     setEmail(response.data.data.email);
-   };
+  const [username, setUsername] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [email, setEmail] = useState("");
+  useEffect(() => {
+    datas();
+  }, []);
+
+  const datas = async () => {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_BACKEND}/profile`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data.data.username);
+    setUsername(response.data.data.username);
+    setPhoto(response.data.data.photo);
+    setEmail(response.data.data.email);
+  };
   return (
     <>
       <div className={styles.container}>
@@ -73,7 +71,7 @@ useEffect(() => {
             </label>
             <input
               onChange={onChange}
-              name={ names}
+              name={names}
               type={"file"}
               id={"uploadAva"}
               className={styles.btn}
