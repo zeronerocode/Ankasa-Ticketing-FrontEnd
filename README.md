@@ -132,7 +132,7 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
      <h4 style="margin-buttom:8px">Search Flight</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/search.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/flights seacrh.png" alt="Login Pagee" width=100%/>
   </tr>
    <tr>
      <h4 style="margin-buttom:8px">Flight Detail</h4>
