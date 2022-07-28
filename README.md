@@ -144,13 +144,13 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
      <h4 style="margin-buttom:8px">My Booking</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/myBooking.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/My booking Update.png" alt="Login Pagee" width=100%/>
   </tr>
   <tr>
      <h4 style="margin-buttom:8px">Profil</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/profile.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/Update profile done.png" alt="Login Pagee" width=100%/>
   </tr>
    <tr>
      <h4 style="margin-buttom:8px">Booking Detail</h4>
