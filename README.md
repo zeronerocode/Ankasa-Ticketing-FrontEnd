@@ -138,25 +138,25 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
      <h4 style="margin-buttom:8px">Flight Detail</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/detail flights.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/flights details.png" alt="Login Pagee" width=100%/>
   </tr>
    <tr>
      <h4 style="margin-buttom:8px">My Booking</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/My booking Update.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/booking My.png" alt="Login Pagee" width=100%/>
   </tr>
   <tr>
      <h4 style="margin-buttom:8px">Profil</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/Update profile done.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/angkasa profil fix.png" alt="Login Pagee" width=100%/>
   </tr>
    <tr>
      <h4 style="margin-buttom:8px">Booking Detail</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/booking detail.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/Booking detail.png" alt="Login Pagee" width=100%/>
   </tr>
 </table>
 
