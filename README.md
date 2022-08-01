@@ -156,7 +156,7 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
      <h4 style="margin-buttom:8px">Booking Detail</h4>
   </tr>
   <tr>
-      <image src="./screenshoot/detail booking.png" alt="Login Pagee" width=100%/>
+      <image src="./screenshoot/detail bookings.png" alt="Login Pagee" width=100%/>
   </tr>
 </table>
 
