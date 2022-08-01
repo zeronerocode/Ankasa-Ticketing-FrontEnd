@@ -192,7 +192,7 @@ Don't forget to give the project a star! Thanks again!
 
 :rocket: [`Demo Ankasa Tiketing`](https://angkasa-tiketing.netlify.app/)
 
-:rocket: [`Demo Admin Ankasa Tiketing`](admin-angkasa-group.netlify.app/)
+:rocket: [`Demo Admin Ankasa Tiketing`](https://admin-angkasa-group.netlify.app/)
 
 ## Our Team
 
