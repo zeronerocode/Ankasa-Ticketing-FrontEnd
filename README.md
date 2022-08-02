@@ -109,54 +109,40 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
 ## Screenshoots
 <p align="center" display=flex>
 <table>
- 
   <tr>
-   <h4 style="margin-buttom:8px">Register Page</h4>
-  </tr>
-  <tr>
-    <image src="./screenshoot/register.png" alt="Register Page" width=100%>
-  </tr>
-  <tr>
-    <h4 style="margin-buttom:8px">Login Page</h4>
-  </tr>
-  <tr>
-    <image src="./screenshoot/Angkasa Tiketing.png" alt="Login Pagee" width=100%/>
-  </tr>
-  <tr>
-   <h4 style="margin-buttom:8px">Home Page</h4>
-  </tr>
- <tr>
-    <image src="./screenshoot/home.png" alt="Login Pagee" width=100%/>
-  </tr>
-  <tr>
-     <h4 style="margin-buttom:8px">Search Flight</h4>
-  </tr>
-  <tr>
-      <image src="./screenshoot/search flight.png" alt="Login Pagee" width=100%/>
+    <td><image src="./screenshoot/register.png" alt="Register Page" width=100%></td>
+    <td><image src="./screenshoot/Angkasa Tiketing.png" alt="Login Pagee" width=100%/></td>
   </tr>
    <tr>
-     <h4 style="margin-buttom:8px">Flight Detail</h4>
+    <td>Register</td>
+    <td>Login </td>
+  </tr>
+  
+  <tr>
+    <td><image src="./screenshoot/home.png" alt="Home Page" width=100% ></td>
+    <td><image src="./screenshoot/search flight.png" alt="Detail Product Page" width=100%/></td>
   </tr>
   <tr>
-      <image src="./screenshoot/flight detail.png" alt="Login Pagee" width=100%/>
+    <td>Home Page</td>
+    <td>Search Flight</td>
   </tr>
-   <tr>
-     <h4 style="margin-buttom:8px">My Booking</h4>
+
+  <tr>
+    <td><image src="./screenshoot/flight detail.png" alt="My Product" width=100%></td>
+    <td><image src="./screenshoot/my booking.png" alt="Checkout Page" width=100%></td>
   </tr>
   <tr>
-      <image src="./screenshoot/my booking.png" alt="Login Pagee" width=100%/>
+      <td>Flight Detail</td>
+      <td>My Booking Flight</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./screenshoot/angkasa profil fix.png" alt="List My Product" width=100%></td>
+        <td><image src="./screenshoot/detail bookings.png" alt="Salling Product" width=100%></td>
   </tr>
   <tr>
-     <h4 style="margin-buttom:8px">Profil</h4>
-  </tr>
-  <tr>
-      <image src="./screenshoot/angkasa profil fix.png" alt="Login Pagee" width=100%/>
-  </tr>
-   <tr>
-     <h4 style="margin-buttom:8px">Booking Detail</h4>
-  </tr>
-  <tr>
-      <image src="./screenshoot/detail bookings.png" alt="Login Pagee" width=100%/>
+      <td>Profil</td>
+       <td>Booking Detail</td>
   </tr>
 </table>
 
