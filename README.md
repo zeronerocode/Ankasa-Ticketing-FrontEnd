@@ -120,7 +120,7 @@ Here is a working live demo: https://angkasa-tiketing.netlify.app/
   
   <tr>
     <td><image src="./screenshoot/home.png" alt="Home Page" width=100% ></td>
-    <td><image src="./screenshoot/search flight.png" alt="Detail Product Page" width=100%/></td>
+    <td><image src="./screenshoot/durasi fix.png" alt="Detail Product Page" width=100%/></td>
   </tr>
   <tr>
     <td>Home Page</td>
